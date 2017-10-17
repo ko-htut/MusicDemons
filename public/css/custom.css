@@ -1,0 +1,223 @@
+body {
+	background: #fff;
+	font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+.app-header {
+	position: fixed;
+	z-index:100;
+	height: 55px;
+	border-bottom: 1px solid #ccc;
+	width:100%;
+	background:inherit;
+}
+
+.app-footer {
+	position:fixed;
+	z-index:100;
+	border-top: 1px solid #ccc;
+	padding:10px;
+	bottom:0;
+	left:220px;
+	width:calc(100% - 220px);
+	transition: left 0.3s,width 0.3s;
+	background:inherit;
+}
+
+.sidebar-collapsed+.app-footer {
+	left:0;
+	width:100%;
+}
+
+.navbar-brand {
+	width:100%;
+	height:55px;
+	background-image:url(/img/logo.png);
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-size: auto 35px;
+}
+
+.navbar-toggler {
+	position: absolute;
+	left: 0;
+	width:55px;
+	height:55px;
+	font-size:1.3rem;
+	color:#bbb;
+	border:none;
+	border-bottom:inherit;
+	background:inherit;
+	cursor: default;
+}
+
+.sidebar-nav {
+	position: fixed;
+	width: 220px;
+	height: calc(100% - 55px);
+	background: #333;
+	color: #ddd;
+	left:0;
+	transition:left 0.3s;
+}
+
+.sidebar-nav > nav ul ul {
+	background:#555;
+	display:none;
+}
+
+.content {
+	position:absolute;
+	left:220px;
+	right:0;
+	transition:left 0.3s;
+	padding-bottom:55px;
+  height:calc(100% - 55px);
+  background:#E4E5E6;
+}
+.content > .container-fluid {
+  margin:20px;
+  margin-bottom:45px;
+  padding:15px;
+  background:#FFF;
+}
+
+.sidebar-collapsed > .sidebar-nav {
+	left: -220px;
+}
+.sidebar-collapsed > .content {
+	left:0;
+}
+
+.sidebar-nav > nav {
+	height:100%;
+	overflow-y:auto;
+}
+
+.sidebar-nav > nav ul {
+	list-style-type:none;
+	padding-left:0;
+	margin:0;
+}
+
+.sidebar-nav > nav ul > li > a, .sidebar-nav > nav ul > li > span, .sidebar-nav > nav ul > li > form > button {
+	padding:10px;
+	color:#fff;
+	display:block;
+	cursor:pointer;
+	background: transparent;
+	border:none;
+	width:100%;
+	text-align:left;
+	transition: background 0.3s;
+}
+.sidebar-nav > nav ul > li > a:hover, .sidebar-nav > nav ul > li > span:hover, .sidebar-nav > nav ul > li > form > button:hover {
+	background:#20a8d8;
+	text-decoration:none;
+}
+.sidebar-nav > nav ul > li > a > .fa, .sidebar-nav > nav ul > li > span > .fa, .sidebar-nav > nav ul > li > form > button > .fa {
+	margin-right: 0.5rem;
+}
+.sidebar-nav > nav ul > li > span > span {
+  float:right;
+  border-top:8px solid transparent;
+  border-left:8px solid #FFF;
+  border-bottom:8px solid transparent;
+  border-right:0px;
+  margin-top:4px;
+  margin-right:7px;
+  transition:transform .4s;
+}
+.sidebar-nav > nav ul > li > span.open > span {
+  transform: rotate(90deg);
+}
+
+.sidebar-nav > nav::-webkit-scrollbar {
+	position:absolute;
+	width:10px;
+	margin-left:-10px;
+	-webkit-appearance:none;
+}
+.sidebar-nav > nav::-webkit-scrollbar-thumb {
+	height:50px;
+	background-color:#11171a;
+	background-clip: content-box;
+	border-color:transparent;
+	border-style:solid;
+	border-width: 1px 2px;
+	border-radius:10px;
+}
+.sidebar-nav > nav::-webkit-scrollbar-track {
+	background-color: #506067;
+	border-right:1px solid #1c2429;
+	border-left:1px solid #1c2429;
+}
+
+.app-body {
+	padding-top: 55px;
+	display:block;
+}
+.breadcrumb {
+	background:#FFF;
+	border-bottom: 1px solid #ccc;
+	margin:0;
+}
+.breadcrumb > li {
+  display: inline-block;
+  color: #b0bec5;
+}
+.breadcrumb > li + li::before {
+  display: inline-block;
+  padding-right:0.5rem;
+  padding-left:0.5rem;
+  color:#B0BEC5;
+  content:"/";
+}
+h1 {
+	text-align:center;
+}
+h1, h2 {
+	margin: 11px auto;
+}
+label {
+	margin-bottom: 0;
+	padding-top: calc(0.5rem + 1px);
+	padding-bottom: calc(0.5rem + 1px);
+}
+.fa-cd:before{content: "\229a";}
+
+.form-control-feedback {
+	position: initial;
+	top: initial;
+	right: initial;
+	width: initial;
+	height: initial;
+	line-height: initial;
+	text-align: initial;
+	color:#b22;
+}
+
+.table > tbody > tr[data-url] > td {
+	cursor:pointer;
+}
+.table-striped>tbody>tr:nth-of-type(odd){
+  background:#eceff1;
+}
+.table-striped>tbody>tr:hover{
+  background:#cacdd0;
+}
+
+.table .trash {
+  width:30px;
+  padding:0;
+  padding-right:6px;
+  vertical-align:middle;
+}
+
+.btn, input.form-control {
+  border-radius:0;
+}
+
+label { font-weight:initial; }
+label.bold { font-weight:700; }
+a { color:#20a8d8; }
