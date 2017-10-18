@@ -2,6 +2,17 @@
 window._ = require('lodash');
 
 /**
+ * Load AngularJS
+ */
+ 
+try {
+    require('angular');
+    require('angular-route');
+} catch (e){
+
+}
+
+/**
  * We'll load jQuery and the Bootstrap jQuery plugin which provides support
  * for JavaScript based Bootstrap features such as modals and tabs. This
  * code may be modified to fit the specific needs of your application.
@@ -9,9 +20,10 @@ window._ = require('lodash');
 
 try {
     window.$ = window.jQuery = require('jquery');
-
     require('bootstrap-sass');
-} catch (e) {}
+} catch (e){
+
+}
 
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
@@ -20,7 +32,6 @@ try {
  */
 
 window.axios = require('axios');
-
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 /**

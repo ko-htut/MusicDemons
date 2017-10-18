@@ -11,17 +11,5 @@ let mix = require('laravel-mix');
  |
  */
 
-mix
-.copy('node_modules/font-awesome/fonts','public/fonts')
-//.copy('node_modules/angular','public/js/angular')
-//.copy('node_modules/angular-route','public/js/angular-route')
-.scripts([
-        'node_modules/angular/angular.min.js',
-        'node_modules/angular-route/angular-route.min.js',
-        'node_modules/jquery/dist/jquery.min.js',
-        'node_modules/bootstrap/dist/js/bootstrap.min.js',
-   ],'public/js/node-modules.js')
-.styles([
-        'node_modules/bootstrap/dist/css/bootstrap.min.css',
-        'node_modules/font-awesome/css/font-awesome.min.css'
-   ],'public/css/node-modules.css');
+mix.js('resources/assets/js/app.js', 'public/js')
+   .sass('resources/assets/sass/app.scss', 'public/css');

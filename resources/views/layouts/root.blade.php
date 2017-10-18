@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="{{ config('app.locale') }}">
 	<head>
+    <!-- https://stackoverflow.com/questions/44769250/incompatible-units-rem-and-px-with-bootstrap-4-alpha-6-->
 		<meta charset="UTF-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta name="csrf-token" content="{{ csrf_token() }}">
-		<link rel="stylesheet" href="{{ asset('css/node-modules.css') }}">
+		<link rel="stylesheet" href="{{ asset('css/app.css') }}">
 		<link rel="stylesheet" href="{{ asset('css/toggle-button.css') }}">
 		<link rel="stylesheet" href="{{ asset('css/custom.css') }}">
 		<title>{{ config('app.name', 'Laravel') }}</title>
@@ -42,9 +43,8 @@
 			</div>
 		</div>
 		@include('shared.footer')
-		<script type="text/javascript" src="{{ asset('js/node-modules.js') }}"></script>
-		<!--<script type="text/javascript" src="{{ asset('js/angular/angular.min.js') }}"></script>-->
-		<!--<script type="text/javascript" src="{{ asset('js/angular-route/angular-route.min.js') }}"></script>-->
+   
+		<script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
 		<script type="text/javascript" src="{{ asset('js/custom.js') }}"></script>
 		@yield('javascript')
 	</body>
