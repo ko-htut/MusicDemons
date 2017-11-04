@@ -133,7 +133,7 @@ $(document).ready(function(){
         if(typeof attr !== typeof undefined && attr !== false) {
             var items = JSON.parse(attr.replace(new RegExp("'", 'g'),"\""));
             $(items).each(function(){
-                var newOption = new Option(this.first_name + " " + this.last_name, this.id, true, true);
+                var newOption = new Option(this.text, this.id, true, true);
                 $selectbox.append(newOption).trigger('change');
             });
         }

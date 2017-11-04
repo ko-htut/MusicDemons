@@ -158,6 +158,9 @@ body {
   .sidebar-collapsed > .content {
   	left:0;
   }
+  .sidebar-nav > nav ul > li > form > button {
+    text-align:left;
+  }
 }
 @media (max-width: 575px) {
   /* small screen */
@@ -258,4 +261,8 @@ a { color:#20a8d8; }
 }
 .select2.select2-container {
   width:100% !important;
+}
+
+.form-control.select2 {
+  display:none;
 }

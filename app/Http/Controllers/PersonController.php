@@ -7,6 +7,7 @@ use App\Entities\Person;
 use Illuminate\Http\Request;
 use App\Services\PersonService;
 use App\Http\Requests\Person\PersonCreateRequest;
+use App\Http\Requests\Person\PersonUpdateRequest;
 
 class PersonController extends Controller
 {
@@ -105,9 +106,10 @@ class PersonController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(PersonUpdateRequest $request, Person $person)
     {
-        //
+        $this->personService->update($person,$request->getPerson());
+        return redirect()->route('person.show',compact('person'));
     }
 
     /**
@@ -116,8 +118,9 @@ class PersonController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Person $person)
     {
-        //
+        $this->personService->destroy($person);
+        return redirect()->route('person.index');
     }
 }

@@ -97,10 +97,15 @@ class ArtistController extends Controller
             'Edit'         =>  null
         );
         $selected_members = $artist->members->map(function($member){
-            return collect($member->toArray())
-                ->only(['id','first_name','last_name','born','died','birth_place'])
-                ->all();
+            return (object)(
+                collect($member->toArray())
+                    ->only(['id','first_name','last_name','born','died','birth_place'])
+                    ->all()
+            );
         });
+         foreach($selected_members as $member){
+             $member->text = $member->first_name . " " . $member->last_name;
+         }
         return view('artist/edit', compact('artist','breadcrumb','selected_members'));
     }
 

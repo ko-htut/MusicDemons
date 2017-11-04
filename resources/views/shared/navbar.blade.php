@@ -38,13 +38,13 @@
 		  <span><i class="fa fa-music"></i>Songs</span>
 		  <ul>
 				<li>
-					<a href><i class="fa fa-list"></i>All songs</a>
+					<a href="{{ route('song.index') }}"><i class="fa fa-list"></i>All songs</a>
 				</li>
 				<li>
 					<a href="{{ route('search-form', ['subject' => 'songs']) }}"><i class="fa fa-search"></i>Search song</a>
 				</li>
 				<li>
-					<a href><i class="fa fa-plus"></i>Add song</a>
+					<a href="{{ route('song.create') }}"><i class="fa fa-plus"></i>Add song</a>
 				</li>
 		  </ul>
 		</li>

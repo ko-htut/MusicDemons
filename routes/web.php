@@ -22,6 +22,8 @@ Route::resource('artist','ArtistController');
 Route::get('artist/{count?}/{page?}','ArtistController@index')->name('artist.page');
 Route::resource('person','PersonController');
 Route::get('person/{count?}/{page?}','PersonController@index')->name('person.page');
+Route::resource('song','SongController');
+Route::get('song/{count?}/{page?}','SongController@index')->name('song.page');
 
 // this is for the search form only
 Route::group(['prefix' => 'search', 'as' => 'search-'], function() {

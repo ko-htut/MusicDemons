@@ -28,12 +28,14 @@
 			<label class="bold">Members</label>
 		</div>
 		<div class="col-sm-8 col-xl-10">
-			@foreach($artist->members as $member)
-				<a href="{{ route('person.show',['id' => $member->id]) }}">{{ $member->first_name . " " . $member->last_name }}</a>
-        @if(!$loop->last)
-          ,
-        @endif
-			@endforeach
+      <label>
+  			@foreach($artist->members as $member)
+  				<a href="{{ route('person.show',['id' => $member->id]) }}">{{ $member->first_name . " " . $member->last_name }}</a>
+          @if(!$loop->last)
+            ,
+          @endif
+  			@endforeach
+       </label>
 		</div>
 	</div>
 @endsection

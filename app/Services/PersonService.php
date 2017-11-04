@@ -29,7 +29,7 @@ class PersonService {
         
         $person->user_update = Auth::user()->id;
         $person->save();
-        return $artist;
+        return $person;
     }
     
     public function destroy(Person $person) {

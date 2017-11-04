@@ -31,7 +31,7 @@
 		@component('generic.form.date', [
 			'name'      =>  'born',
 			'label'     =>  'Birth day',
-      'value'     =>  date('Y-m-d',strtotime($person->born))
+      'value'     =>  $person->born
 		])@endcomponent
     @component('generic.form.text',[
         'name'    =>  'birth_place',
@@ -41,7 +41,7 @@
     @component('generic.form.date',[
         'name'    =>  'died',
         'label'   =>  'Died',
-        'value'   =>  date('Y-m-d',strtotime($person->died))
+        'value'   =>  $person->died
     ])@endcomponent
 	</form>
 @endsection

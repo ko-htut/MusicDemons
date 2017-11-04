@@ -21,4 +21,8 @@ class Artist extends Model
     public function members() {
         return $this->belongsToMany('App\Entities\Person');
     }
+    
+    public function songs() {
+        return $this->belongsToMany('App\Entities\Song');
+    }
 }

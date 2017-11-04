@@ -29,7 +29,7 @@ class ArtistService {
         $artist->user_update = Auth::user()->id;
         $artist->save();
         
-        $artist->members()->syncWithoutDetaching($artistData->members);
+        $artist->members()->sync($artistData->members);
         
         return $artist;
     }
