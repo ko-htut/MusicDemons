@@ -15,7 +15,8 @@ class ArtistUpdateRequest extends FormRequest {
         return [
             'name'          => 'required|string|min:1|max:255',
             'year_started'  => 'required|integer|digits:4',
-            'year_quit'     => 'nullable|integer|digits:4'
+            'year_quit'     => 'nullable|integer|digits:4',
+            'members'       => 'nullable'
         ];
     }
     
@@ -23,7 +24,8 @@ class ArtistUpdateRequest extends FormRequest {
         return (object) [
             'name'        => $this->input('name'),
             'year_started'=> $this->input('year_started'),
-            'year_quit'   => $this->input('year_quit')
+            'year_quit'   => $this->input('year_quit'),
+            'members'     => $this->input('members')
         ];
     }
 }

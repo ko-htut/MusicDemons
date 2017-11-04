@@ -1,3 +1,7 @@
+html {
+  background: #E4E5E6;
+}
+
 body {
 	background: #fff;
 	font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
@@ -58,7 +62,7 @@ body {
 	background: #333;
 	color: #ddd;
 	left:0;
-	transition:left 0.3s;
+	transition:all 0.3s;
 }
 
 .sidebar-nav > nav ul ul {
@@ -72,7 +76,7 @@ body {
 	right:0;
 	transition:left 0.3s;
 	padding-bottom:55px;
-  height:calc(100% - 55px);
+  /*height:calc(100% - 55px);*/
   background:#E4E5E6;
 }
 .content > .container-fluid {
@@ -80,13 +84,6 @@ body {
   margin-bottom:45px;
   padding:15px;
   background:#FFF;
-}
-
-.sidebar-collapsed > .sidebar-nav {
-	left: -220px;
-}
-.sidebar-collapsed > .content {
-	left:0;
 }
 
 .sidebar-nav > nav {
@@ -108,7 +105,7 @@ body {
 	background: transparent;
 	border:none;
 	width:100%;
-	text-align:left;
+	/*text-align:left;*/
 	transition: background 0.3s;
 }
 .sidebar-nav > nav ul > li > a:hover, .sidebar-nav > nav ul > li > span:hover, .sidebar-nav > nav ul > li > form > button:hover {
@@ -151,6 +148,39 @@ body {
 	background-color: #506067;
 	border-right:1px solid #1c2429;
 	border-left:1px solid #1c2429;
+}
+
+@media (min-width: 576px) {
+  /* wide screen */
+  .sidebar-collapsed > .sidebar-nav {
+  	left: -220px;
+  }
+  .sidebar-collapsed > .content {
+  	left:0;
+  }
+}
+@media (max-width: 575px) {
+  /* small screen */
+  .sidebar-nav {
+    z-index:5;
+    width: 100%;
+  }
+  div:not(.sidebar-collapsed) > .sidebar-nav {
+  	left: 0;
+  }
+  .sidebar-collapsed > .sidebar-nav {
+  	left: -100%;
+  }
+  .content {
+  	left:0;
+  }
+  .app-footer {
+    left:0;
+    width:100%;
+  }
+  .sidebar-nav nav ul li {
+    text-align:center;
+  }
 }
 
 .app-body {
@@ -221,3 +251,11 @@ label {
 label { font-weight:initial; }
 label.bold { font-weight:700; }
 a { color:#20a8d8; }
+
+.select2-selection {
+  border-radius: 0 !important;
+  border: 1px solid rgba(0,0,0,0.15) !important;
+}
+.select2.select2-container {
+  width:100% !important;
+}

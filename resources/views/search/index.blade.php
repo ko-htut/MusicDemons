@@ -1,7 +1,7 @@
 @extends('layouts.root')
 
 @section('content')
-	<form action="{{ route('search-search') }}" method="POST">
+	<form action="{{ route('search-search') }}" method="GET">
     <div class="form-group row">
         <div class="col-12">
             <h4 class="d-inline-block">Search</h4>

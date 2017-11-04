@@ -20,10 +20,25 @@ try {
 
 try {
     window.$ = window.jQuery = require('jquery');
+    global.Tether = require('tether');
     require('bootstrap-sass');
+    require('select2/dist/js/select2.min.js');
 } catch (e){
 
 }
+
+/**
+ * Vue is a modern JavaScript library for building interactive web interfaces
+ * using reactive data binding and reusable components. Vue's API is clean
+ * and simple, leaving you to focus on building your next great project.
+ */
+
+var validator = require('vue-validator');
+var resource = require('vue-resource');
+
+var Vue = window.Vue = require('vue');
+Vue.use(validator);
+Vue.use(resource);
 
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests

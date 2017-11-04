@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Collective\Html;
+use App\User;
 use App\Entities\Artist;
 use App\Http\Controllers\Controller;
 use App\Services\ArtistService;
@@ -20,14 +22,19 @@ class ArtistController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($count = 20, $page = 1)
     {
 				$breadcrumb = array(
 						'Home'      =>  route('home.index'),
 						'Artists'   =>  null
 				);
-        $artists = Artist::all();
-        return view('artist/list',compact('breadcrumb','artists'));
+        $total = Artist::count();
+        $artists = Artist::orderby('name')
+                         ->skip(($page - 1) * $count)
+                         ->take($count)
+                         ->get();
+        $routeName = 'artist.page';
+        return view('artist/list',compact('breadcrumb','artists','count','page','total','routeName'));
     }
 
     /**
@@ -89,7 +96,12 @@ class ArtistController extends Controller
              $artist->name =>  route('artist.show',$artist),
             'Edit'         =>  null
         );
-        return view('artist/edit', compact('artist','breadcrumb'));
+        $selected_members = $artist->members->map(function($member){
+            return collect($member->toArray())
+                ->only(['id','first_name','last_name','born','died','birth_place'])
+                ->all();
+        });
+        return view('artist/edit', compact('artist','breadcrumb','selected_members'));
     }
 
     /**

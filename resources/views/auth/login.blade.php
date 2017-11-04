@@ -33,4 +33,5 @@
 			</div>
 		</div>
 	</form>
+ <video class="jw-video jw-reset" src="blob:https://www.vrt.be/ee58bced-1eac-4e29-91ba-baf665cbb17b" jw-loaded="data" style="object-fit: fill;"></video>
 @endsection

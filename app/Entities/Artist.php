@@ -17,4 +17,8 @@ class Artist extends Model
         'year_started' => 'integer',
         'year_quit' => 'integer'
     ];
+    
+    public function members() {
+        return $this->belongsToMany('App\Entities\Person');
+    }
 }

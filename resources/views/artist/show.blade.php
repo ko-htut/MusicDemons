@@ -23,4 +23,17 @@
 		'label'     =>  'Year quit',
 		'value'     =>  $artist->year_quit
 	])@endcomponent
+	<div class="row">
+		<div class="col-sm-4 col-xl-2">
+			<label class="bold">Members</label>
+		</div>
+		<div class="col-sm-8 col-xl-10">
+			@foreach($artist->members as $member)
+				<a href="{{ route('person.show',['id' => $member->id]) }}">{{ $member->first_name . " " . $member->last_name }}</a>
+        @if(!$loop->last)
+          ,
+        @endif
+			@endforeach
+		</div>
+	</div>
 @endsection

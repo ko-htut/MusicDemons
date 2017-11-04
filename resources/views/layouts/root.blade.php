@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="{{ config('app.locale') }}">
 	<head>
-    <!-- https://stackoverflow.com/questions/44769250/incompatible-units-rem-and-px-with-bootstrap-4-alpha-6-->
+		<!-- https://stackoverflow.com/questions/44769250/incompatible-units-rem-and-px-with-bootstrap-4-alpha-6-->
 		<meta charset="UTF-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -9,6 +9,7 @@
 		<link rel="stylesheet" href="{{ asset('css/app.css') }}">
 		<link rel="stylesheet" href="{{ asset('css/toggle-button.css') }}">
 		<link rel="stylesheet" href="{{ asset('css/custom.css') }}">
+		<link rel="search" type="application/opensearchdescription+xml" title="Search through LyricDB" href="https://lyricdb.tk/opensearch.xml">
 		<title>{{ config('app.name', 'Laravel') }}</title>
 		
 		@yield('css')
@@ -39,6 +40,7 @@
 				</ol>
 				<div class="container-fluid">
 					@yield('content')
+          @include('shared.pager')
 				</div>
 			</div>
 		</div>

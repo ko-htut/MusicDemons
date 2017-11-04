@@ -6,70 +6,34 @@ use Illuminate\Http\Request;
 
 class SearchController extends Controller
 {
-    public function index()
+    public function index($subject = "",$search = "")
     {
-        $breadcrumb = array(
-            'Home'      =>  route('home.index'),
-            'Search'    =>  null
-        );
-        $selected = array(
-            'Artists'   =>  'artist',
-            'Albums'    =>  'album',
-            'Songs'     =>  'song',
-            'People'    =>  'person'
-        );
+        if($subject === "") {
+            $selected = array(
+                'Artists'   =>  'artist',
+                'Albums'    =>  'album',
+                'Songs'     =>  'song',
+                'People'    =>  'people'
+            );
+            $breadcrumb = array(
+                'Home'               =>  route('home.index'),
+                'Search'             =>  null
+            );
+        } else {
+            $selected = array(
+                ucfirst($subject)    =>  $subject
+            );
+            $breadcrumb = array(
+                'Home'               =>  route('home.index'),
+                'Search'             =>  route('search-form'),
+                ucfirst($subject)    =>  null
+            );
+        }
         return view('search/index',compact('breadcrumb','selected'));
     }
-    public function artist()
-    {
-        $breadcrumb = array(
-            'Home'      =>  route('home.index'),
-            'Search'    =>  route('search-all'),
-            'Artist'    =>  null
-        );
-        $selected = array(
-            'Artists'   =>  'artist'
-        );
-        return view('search/index',compact('breadcrumb','selected'));
-    }
-    public function album()
-    {
-        $breadcrumb = array(
-            'Home'      =>  route('home.index'),
-            'Search'    =>  route('search-all'),
-            'Album'     =>  null
-        );
-        $selected = array(
-            'Albums'    =>  'album'
-        );
-        return view('search/index',compact('breadcrumb','selected'));
-    }
-    public function song()
-    {
-        $breadcrumb = array(
-            'Home'      =>  route('home.index'),
-            'Search'    =>  route('search-all'),
-            'Song'     =>  null
-        );
-        $selected = array(
-            'Songs'     =>  'song'
-        );
-        return view('search/index',compact('breadcrumb','selected'));
-    }
-    public function person()
-    {
-        $breadcrumb = array(
-            'Home'      =>  route('home.index'),
-            'Search'    =>  route('search-all'),
-            'Person'     =>  null
-        );
-        $selected = array(
-            'Person'     =>  'person'
-        );
-        return view('search/index',compact('breadcrumb','selected'));
-    }
-    public function search()
-    {
     
+    public function search($subject,$search)
+    {
+        return view('search/results',compact('subject','search'));
     }
 }

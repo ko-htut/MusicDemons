@@ -17,13 +17,24 @@ Route::get('/', function () {
 
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home.index');
-Route::resource('artist','ArtistController');
 
+Route::resource('artist','ArtistController');
+Route::get('artist/{count?}/{page?}','ArtistController@index')->name('artist.page');
+Route::resource('person','PersonController');
+Route::get('person/{count?}/{page?}','PersonController@index')->name('person.page');
+
+// this is for the search form only
 Route::group(['prefix' => 'search', 'as' => 'search-'], function() {
-    Route::get('/', 'SearchController@index')->name('all');
-    Route::get('/artist', 'SearchController@artist')->name('artist');
-    Route::get('/album','SearchController@album')->name('album');
-    Route::get('/song','SearchController@song')->name('song');
-    Route::get('/person','SearchController@person')->name('person');
-    Route::post('/search','SearchController@search')->name('search');
+    // Route to show the form
+    Route::get('{subject?}','SearchController@index')->name('form');
+    
+    // Route to show the results
+    Route::get('{subject?}/{search?}','SearchController@search')->name('search');
+});
+
+// Routes for the search engine (select2 and opensearch)
+Route::group(['prefix' => 'autocomplete', 'as' => 'autocomplete-'], function() {
+    Route::get('opensearch/{subject}/{search}', 'AutocompleteController@opensearch')->name('opensearch');
+    Route::get('select2/artist/{search}','AutocompleteController@select2artist')->name('select2artist');
+    Route::get('select2/person/{search}','AutocompleteController@select2person')->name('select2person');
 });
