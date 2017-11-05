@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
 use App\User;
 use App\Entities\Person;
 use Illuminate\Http\Request;
@@ -44,12 +45,17 @@ class PersonController extends Controller
      */
     public function create()
     {
-        $breadcrumb = array(
-            'Home'    =>  route('home.index'),
-            'People' =>  route('person.index'),
-            'Add new person'  => null
-        );
-        return view('person/create',compact('breadcrumb'));
+        if(Auth::check()){
+            $breadcrumb = array(
+                'Home'    =>  route('home.index'),
+                'People' =>  route('person.index'),
+                'Add new person'  => null
+            );
+            return view('person/create',compact('breadcrumb'));
+        } else {
+            // first login to view this page
+            return redirect()->guest('login');
+        }
     }
 
     /**

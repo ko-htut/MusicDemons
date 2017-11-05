@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
 use App\User;
 use App\Entities\Song;
 use App\Http\Controllers\Controller;
@@ -43,12 +44,17 @@ class SongController extends Controller
      */
     public function create()
     {
-        $breadcrumb = array(
-            'Home'  =>  route('home.index'),
-            'Songs' =>  route('song.index'),
-            'Add new song' => null
-        );
-        return view('song/create',compact('breadcrumb'));
+        if(Auth::check()){
+            $breadcrumb = array(
+                'Home'  =>  route('home.index'),
+                'Songs' =>  route('song.index'),
+                'Add new song' => null
+            );
+            return view('song/create',compact('breadcrumb'));
+        } else {
+            // first login to view this page
+            return redirect()->guest('login');
+        }
     }
 
     /**

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
 use Collective\Html;
 use App\User;
 use App\Entities\Artist;
@@ -44,12 +45,17 @@ class ArtistController extends Controller
      */
     public function create()
     {
-        $breadcrumb = array(
-            'Home'    =>  route('home.index'),
-            'Artists' =>  route('artist.index'),
-            'Add new artist'  => null
-        );
-        return view('artist/create',compact('breadcrumb'));
+        if(Auth::check()){
+            $breadcrumb = array(
+                'Home'    =>  route('home.index'),
+                'Artists' =>  route('artist.index'),
+                'Add new artist'  => null
+            );
+            return view('artist/create',compact('breadcrumb'));
+        } else {
+            // first login to view this page
+            return redirect()->guest('login');
+        }
     }
 
     /**

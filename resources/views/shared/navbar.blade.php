@@ -15,9 +15,11 @@
 				<li>
 					<a href="{{ route('search-form', ['subject' => 'artists']) }}"><i class="fa fa-search"></i>Search artist</a>
 				</li>
-				<li>
-					<a href="{{ route('artist.create') }}"><i class="fa fa-plus"></i>Add artist</a>
-				</li>
+        @if(Auth::check())
+  				<li>
+  					<a href="{{ route('artist.create') }}"><i class="fa fa-plus"></i>Add artist</a>
+  				</li>
+        @endif
 		  </ul>
 		</li>
 		<li>
@@ -29,9 +31,11 @@
 				<li>
 					<a href="{{ route('search-form', ['subject' => 'people']) }}"><i class="fa fa-search"></i>Search person</a>
 				</li>
-				<li>
-					<a href="{{ route('person.create') }}"><i class="fa fa-plus"></i>Add person</a>
-				</li>
+        @if(Auth::check())
+  				<li>
+  					<a href="{{ route('person.create') }}"><i class="fa fa-plus"></i>Add person</a>
+  				</li>
+        @endif
 		  </ul>
 		</li>
 		<li>
@@ -43,9 +47,11 @@
 				<li>
 					<a href="{{ route('search-form', ['subject' => 'songs']) }}"><i class="fa fa-search"></i>Search song</a>
 				</li>
-				<li>
-					<a href="{{ route('song.create') }}"><i class="fa fa-plus"></i>Add song</a>
-				</li>
+        @if(Auth::check())
+  				<li>
+  					<a href="{{ route('song.create') }}"><i class="fa fa-plus"></i>Add song</a>
+  				</li>
+        @endif
 		  </ul>
 		</li>
 		<li>
@@ -57,9 +63,11 @@
 				<li>
 					<a href="{{ route('search-form', ['subject' => 'albums']) }}"><i class="fa fa-search"></i>Search album</a>
 				</li>
-				<li>
-					<a href><i class="fa fa-plus"></i>Add album</a>
-				</li>
+        @if(Auth::check())
+  				<li>
+  					<a href><i class="fa fa-plus"></i>Add album</a>
+  				</li>
+        @endif
 		  </ul>
 		</li>
 		<li>

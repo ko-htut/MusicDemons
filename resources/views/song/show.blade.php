@@ -8,6 +8,13 @@
               <a href="{{ route('song.edit', $song) }}" class="btn btn-primary">
             		<i class="fa fa-pencil"></i> Edit
             	</a>
+              <form action="{{ route('song.destroy', $song) }}" method="POST" class="d-inline-block">
+                {{ csrf_field() }}
+                {{ method_field('DELETE') }}
+                <button type="submit" class="btn btn-secondary">
+                  <i class="fa fa-trash-o"></i> Remove
+                </button>
+              </form>
           </span>
       </div>
   </div>

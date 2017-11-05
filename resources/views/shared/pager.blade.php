@@ -10,9 +10,15 @@
           </a>
         </li>
         @for($i=1; $i <= $page_count; $i++)
-          <li class="page-item {{ $i == intval($page) ? 'active' : '' }}">
-            <a class="page-link" href="{{ route('person.page', ['count' => $count, 'page' => $i]) }}">{{ $i }}</a>
-          </li>
+          @if($i == intval($page))
+            <li class="page-item active">
+              <span class="page-link">{{ $i }}</span>
+            </li>
+          @else
+            <li class="page-item">
+              <a class="page-link" href="{{ route('person.page', ['count' => $count, 'page' => $i]) }}">{{ $i }}</a>
+            </li>
+          @endif
         @endfor
         <li class="page-item {{ intval($page) === $page_count ? 'disabled' : '' }}">
           <a class="page-link" href="{{ route('person.page', ['count' => $count, 'page' => $page + 1]) }}" aria-label="Next">
@@ -23,9 +29,15 @@
       </ul>
       <ul class="pagination float-right">
           @foreach([10,20,50] as $per_page)
-              <li class="page-item {{ $per_page == intval($count) ? 'active' : '' }}">
-                  <a class="page-link" href="{{ route($routeName, ['count' => $per_page, 'page' => 1]) }}">{{ $per_page }}</a>
-              </li>
+              @if($per_page == intval($count))
+                  <li class="page-item active">
+                      <span class="page-link">{{ $per_page }}</span>
+                  </li>
+              @else
+                  <li class="page-item">
+                      <a class="page-link" href="{{ route($routeName, ['count' => $per_page, 'page' => 1]) }}">{{ $per_page }}</a>
+                  </li>
+              @endif
           @endforeach
       </ul>
     </div>

@@ -266,3 +266,6 @@ a { color:#20a8d8; }
 .form-control.select2 {
   display:none;
 }
+ul.pagination > li > span {
+  cursor:default;
+}
