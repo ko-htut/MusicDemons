@@ -20,4 +20,8 @@ class Song extends Model
     public function artists() {
         return $this->belongsToMany('App\Entities\Artist');
     }
+    
+    public function lyrics() {
+        return $this->hasMany('App\Entities\Lyric');
+    }
 }

@@ -31,5 +31,11 @@
             </select>
         </div>
     </div>
+    <div class="form-group row">
+      <label for="lyrics" class="col-sm-4 col-xl-2">Lyrics</label>
+			<div class="col-sm-8 col-xl-10">
+        <textarea class="form-control" rows="15" name="lyrics" id="lyrics"></textarea>
+      </div>
+    </div>
   </form>
 @endsection

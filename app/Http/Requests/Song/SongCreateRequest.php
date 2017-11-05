@@ -15,7 +15,8 @@ class SongCreateRequest extends FormRequest {
         return [
             'title'    => 'required|string|min:1|max:255',
             'released' => 'nullable|date',
-            'artists'  => 'nullable'
+            'artists'  => 'nullable',
+            'lyrics'   => 'nullable|string|min:10|max:65536'
         ];
     }
     
@@ -23,7 +24,8 @@ class SongCreateRequest extends FormRequest {
         return (object) [
             'title'    => $this->input('title'),
             'released' => $this->input('released'),
-            'artists'  => $this->input('artists')
+            'artists'  => $this->input('artists'),
+            'lyrics'   => $this->input('lyrics')
         ];
     }
 }

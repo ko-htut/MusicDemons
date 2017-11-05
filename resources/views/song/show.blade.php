@@ -41,4 +41,11 @@
       </label>
 		</div>
 	</div>
+  @if($song->lyrics->count() !== 0)
+    @component('generic.form.label', [
+      'label'          =>  'Lyrics',
+      'value'          =>  $song->lyrics->last()->lyrics,
+      'inputClass'     =>  'text-pre-line'
+    ])@endcomponent
+  @endif
 @endsection

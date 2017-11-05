@@ -269,3 +269,10 @@ a { color:#20a8d8; }
 ul.pagination > li > span {
   cursor:default;
 }
+
+.w-auto {
+  width:auto !important;
+}
+.text-pre-line {
+    white-space: pre-line;
+}
