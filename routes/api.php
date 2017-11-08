@@ -16,3 +16,10 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::group(['prefix' => '', 'as' => 'api-'], function() {
+    Route::group(['prefix' => 'autocomplete', 'as' => 'autocomplete-'], function() {
+        Route::post('raw/person','AutocompleteController@rawperson')->name('rawperson');
+        Route::post('raw/artist','AutocompleteController@rawartist')->name('rawartist');
+    });
+});

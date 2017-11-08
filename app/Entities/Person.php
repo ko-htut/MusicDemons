@@ -20,7 +20,19 @@ class Person extends Model
         'died'  =>  'date'
     ];
     
+    protected $filters = [
+        'full_name'
+    ];
+    
     public function artist() {
         return $this->belongsToMany('App\Entities\Artist');
+    }
+    
+    public function getFullNameAttribute() {
+        return $this->first_name . " " . $this->last_name;
+    }
+    
+    public function filterFullNameAttribute() {
+        return $this->first_name . " " . $this->last_name;
     }
 }

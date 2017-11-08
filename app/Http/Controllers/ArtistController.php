@@ -67,6 +67,7 @@ class ArtistController extends Controller
     public function store(ArtistCreateRequest $request)
     {
         $artist = $this->artistService->create($request->getArtist());
+        $request->session()->flash('add_another','Add another artist');
         return redirect()->route('artist.show',[
             'artist' => $artist->id
         ]);
@@ -85,7 +86,8 @@ class ArtistController extends Controller
             'Artists'      =>  route('artist.index'),
              $artist->name =>  null
         );
-        return view('artist/show',compact('artist','breadcrumb'));
+        $add_another = session('add_another');
+        return view('artist/show',compact('artist','breadcrumb','add_another'));
     }
 
     /**

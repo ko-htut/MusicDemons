@@ -15,6 +15,11 @@
                   <i class="fa fa-trash-o"></i> Remove
                 </button>
               </form>
+              @if($add_another !== null)
+                <a href="{{ route('artist.create') }}" class="btn btn-secondary">
+                  <i class="fa fa-plus"></i> Add another
+                </a>
+              @endif
           </span>
       </div>
   </div>

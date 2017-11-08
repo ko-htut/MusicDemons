@@ -233,6 +233,10 @@ label {
 .table > tbody > tr[data-url] > td {
 	cursor:pointer;
 }
+.table th, .table td {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
 .table-striped>tbody>tr:nth-of-type(odd){
   background:#eceff1;
 }
@@ -250,6 +254,9 @@ label {
 .btn, input.form-control {
   border-radius:0;
 }
+/*.btn > .fa {
+  margin-right: 0.5rem;
+}*/
 
 label { font-weight:initial; }
 label.bold { font-weight:700; }

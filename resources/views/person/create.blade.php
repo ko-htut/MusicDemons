@@ -38,4 +38,47 @@
         'label'     =>  'Died'
     ])@endcomponent
   </form>
+  <div class="card" id="PersonExistPanel" style="display:none">
+    <div class="card-header">
+      These people already exist
+    </div>
+    <div class="card-block">
+      <p class="card-text">The person you are trying to add is probably already present in the database. Please check before adding this person.</p>
+      <div class="d-block" id="people">
+      
+      </div>
+    </div>
+  </div>
+@endsection
+
+@section('javascript')
+    <script type="text/javascript">
+        $('#first_name,#last_name').on('keyup', function(){
+            if(($('#first_name').val() !== "") && ($('#last_name').val() !== "")){
+                $.ajax({
+                    url: "{{ route('api-autocomplete-rawperson') }}",
+                    method: "post",
+                    data: {
+                        first_name: $('#first_name').val(),
+                        last_name: $('#last_name').val()
+                    },
+                    success: function(response){
+                        if(response.length === 0){
+                            $("#PersonExistPanel").css('display','none');
+                        } else {
+                            $("#people > a").remove();
+                            $(response).each(function(){
+                                $('<a class="btn btn-primary" href="' + this.url + '" target="_blank"><i class="fa fa-user"></i> ' + this.first_name + ' ' + this.last_name + '</a>')
+                                    .appendTo($("#people"));
+                            });
+                            $("#PersonExistPanel").css('display','flex');
+                        }
+                    },
+                    error: function(){
+                        $("#PersonExistPanel").css('display','none');
+                    }
+                });
+            }
+        });
+    </script>
 @endsection

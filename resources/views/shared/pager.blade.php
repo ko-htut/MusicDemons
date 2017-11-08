@@ -4,7 +4,7 @@
     <div class="col-md-12">
       <ul class="pagination float-left">
         <li class="page-item {{ intval($page) === 1 ? 'disabled' : '' }}">
-          <a class="page-link" href="{{ route('person.page', ['count' => $count, 'page' => $page - 1]) }}" aria-label="Previous">
+          <a class="page-link" href="{{ route($routeName, ['count' => $count, 'page' => $page - 1]) }}" aria-label="Previous">
             <span aria-hidden="true">&laquo;</span>
             <span class="sr-only">Previous</span>
           </a>
@@ -16,12 +16,12 @@
             </li>
           @else
             <li class="page-item">
-              <a class="page-link" href="{{ route('person.page', ['count' => $count, 'page' => $i]) }}">{{ $i }}</a>
+              <a class="page-link" href="{{ route($routeName, ['count' => $count, 'page' => $i]) }}">{{ $i }}</a>
             </li>
           @endif
         @endfor
         <li class="page-item {{ intval($page) === $page_count ? 'disabled' : '' }}">
-          <a class="page-link" href="{{ route('person.page', ['count' => $count, 'page' => $page + 1]) }}" aria-label="Next">
+          <a class="page-link" href="{{ route($routeName, ['count' => $count, 'page' => $page + 1]) }}" aria-label="Next">
             <span aria-hidden="true">&raquo;</span>
             <span class="sr-only">Next</span>
           </a>

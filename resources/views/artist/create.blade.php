@@ -43,4 +43,46 @@
 			</div>
 		</div>
   </form>
+  <div class="card" id="ArtistExistPanel" style="display:none">
+    <div class="card-header">
+      These artists already exist
+    </div>
+    <div class="card-block">
+      <p class="card-text">The artist you are trying to add is probably already present in the database. Please check before adding this artist.</p>
+      <div class="d-block" id="artists">
+      
+      </div>
+    </div>
+  </div>
+@endsection
+
+@section('javascript')
+    <script type="text/javascript">
+        $('#name').on('keyup', function(){
+            if($('#name').val() !== ""){
+                $.ajax({
+                    url: "{{ route('api-autocomplete-rawartist') }}",
+                    method: "post",
+                    data: {
+                        name: $('#name').val()
+                    },
+                    success: function(response){
+                        if(response.length === 0){
+                            $("#ArtistExistPanel").css('display','none');
+                        } else {
+                            $("#artists > a").remove();
+                            $(response).each(function(){
+                                $('<a class="btn btn-primary" href="' + this.url + '" target="_blank"><i class="fa fa-user"></i> ' + this.name + '</a>')
+                                    .appendTo($("#artists"));
+                            });
+                            $("#ArtistExistPanel").css('display','flex');
+                        }
+                    },
+                    error: function(){
+                        $("#ArtistExistPanel").css('display','none');
+                    }
+                });
+            }
+        });
+    </script>
 @endsection
