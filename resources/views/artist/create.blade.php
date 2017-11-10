@@ -57,8 +57,8 @@
 @endsection
 
 @section('javascript')
-    <script type="text/javascript">
-        $('#name').on('keyup', function(){
+    $(document).ready(function(){
+        $('#name').on('input', function(){
             if($('#name').val() !== ""){
                 $.ajax({
                     url: "{{ route('api-autocomplete-rawartist') }}",
@@ -84,5 +84,5 @@
                 });
             }
         });
-    </script>
+    });
 @endsection

@@ -137,11 +137,7 @@ $(document).ready(function(){
 						},
 						minimumInputLength: 1,
 						placeholder: $(this).attr("data-placeholder")
-				})
-        .focus(function(){
-            debugger;
-            $(this).select2('focus');
-        });
+				});
         
         var attr = $(this).attr('data-selected');
         if(typeof attr !== typeof undefined && attr !== false) {
@@ -151,5 +147,7 @@ $(document).ready(function(){
                 $selectbox.append(newOption).trigger('change');
             });
         }
+        
+        $(this).css('display','block');
     });
 });

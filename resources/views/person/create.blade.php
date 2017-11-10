@@ -15,10 +15,11 @@
 			</div>
 		</div>
     @component('generic.form.text',[
-        'name'      =>  'first_name',
-        'label'     =>  'First name',
-        'required'  =>  true,
-        'autofocus' =>  true
+        'name'          =>  'first_name',
+        'label'         =>  'First name',
+        'required'      =>  true,
+        'autofocus'     =>  true,
+        'autocomplete'  =>  false
     ])@endcomponent
     @component('generic.form.text',[
         'name'      =>  'last_name',
@@ -52,8 +53,8 @@
 @endsection
 
 @section('javascript')
-    <script type="text/javascript">
-        $('#first_name,#last_name').on('keyup', function(){
+    $(document).ready(function(){
+        $('#first_name,#last_name').on('input', function(){
             if(($('#first_name').val() !== "") && ($('#last_name').val() !== "")){
                 $.ajax({
                     url: "{{ route('api-autocomplete-rawperson') }}",
@@ -80,5 +81,5 @@
                 });
             }
         });
-    </script>
+    });
 @endsection
