@@ -41,5 +41,35 @@
 				</select>
 			</div>
 		</div>
+    <div class="form-group row">
+      <label class="col-sm-4 col-xl-2">Media</label>
+      <div class="col-sm-8 col-xl-10">
+          <div class="row" id="button-row">
+              <div class="col-md-12">
+                  <button type="button" class="btn btn-primary w-100" id="btnCreateEmail" ng-click="vm.createEmail()">Add</button>
+              </div>
+          </div>
+      </div>
+    </div>
 	</form>
+@endsection
+
+@section('javascript')
+    $(document).ready(function(){
+        $("#btnCreateEmail").click(function(){
+            $(`<div class="row">
+                 <div class="col-md-6">
+                   <select class="form-control">
+                     @foreach($media as $medium)
+                         <option>{{ $medium->description }}</option>
+                     @endforeach
+                   </select>
+                 </div>
+                 <div class="col-md-6">
+                   <input type="text" class="form-control">
+                 </div>
+               </div>`
+            ).insertBefore("#button-row");
+        });
+    });
 @endsection

@@ -24,4 +24,8 @@ class Song extends Model
     public function lyrics() {
         return $this->hasMany('App\Entities\Lyric');
     }
+    
+    public function subject() {
+        return $this->morphOne('App\Entities\Subject', 'subjectable');
+    }
 }

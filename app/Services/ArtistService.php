@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use Auth;
+use App\Entities\Subject;
 use App\Entities\Artist;
 
 class ArtistService {
@@ -16,6 +17,7 @@ class ArtistService {
         $artist->user_insert = Auth::user()->id;
         $artist->save();
         
+        $artist->subject()->create();
         $artist->members()->attach($artistData->members);
         
         return $artist;

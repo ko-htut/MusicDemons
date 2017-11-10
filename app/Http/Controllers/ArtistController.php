@@ -6,6 +6,7 @@ use Auth;
 use Collective\Html;
 use App\User;
 use App\Entities\Artist;
+use App\Entities\MediumType;
 use App\Http\Controllers\Controller;
 use App\Services\ArtistService;
 use App\Http\Requests\Artist\ArtistCreateRequest;
@@ -111,10 +112,11 @@ class ArtistController extends Controller
                     ->all()
             );
         });
-         foreach($selected_members as $member){
-             $member->text = $member->first_name . " " . $member->last_name;
-         }
-        return view('artist/edit', compact('artist','breadcrumb','selected_members'));
+        foreach($selected_members as $member){
+            $member->text = $member->first_name . " " . $member->last_name;
+        }
+        $media = MediumType::all();
+        return view('artist/edit', compact('artist','breadcrumb','selected_members','media'));
     }
 
     /**

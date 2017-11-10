@@ -29,6 +29,26 @@ function applyCheckAllButtons(name) {
 			}
 }
 
+function tryCollapseSidebar() {
+  if($(window).width() < 767){
+		var body = $('.app-body')[0];    
+		if(!$(body).hasClass('sidebar-collapsed')){
+			$(body).addClass('sidebar-collapsed');
+		}
+	}else{
+		var body = $('.app-body')[0];    
+		if($(body).hasClass('sidebar-collapsed')){
+			$(body).removeClass('sidebar-collapsed');
+		}
+	}
+}
+
+/*window.onload =  function() {
+    $(".sidebar-nav, .content").css('transition','none');
+    tryCollapseSidebar();
+    $(".sidebar-nav, .content").css('transition','');
+}*/
+
 $(document).ready(function(){
     // navbar
 		$('.sidebar-nav > nav > ul > li:has(ul) > span').each(function(){
@@ -48,17 +68,7 @@ $(document).ready(function(){
 			}
 		});
 		$(window).on('resize',function(){
-			if($(window).width() < 767){
-				var body = $('.app-body')[0];    
-				if(!$(body).hasClass('sidebar-collapsed')){
-					$(body).addClass('sidebar-collapsed');
-				}
-			}else{
-				var body = $('.app-body')[0];    
-				if($(body).hasClass('sidebar-collapsed')){
-					$(body).removeClass('sidebar-collapsed');
-				}
-			}
+			tryCollapseSidebar();
 		});
    
     // checkbuttons

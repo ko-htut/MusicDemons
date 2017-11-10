@@ -25,4 +25,8 @@ class Artist extends Model
     public function songs() {
         return $this->belongsToMany('App\Entities\Song');
     }
+    
+    public function subject() {
+        return $this->morphOne('App\Entities\Subject', 'subjectable');
+    }
 }

@@ -71,6 +71,19 @@
 		  </ul>
 		</li>
 		<li>
+		  <span><i class="fa fa-medium"></i>Manage media</span>
+		  <ul>
+				<li>
+					<a href="{{ route('mediumtypes.index') }}"><i class="fa fa-list"></i>All media</a>
+				</li>
+        @if(Auth::check())
+  				<li>
+  					<a href="{{ route('mediumtypes.create') }}"><i class="fa fa-plus"></i>Add medium</a>
+  				</li>
+        @endif
+		  </ul>
+		</li>
+		<li>
 		  <span><i class="fa fa-user"></i>Account</span>
 		  <ul>
 			@if(Auth::check())

@@ -35,4 +35,8 @@ class Person extends Model
     public function filterFullNameAttribute() {
         return $this->first_name . " " . $this->last_name;
     }
+    
+    public function subject() {
+        return $this->morphOne('App\Entities\Subject', 'subjectable');
+    }
 }

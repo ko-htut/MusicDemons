@@ -23,6 +23,7 @@ class SongService {
         $lyric->song()->associate($song);
         $lyric->save();
         
+        $song->subject()->create();
         return $song;
     }
     

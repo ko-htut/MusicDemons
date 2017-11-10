@@ -17,6 +17,8 @@ class PersonService {
         
         $person->user_insert = Auth::user()->id;
         $person->save();
+        
+        $person->subject()->create();
         return $person;
     }
     

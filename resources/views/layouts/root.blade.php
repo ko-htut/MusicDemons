@@ -48,6 +48,8 @@
    
 		<script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
 		<script type="text/javascript" src="{{ asset('js/custom.js') }}"></script>
-		@yield('javascript')
+    <script type="text/javascript">
+    		@yield('javascript')
+    </script>
 	</body>
 </html>
