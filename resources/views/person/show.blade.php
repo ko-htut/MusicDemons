@@ -18,24 +18,61 @@
           </span>
       </div>
   </div>
-	@component('generic.form.label', [
-		'label'     =>  'First name',
-		'value'     =>  $person->first_name
-	])@endcomponent
-	@component('generic.form.label', [
-		'label'     =>  'Last name',
-		'value'     =>  $person->last_name
-	])@endcomponent
-	@component('generic.form.label', [
-		'label'     =>  'Birth day',
-		'value'     =>  ($person->born !== null ? date('d-m-Y',strtotime($person->born)) : '')
-	])@endcomponent
-	@component('generic.form.label', [
-		'label'     =>  'Birth place',
-		'value'     =>  $person->birth_place
-	])@endcomponent
-	@component('generic.form.label', [
-		'label'     =>  'Died',
-		'value'     =>  ($person->died !== null ? date('d-m-Y',strtotime($person->died)) : '')
-	])@endcomponent
+  <br>
+  <div class="card">
+    <div class="card-header">
+      <i class="fa fa-info"></i> General information
+    </div>
+    <div class="card-block">
+    	@component('generic.form.label', [
+    		'label'     =>  'First name',
+    		'value'     =>  $person->first_name
+    	])@endcomponent
+    	@component('generic.form.label', [
+    		'label'     =>  'Last name',
+    		'value'     =>  $person->last_name
+    	])@endcomponent
+    	@component('generic.form.label', [
+    		'label'     =>  'Birth day',
+    		'value'     =>  ($person->born !== null ? date('d-m-Y',strtotime($person->born)) : '')
+    	])@endcomponent
+    	@component('generic.form.label', [
+    		'label'     =>  'Birth place',
+    		'value'     =>  $person->birth_place
+    	])@endcomponent
+    	@component('generic.form.label', [
+    		'label'     =>  'Died',
+    		'value'     =>  ($person->died !== null ? date('d-m-Y',strtotime($person->died)) : '')
+    	])@endcomponent
+    </div>
+  </div>
+  <br>
+  <div class="card">
+    <div class="card-header">
+      <i class="fa fa-user-circle"></i> Member of
+    </div>
+    <div class="card-block">
+      <table class="table table-striped table-hover">
+        <thead>
+          <tr>
+            <th>Artist name</th>
+            <th class="hidden-xs-down">Joined</th>
+            <th class="hidden-xs-down">Left</th>
+          </tr>
+        </thead>
+        <tbody>
+          @foreach($person->artist as $artist)
+  			    <tr>
+              <td>
+                <a href="{{ route('artist.show',['id' => $artist->id]) }}">{{ $artist->name }}</a>
+              </td>
+              <td class="hidden-xs-down"></td>
+              <td class="hidden-xs-down"></td>
+            </tr>
+          @endforeach
+        </tbody>
+      </table>
+    
+    </div>
+  </div>
 @endsection

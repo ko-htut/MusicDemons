@@ -5,6 +5,8 @@ namespace App\Services;
 use Auth;
 use App\Entities\Subject;
 use App\Entities\Artist;
+use App\Entities\Medium;
+use App\Entities\MediumType;
 
 class ArtistService {
     public function create(\stdClass $artistData) {
@@ -27,11 +29,21 @@ class ArtistService {
         $artist->name = $artistData->name;
         $artist->year_started = $artistData->year_started;
         $artist->year_quit = $artistData->year_quit;
-        
         $artist->user_update = Auth::user()->id;
         $artist->save();
         
         $artist->members()->sync($artistData->members);
+        
+        foreach($artistData->media as $mediumData){
+            $type = MediumType::find($mediumData->medium_type_id);
+            
+            
+            $medium = new Medium();
+            $medium->value = $mediumData->medium_value;
+            $medium->medium_type()->associate($type);
+            $medium->subject()->associate($artist->subject);
+            $medium->save();
+        }
         
         return $artist;
     }

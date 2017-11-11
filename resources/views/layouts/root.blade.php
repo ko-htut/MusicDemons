@@ -7,6 +7,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta name="csrf-token" content="{{ csrf_token() }}">
 		<link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/menu-icon.css') }}">
 		<link rel="stylesheet" href="{{ asset('css/toggle-button.css') }}">
 		<link rel="stylesheet" href="{{ asset('css/custom.css') }}">
 		<link rel="search" type="application/opensearchdescription+xml" title="Search through LyricDB" href="https://lyricdb.tk/opensearch.xml">

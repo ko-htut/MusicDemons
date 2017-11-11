@@ -56,6 +56,7 @@ $(document).ready(function(){
 		});
 		$('.navbar-toggler').click(function(){
 			$('.app-body').toggleClass('sidebar-collapsed');
+      $(this).toggleClass('open');
 		});    
 		$('nav ul > li > span').click(function(){
 			var nav = $(this).closest('nav');

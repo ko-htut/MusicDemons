@@ -14,4 +14,8 @@ class Subject extends Model
     public function subjectable() {
         return $this->morphTo();
     }
+    
+    public function media() {
+        return $this->hasMany('App\Entities\Medium');
+    }
 }

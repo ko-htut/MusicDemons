@@ -61,19 +61,15 @@
     $(document).ready(function(){
         $("#btnCreateEmail").click(function(){
             $(`<div class="row">
-                   <div class="col-md-12">
-                       <div class="row">
-                           <div class="col-md-6 ml-xl-0">
-                               <select class="form-control">
-                                   @foreach($media as $medium)
-                                       <option>{{ $medium->description }}</option>
-                                   @endforeach
-                               </select>
-                           </div>
-                           <div class="col-md-6 mr-0">
-                               <input type="text" class="form-control">
-                           </div>
-                       </div>
+                   <div class="col-md-6 ml-xl-0">
+                       <select class="form-control" name="medium_types[]">
+                           @foreach($media as $medium)
+                               <option value="{{ $medium->id }}">{{ $medium->description }}</option>
+                           @endforeach
+                       </select>
+                   </div>
+                   <div class="col-md-6 mr-0">
+                       <input type="text" class="form-control" name="medium_values[]">
                    </div>
                </div>`
             ).insertBefore("#button-row");

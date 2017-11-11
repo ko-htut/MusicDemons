@@ -16,4 +16,8 @@ class Medium extends Model
     public function medium_type(){
         return $this->belongsTo('App\Entities\MediumType');
     }
+    
+    public function subject(){
+        return $this->belongsTo('App\Entities\Subject');
+    }
 }
