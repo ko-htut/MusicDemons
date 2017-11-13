@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Auth;
 use App\User;
 use App\Entities\Song;
+use App\Entities\MediumType;
+use App\Entities\Medium;
 use App\Http\Controllers\Controller;
 use App\Services\SongService;
 use App\Http\Requests\Song\SongCreateRequest;
@@ -50,7 +52,8 @@ class SongController extends Controller
                 'Songs' =>  route('song.index'),
                 'Add new song' => null
             );
-            return view('song/create',compact('breadcrumb'));
+            $medium_types = MediumType::all();
+            return view('song/create',compact('breadcrumb','medium_types'));
         } else {
             // first login to view this page
             return redirect()->guest('login');
@@ -84,7 +87,15 @@ class SongController extends Controller
             'Songs'       =>  route('song.index'),
              $song->title  =>  null
         );
-        return view('song/show',compact('song','breadcrumb'));
+        $youtube_url = null;
+        $youtube_type = MediumType::where('description','Youtube')->first();
+        if($youtube_type !== null) {
+            $youtube_video = Medium::where('medium_type_id',$youtube_type->id)->where('subject_id',$song->subject->id)->first();
+            if($youtube_video !== null) {
+                $youtube_url = last(explode('=', $youtube_video->value));
+            }
+        }
+        return view('song/show',compact('song','breadcrumb','youtube_url'));
     }
 
     /**
@@ -101,6 +112,7 @@ class SongController extends Controller
              $song->title  =>  route('song.show',$song),
             'Edit'        =>  null
          );
+         $medium_types = MediumType::all();
          $selected_artists = $song->artists->map(function($artist){
              return (object)(
                  collect($artist->toArray())
@@ -111,7 +123,7 @@ class SongController extends Controller
          foreach($selected_artists as $artist){
              $artist->text = $artist->name;
          }
-         return view('song/edit',compact('song','breadcrumb','selected_artists'));
+         return view('song/edit',compact('song','breadcrumb','selected_artists','medium_types'));
      }
 
     /**

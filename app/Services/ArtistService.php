@@ -22,6 +22,15 @@ class ArtistService {
         $artist->subject()->create();
         $artist->members()->attach($artistData->members);
         
+        foreach($artistData->media as $mediumData){
+            $type = MediumType::find($mediumData->medium_type_id);
+            $medium = new Medium();
+            $medium->value = $mediumData->medium_value;
+            $medium->medium_type()->associate($type);
+            $medium->subject()->associate($artist->subject);
+            $medium->save();
+        }
+        
         return $artist;
     }
     
@@ -34,10 +43,11 @@ class ArtistService {
         
         $artist->members()->sync($artistData->members);
         
+        // Delete old entities
+        Medium::where('subject_id',$artist->subject->id)->delete();
+        
         foreach($artistData->media as $mediumData){
             $type = MediumType::find($mediumData->medium_type_id);
-            
-            
             $medium = new Medium();
             $medium->value = $mediumData->medium_value;
             $medium->medium_type()->associate($type);

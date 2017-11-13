@@ -66,7 +66,7 @@ class AutocompleteController extends Controller
         return response()->json($data);
     }
     
-    public function opensearch($subject, $search)
+    public function opensearch($subject,$search)
     {
         $query = Artist::select('name')->where('name','like',"%$search%")->get()->pluck('name');
         $response = [

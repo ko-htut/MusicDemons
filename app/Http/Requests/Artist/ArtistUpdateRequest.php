@@ -35,6 +35,7 @@ class ArtistUpdateRequest extends FormRequest {
             count($this->input('medium_types')),
             count($this->input('medium_values'))
         );
+        $media = array();
         for($i = 0; $i < $min; $i++){
             $media[$i] = (object) [
                 'medium_type_id'  =>  $this->input("medium_types")[$i],

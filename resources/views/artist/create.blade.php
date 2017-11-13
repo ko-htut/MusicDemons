@@ -42,6 +42,14 @@
 				</select>
 			</div>
 		</div>
+    <div class="form-group row">
+      <label class="col-sm-4 col-xl-2">Media</label>
+      <div class="col-sm-8 col-xl-10">
+          @component('subject.media',[
+              'medium_types'  => $medium_types
+          ])@endcomponent
+      </div>
+    </div>
   </form>
   <div class="card" id="ArtistExistPanel" style="display:none">
     <div class="card-header">
@@ -57,6 +65,7 @@
 @endsection
 
 @section('javascript')
+    @include('subject.media_js')
     $(document).ready(function(){
         $('#name').on('input', function(){
             if($('#name').val() !== ""){

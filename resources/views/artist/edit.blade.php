@@ -44,35 +44,15 @@
     <div class="form-group row">
       <label class="col-sm-4 col-xl-2">Media</label>
       <div class="col-sm-8 col-xl-10">
-          <div class="row" id="button-row">
-              <div class="col-md-12">
-                  <button type="button" class="btn btn-primary w-100" id="btnCreateEmail" ng-click="vm.createEmail()">
-                      <i class="fa fa-plus"></i>
-                      Add
-                  </button>
-              </div>
-          </div>
+          @component('subject.media',[
+              'medium_types'  => $medium_types,
+              'media'         => $artist->subject->media
+          ])@endcomponent
       </div>
     </div>
 	</form>
 @endsection
 
 @section('javascript')
-    $(document).ready(function(){
-        $("#btnCreateEmail").click(function(){
-            $(`<div class="row">
-                   <div class="col-md-6 ml-xl-0">
-                       <select class="form-control" name="medium_types[]">
-                           @foreach($media as $medium)
-                               <option value="{{ $medium->id }}">{{ $medium->description }}</option>
-                           @endforeach
-                       </select>
-                   </div>
-                   <div class="col-md-6 mr-0">
-                       <input type="text" class="form-control" name="medium_values[]">
-                   </div>
-               </div>`
-            ).insertBefore("#button-row");
-        });
-    });
+    @include('subject.media_js')
 @endsection

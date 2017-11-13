@@ -4,6 +4,6 @@
   <Description>Search LyricDB</Description>
   <InputEncoding>UTF-8</InputEncoding>
   <Url type="text/html" method="get" template="https://lyricdb.tk/search/all/{searchTerms}" />
-  <Url type="application/x-suggestions+json" method="GET" template="https://lyricdb.tk/autocomplete/opensearch/artist/{searchTerms}" />
+  <Url type="application/x-suggestions+json" method="GET" template="https://lyricdb.tk/autocomplete/opensearch/all/{searchTerms}" />
   <Url type="application/opensearchdescription+xml" rel="self" template="https://lyricdb.tk/opensearch.xml" />
 </OpenSearchDescription>

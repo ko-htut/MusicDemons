@@ -18,6 +18,9 @@
           </span>
       </div>
   </div>
+  @if($youtube_url !== null)
+    <iframe width="560" height="315" src="{{ 'https://www.youtube.com/embed/' . $youtube_url }}" frameborder="0" allowfullscreen></iframe>
+  @endif
 	@component('generic.form.label', [
 		'label'     =>  'Title',
 		'value'     =>  $song->title

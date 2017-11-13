@@ -5,6 +5,8 @@ namespace App\Services;
 use Auth;
 use App\Entities\Song;
 use App\Entities\Lyric;
+use App\Entities\Medium;
+use App\Entities\MediumType;
 
 class SongService {
     public function create(\stdClass $songData) {
@@ -24,6 +26,16 @@ class SongService {
         $lyric->save();
         
         $song->subject()->create();
+        
+        foreach($songData->media as $mediumData){
+            $type = MediumType::find($mediumData->medium_type_id);
+            $medium = new Medium();
+            $medium->value = $mediumData->medium_value;
+            $medium->medium_type()->associate($type);
+            $medium->subject()->associate($song->subject);
+            $medium->save();
+        }
+        
         return $song;
     }
     
@@ -54,6 +66,17 @@ class SongService {
                 $new_lyric->song()->associate($song);
                 $new_lyric->save();
             }
+        }
+        
+        // Delete old entities
+        Medium::where('subject_id',$song->subject->id)->delete();
+        foreach($songData->media as $mediumData){
+            $type = MediumType::find($mediumData->medium_type_id);
+            $medium = new Medium();
+            $medium->value = $mediumData->medium_value;
+            $medium->medium_type()->associate($type);
+            $medium->subject()->associate($song->subject);
+            $medium->save();
         }
         
         // will the new association be applied immediately?

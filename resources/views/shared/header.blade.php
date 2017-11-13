@@ -1,6 +1,6 @@
 <div class="app-header">
 	<!--<button type="button" class="navbar-toggler mobile-sidebar-toggler d-lg-none">☰</button>-->
-  <div class="navbar-toggler mobile-sidebar-toggler">
+  <div class="navbar-toggler mobile-sidebar-toggler open">
     <div></div>
     <div></div>
     <div></div>

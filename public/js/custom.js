@@ -2,11 +2,15 @@
 (function($) {
 
     $.fn.fixClass = function(addClass, removeClass){
-        if($(this).hasClass(removeClass)){
-            $(this).removeClass(removeClass);
+        if(removeClass !== ""){
+            if($(this).hasClass(removeClass)){
+                $(this).removeClass(removeClass);
+            }
         }
-        if(!$(this).hasClass(addClass)){
-            $(this).addClass(addClass);
+        if(addClass !== ""){
+            if(!$(this).hasClass(addClass)){
+                $(this).addClass(addClass);
+            }
         }
     };
 
@@ -31,15 +35,13 @@ function applyCheckAllButtons(name) {
 
 function tryCollapseSidebar() {
   if($(window).width() < 767){
-		var body = $('.app-body')[0];    
-		if(!$(body).hasClass('sidebar-collapsed')){
-			$(body).addClass('sidebar-collapsed');
-		}
+		var body = $('.app-body')[0];
+    $(body).fixClass('sidebar-collapsed','');
+    $('.navbar-toggler').fixClass('','open');
 	}else{
-		var body = $('.app-body')[0];    
-		if($(body).hasClass('sidebar-collapsed')){
-			$(body).removeClass('sidebar-collapsed');
-		}
+		var body = $('.app-body')[0];
+    $(body).fixClass('','sidebar-collapsed');
+    $('.navbar-toggler').fixClass('open','');
 	}
 }
 
@@ -57,7 +59,7 @@ $(document).ready(function(){
 		$('.navbar-toggler').click(function(){
 			$('.app-body').toggleClass('sidebar-collapsed');
       $(this).toggleClass('open');
-		});    
+		});
 		$('nav ul > li > span').click(function(){
 			var nav = $(this).closest('nav');
 			var was_open = $(this).hasClass('open');

@@ -52,7 +52,8 @@ class ArtistController extends Controller
                 'Artists' =>  route('artist.index'),
                 'Add new artist'  => null
             );
-            return view('artist/create',compact('breadcrumb'));
+            $medium_types = MediumType::all();
+            return view('artist/create',compact('breadcrumb','medium_types'));
         } else {
             // first login to view this page
             return redirect()->guest('login');
@@ -115,8 +116,8 @@ class ArtistController extends Controller
         foreach($selected_members as $member){
             $member->text = $member->first_name . " " . $member->last_name;
         }
-        $media = MediumType::all();
-        return view('artist/edit', compact('artist','breadcrumb','selected_members','media'));
+        $medium_types = MediumType::all();
+        return view('artist/edit', compact('artist','breadcrumb','selected_members','medium_types'));
     }
 
     /**

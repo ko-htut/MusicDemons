@@ -25,8 +25,24 @@ class ArtistCreateRequest extends FormRequest {
             'name'        => $this->input('name'),
             'year_started'=> $this->input('year_started'),
             'year_quit'   => $this->input('year_quit'),
-            'members'     => $this->input('members')
+            'members'     => $this->input('members'),
+            'media'       => $this->getMedia()
         ];
+    }
+    
+    public function getMedia() {
+        $min = min(
+            count($this->input('medium_types')),
+            count($this->input('medium_values'))
+        );
+        $media = array();
+        for($i = 0; $i < $min; $i++){
+            $media[$i] = (object) [
+                'medium_type_id'  =>  $this->input("medium_types")[$i],
+                'medium_value'    =>  $this->input("medium_values")[$i]
+            ];
+        }
+        return $media;
     }
     
     /*public function messages() {
