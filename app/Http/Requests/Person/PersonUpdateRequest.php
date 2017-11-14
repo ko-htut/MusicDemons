@@ -27,7 +27,23 @@ class PersonUpdateRequest extends FormRequest {
             'last_name'     => $this->input('last_name'),
             'born'          => $this->input('born'),
             'died'          => $this->input('died'),
-            'birth_place'   => $this->input('birth_place')
+            'birth_place'   => $this->input('birth_place'),
+            'media'       => $this->getMedia()
         ];
+    }
+    
+    public function getMedia() {
+        $min = min(
+            count($this->input('medium_types')),
+            count($this->input('medium_values'))
+        );
+        $media = array();
+        for($i = 0; $i < $min; $i++){
+            $media[$i] = (object) [
+                'medium_type_id'  =>  $this->input("medium_types")[$i],
+                'medium_value'    =>  $this->input("medium_values")[$i]
+            ];
+        }
+        return $media;
     }
 }

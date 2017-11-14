@@ -4,6 +4,8 @@ namespace App\Services;
 
 use Auth;
 use App\Entities\Person;
+use App\Entities\Medium;
+use App\Entities\MediumType;
 
 class PersonService {
     public function create(\stdClass $personData) {
@@ -19,6 +21,16 @@ class PersonService {
         $person->save();
         
         $person->subject()->create();
+        
+        foreach($personData->media as $mediumData){
+            $type = MediumType::find($mediumData->medium_type_id);
+            $medium = new Medium();
+            $medium->value = $mediumData->medium_value;
+            $medium->medium_type()->associate($type);
+            $medium->subject()->associate($person->subject);
+            $medium->save();
+        }
+        
         return $person;
     }
     
@@ -31,6 +43,19 @@ class PersonService {
         
         $person->user_update = Auth::user()->id;
         $person->save();
+        
+        // Delete old entities
+        Medium::where('subject_id',$person->subject->id)->delete();
+        
+        foreach($personData->media as $mediumData){
+            $type = MediumType::find($mediumData->medium_type_id);
+            $medium = new Medium();
+            $medium->value = $mediumData->medium_value;
+            $medium->medium_type()->associate($type);
+            $medium->subject()->associate($person->subject);
+            $medium->save();
+        }
+        
         return $person;
     }
     

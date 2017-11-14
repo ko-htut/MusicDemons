@@ -43,5 +43,18 @@
         'label'   =>  'Died',
         'value'   =>  $person->died
     ])@endcomponent
+    <div class="form-group row">
+        <label class="col-sm-4 col-xl-2">Media</label>
+        <div class="col-sm-8 col-xl-10">
+            @component('subject.media',[
+                'medium_types'  =>  $medium_types,
+                'media'         =>  $person->subject->media
+            ])@endcomponent
+        </div>
+    </div>
 	</form>
+@endsection
+
+@section('javascript')
+    @include('subject.media_js')
 @endsection

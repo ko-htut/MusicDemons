@@ -70,6 +70,19 @@
         @endif
 		  </ul>
 		</li>
+		<li class="d-none">
+		  <span><i class="fa fa-bar-chart"></i>Charts</span>
+		  <ul>
+				<li>
+					<a href><i class="fa fa-list"></i>List</a>
+				</li>
+        @if(Auth::check())
+  				<li>
+  					<a href><i class="fa fa-plus"></i>Create a chart</a>
+  				</li>
+        @endif
+		  </ul>
+		</li>
 		<li>
 		  <span><i class="fa fa-medium"></i>Manage media</span>
 		  <ul>

@@ -38,6 +38,14 @@
         'name'      =>  'died',
         'label'     =>  'Died'
     ])@endcomponent
+    <div class="form-group row">
+      <label class="col-sm-4 col-xl-2">Media</label>
+      <div class="col-sm-8 col-xl-10">
+          @component('subject.media',[
+              'medium_types'  => $medium_types
+          ])@endcomponent
+      </div>
+    </div>
   </form>
   <div class="card" id="PersonExistPanel" style="display:none">
     <div class="card-header">
@@ -53,6 +61,7 @@
 @endsection
 
 @section('javascript')
+    @include('subject.media_js')
     $(document).ready(function(){
         $('#first_name,#last_name').on('input', function(){
             if(($('#first_name').val() !== "") && ($('#last_name').val() !== "")){

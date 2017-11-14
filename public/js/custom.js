@@ -45,13 +45,18 @@ function tryCollapseSidebar() {
 	}
 }
 
-/*window.onload =  function() {
-    $(".sidebar-nav, .content").css('transition','none');
-    tryCollapseSidebar();
-    $(".sidebar-nav, .content").css('transition','');
-}*/
-
 $(document).ready(function(){
+    $(".sidebar-nav, .content, .app-footer").addClass('no-transition');
+    tryCollapseSidebar();
+    $(".sidebar-nav, .content, .app-footer").each(function(){
+        $(this).offsetLeft;
+    });
+    //debugger;
+    setTimeout(function() {
+        $(".sidebar-nav, .content, .app-footer").removeClass('no-transition');
+    }, 500);
+    //$(".sidebar-nav, .content, .app-footer").removeClass('no-transition');
+    
     // navbar
 		$('.sidebar-nav > nav > ul > li:has(ul) > span').each(function(){
 			$(this).append("<span></span>");

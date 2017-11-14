@@ -48,6 +48,31 @@
   </div>
   <br>
   <div class="card">
+      <div class="card-header">
+          <i class="fa fa-facebook"></i>
+          Media
+      </div>
+      <div class="card-block">
+          <table class="table table-striped table-hover">
+              <thead>
+                  <tr>
+                      <th>Value</th>
+                      <th class="hidden-xs-down">Medium</th>
+                  </tr>
+              </thead>
+              <tbody>
+      			      @foreach($person->subject->media as $medium)
+                      <tr>
+                          <td><a href="{{ $medium->value }}" target="_blank">{{ $medium->value }}</a></td>
+                          <td class="hidden-xs-down">{{ $medium->medium_type->description }}</td>
+                      </tr>
+      			      @endforeach
+              </tbody>
+          </table>  
+      </div>
+  </div>
+  <br>
+  <div class="card">
     <div class="card-header">
       <i class="fa fa-user-circle"></i> Member of
     </div>

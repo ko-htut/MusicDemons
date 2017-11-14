@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Auth;
 use App\User;
 use App\Entities\Person;
+use App\Entities\MediumType;
 use Illuminate\Http\Request;
 use App\Services\PersonService;
 use App\Http\Requests\Person\PersonCreateRequest;
@@ -51,7 +52,8 @@ class PersonController extends Controller
                 'People' =>  route('person.index'),
                 'Add new person'  => null
             );
-            return view('person/create',compact('breadcrumb'));
+            $medium_types = MediumType::all();
+            return view('person/create',compact('breadcrumb','medium_types'));
         } else {
             // first login to view this page
             return redirect()->guest('login');
@@ -102,7 +104,8 @@ class PersonController extends Controller
              $person->first_name . " " . $person->last_name  =>  route('person.show',$person),
             'Edit'                                           =>  null
         );
-        return view('person/edit', compact('person','breadcrumb'));
+        $medium_types = MediumType::all();
+        return view('person/edit', compact('person','breadcrumb','medium_types'));
     }
 
     /**
