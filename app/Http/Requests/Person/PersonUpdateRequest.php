@@ -15,6 +15,7 @@ class PersonUpdateRequest extends FormRequest {
         return [
             'first_name'    => 'required|string|min:1|max:255',
             'last_name'     => 'required|string|min:1|max:255',
+            'nickname'      => 'nullable|string',
             'born'          => 'nullable|date',
             'died'          => 'nullable|date',
             'birth_place'   => 'nullable|string|min:1|max:255'
@@ -25,6 +26,7 @@ class PersonUpdateRequest extends FormRequest {
         return (object) [
             'first_name'    => $this->input('first_name'),
             'last_name'     => $this->input('last_name'),
+            'nickname'      => $this->input('nickname'),
             'born'          => $this->input('born'),
             'died'          => $this->input('died'),
             'birth_place'   => $this->input('birth_place'),

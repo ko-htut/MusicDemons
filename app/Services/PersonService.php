@@ -13,6 +13,7 @@ class PersonService {
         
         $person->first_name = $personData->first_name;
         $person->last_name = $personData->last_name;
+        $person->nickname = $personData->nickname;
         $person->born = $personData->born;
         $person->died = $personData->died;
         $person->birth_place = $personData->birth_place;
@@ -37,6 +38,7 @@ class PersonService {
     public function update(Person $person, \stdClass $personData) {
         $person->first_name = $personData->first_name;
         $person->last_name = $personData->last_name;
+        $person->nickname = $personData->nickname;
         $person->born = $personData->born;
         $person->died = $personData->died;
         $person->birth_place = $personData->birth_place;

@@ -100,6 +100,9 @@
 		  <span><i class="fa fa-user"></i>Account</span>
 		  <ul>
 			@if(Auth::check())
+        <li>
+          <a href="{{ route('profile.index') }}"><i class="fa fa-user-o"></i>Profile</a>
+        </li>
 				<li>
   				<form action="{{ route('logout') }}" method="POST">
   					{{ csrf_field() }}
@@ -117,7 +120,7 @@
 			</ul>
 		</li>
 		<li>
-			<a href><i class="fa fa-info"></i>Contact</a>
+			<a href="{{ route('about.index') }}"><i class="fa fa-info"></i>About/Contact</a>
 		</li>
 	</ul>
 </nav>

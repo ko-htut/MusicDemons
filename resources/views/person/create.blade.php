@@ -26,6 +26,10 @@
         'label'     =>  'Last name',
         'required'  =>  true
     ])@endcomponent
+    @component('generic.form.text',[
+        'name'      =>  'nickname',
+        'label'     =>  'Nickname'
+    ])@endcomponent
     @component('generic.form.date',[
         'name'      =>  'born',
         'label'     =>  'Birth day'

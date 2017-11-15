@@ -28,6 +28,11 @@
       'value'     =>  $person->last_name,
 			'required'  =>  true
 		])@endcomponent
+		@component('generic.form.text', [
+			'name'      =>  'nickname',
+			'label'     =>  'Nickname',
+      'value'     =>  $person->nickname
+		])@endcomponent
 		@component('generic.form.date', [
 			'name'      =>  'born',
 			'label'     =>  'Birth day',

@@ -32,6 +32,12 @@
     		'label'     =>  'Last name',
     		'value'     =>  $person->last_name
     	])@endcomponent
+      @if($person->nickname !== null)
+      	@component('generic.form.label', [
+      		'label'     =>  'Nickname',
+      		'value'     =>  $person->nickname
+      	])@endcomponent
+      @endif
     	@component('generic.form.label', [
     		'label'     =>  'Birth day',
     		'value'     =>  ($person->born !== null ? date('d-m-Y',strtotime($person->born)) : '')
