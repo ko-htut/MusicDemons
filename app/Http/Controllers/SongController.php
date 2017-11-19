@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Auth;
 use App\User;
 use App\Entities\Song;
+use App\Entities\Artist;
 use App\Entities\MediumType;
 use App\Entities\Medium;
 use App\Http\Controllers\Controller;
@@ -58,6 +59,31 @@ class SongController extends Controller
             // first login to view this page
             return redirect()->guest('login');
         }
+    }
+    
+    /**
+     * Show the form for creating a new resource
+     * with an artist already selected.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function createwithartist(Artist $artist)
+    {
+        $breadcrumb = array(
+            'Home'  =>  route('home.index'),
+            'Songs' =>  route('song.index'),
+            'Add new song' => null
+        );
+        $medium_types = MediumType::all();
+        $selected_artists = array((object)(
+            collect($artist->toArray())
+                ->only(['id','name','year_started','year_quit'])
+                ->all()
+        ));
+        foreach($selected_artists as $artist){
+            $artist->text = $artist->name;
+        }
+        return view('song/create',compact('breadcrumb','selected_artists','medium_types'));
     }
 
     /**

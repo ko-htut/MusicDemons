@@ -277,6 +277,11 @@ ul.pagination > li > span {
   cursor:default;
 }
 
+.card-header > .btn {
+  margin: -7px;
+  margin-right: -13px;
+}
+
 .w-auto {
   width:auto !important;
 }

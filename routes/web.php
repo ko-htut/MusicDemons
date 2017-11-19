@@ -28,6 +28,7 @@ Route::get('artist/{count?}/{page?}','ArtistController@index')->name('artist.pag
 Route::resource('person','PersonController');
 Route::get('person/{count?}/{page?}','PersonController@index')->name('person.page');
 Route::resource('song','SongController');
+Route::get('song/create/{artist}','SongController@createwithartist')->name('song.createwithartist');
 Route::get('song/{count?}/{page?}','SongController@index')->name('song.page');
 Route::resource('mediumtypes','MediumTypesController');
 

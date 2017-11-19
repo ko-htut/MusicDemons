@@ -21,7 +21,7 @@
   @if($youtube_url !== null)
     <div class="row">
       <div class="col-lg-12">
-        <iframe width="560" height="315" src="{{ 'https://www.youtube.com/embed/' . $youtube_url }}" frameborder="0" allowfullscreen class="d-block mx-auto"></iframe>
+        <iframe width="560" height="315" src="{{ 'https://www.youtube.com/embed/' . $youtube_url }}" frameborder="0" allowfullscreen class="d-block mx-auto mw-100"></iframe>
        </div>
      </div>
   @endif

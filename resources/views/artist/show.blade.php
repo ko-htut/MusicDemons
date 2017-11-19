@@ -103,6 +103,9 @@
         <div class="card-header">
             <i class="fa fa-music"></i>
             Songs
+            <a class="btn btn-secondary pull-right" href="{{ route('song.createwithartist',['artist' => $artist]) }}">
+                <i class="fa fa-plus"></i>
+            </a>
         </div>
         <div class="card-block">
             <table class="table table-striped table-hover">

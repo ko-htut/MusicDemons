@@ -11,20 +11,20 @@ use App\Entities\MediumType;
 class SongService {
     public function create(\stdClass $songData) {
         $song = new Song();
-        $lyric = new Lyric();
-        
         $song->title = $songData->title;
         $song->released = $songData->released;
-        $lyric->lyrics = $songData->lyrics;
-        
         $song->user_insert = Auth::user()->id;
         $song->save();
-        $lyric->user_insert = Auth::user()->id;
+        
+        if($songData->lyrics !== null) {
+            $lyric = new Lyric();
+            $lyric->lyrics = $songData->lyrics;
+            $lyric->user_insert = Auth::user()->id;
+            $lyric->song()->associate($song);
+            $lyric->save();
+        }
         
         $song->artists()->attach($songData->artists);
-        $lyric->song()->associate($song);
-        $lyric->save();
-        
         $song->subject()->create();
         
         foreach($songData->media as $mediumData){
