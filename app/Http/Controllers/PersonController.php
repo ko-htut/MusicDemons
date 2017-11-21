@@ -69,6 +69,7 @@ class PersonController extends Controller
     public function store(PersonCreateRequest $request)
     {
         $person = $this->personService->create($request->getPerson());
+        $request->session()->flash('add_another','Add another person');
         return redirect()->route('person.show',[
             'person' => $person->id
         ]);
@@ -87,7 +88,8 @@ class PersonController extends Controller
             'People'                                         =>  route('person.index'),
              $person->first_name . " " . $person->last_name  => null
         );
-        return view('person/show',compact('person','breadcrumb'));
+        $add_another = session('add_another');
+        return view('person/show',compact('person','breadcrumb','add_another'));
     }
 
     /**

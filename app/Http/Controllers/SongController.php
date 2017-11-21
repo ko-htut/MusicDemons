@@ -8,6 +8,7 @@ use App\Entities\Song;
 use App\Entities\Artist;
 use App\Entities\MediumType;
 use App\Entities\Medium;
+use App\Helpers;
 use App\Http\Controllers\Controller;
 use App\Services\SongService;
 use App\Http\Requests\Song\SongCreateRequest;
@@ -83,7 +84,9 @@ class SongController extends Controller
         foreach($selected_artists as $artist){
             $artist->text = $artist->name;
         }
-        return view('song/create',compact('breadcrumb','selected_artists','medium_types'));
+        
+        $selected_artists_string = Helpers::select2_selected($selected_artists);
+        return view('song/create',compact('breadcrumb','selected_artists_string','medium_types'));
     }
 
     /**
@@ -149,7 +152,9 @@ class SongController extends Controller
          foreach($selected_artists as $artist){
              $artist->text = $artist->name;
          }
-         return view('song/edit',compact('song','breadcrumb','selected_artists','medium_types'));
+         //convert object to proper select2-string
+         $selected_artists_string = Helpers::select2_selected($selected_artists);
+         return view('song/edit',compact('song','breadcrumb','selected_artists_string','medium_types'));
      }
 
     /**

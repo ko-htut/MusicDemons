@@ -149,7 +149,12 @@ $(document).ready(function(){
         
         var attr = $(this).attr('data-selected');
         if(typeof attr !== typeof undefined && attr !== false) {
-            var items = JSON.parse(attr.replace(new RegExp("'", 'g'),"\""));
+            debugger;
+            var regex = /(?<!\\)\'/g;
+            
+            var tekst = attr.replace(regex,"\"");
+            var tekst = tekst.replace(new RegExp("\\\\'","g"), "'");
+            var items = JSON.parse(tekst);
             $(items).each(function(){
                 var newOption = new Option(this.text, this.id, true, true);
                 $selectbox.append(newOption).trigger('change');

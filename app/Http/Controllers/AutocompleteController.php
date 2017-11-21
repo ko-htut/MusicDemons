@@ -15,9 +15,12 @@ class AutocompleteController extends Controller
     {
         $name = $request->getNames();
         $query = Person::select('id','first_name','last_name')
-                       ->where('first_name','like',$name->first_name)
-                       ->where('last_name','like',$name->last_name);
-        
+                       ->where  ('nickname','like',$name->first_name . ' ' . $name->last_name)
+                       ->orWhere('nickname','like',$name->last_name . ' ' . $name->first_name)
+                       ->orWhere(function ($query) use ($name) {
+                           $query->where('first_name','like',$name->first_name)
+                                 ->where('last_name','like',$name->last_name);
+                        });
         $data = $query->get();
         foreach($data as $item){
             $item->url = route('person.show', ['person' => $item ]);
@@ -57,6 +60,7 @@ class AutocompleteController extends Controller
             $query->where(function($query) use ($search){
                 $query->orWhereRaw('concat(first_name," ",last_name) like ?', array("%$search%"));
                 $query->orWhereRaw('concat(last_name," ",first_name) like ?', array("%$search%"));
+                $query->orWhereRaw('nickname like ?',array("%$search%"));
             });
         }
         $data = $query->get();

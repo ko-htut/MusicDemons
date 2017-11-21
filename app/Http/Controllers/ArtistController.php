@@ -7,6 +7,7 @@ use Collective\Html;
 use App\User;
 use App\Entities\Artist;
 use App\Entities\MediumType;
+use App\Helpers;
 use App\Http\Controllers\Controller;
 use App\Services\ArtistService;
 use App\Http\Requests\Artist\ArtistCreateRequest;
@@ -116,8 +117,9 @@ class ArtistController extends Controller
         foreach($selected_members as $member){
             $member->text = $member->first_name . " " . $member->last_name;
         }
+        $selected_members_string = Helpers::select2_selected($selected_members);
         $medium_types = MediumType::all();
-        return view('artist/edit', compact('artist','breadcrumb','selected_members','medium_types'));
+        return view('artist/edit', compact('artist','breadcrumb','selected_members_string','medium_types'));
     }
 
     /**

@@ -37,7 +37,7 @@
 		<div class="form-group row">
 			<label for="members" class="col-sm-4 col-xl-2">Members</label>
 			<div class="col-sm-8 col-xl-10">
-				<select class="form-control select2" name="members[]" id="members" data-placeholder="Members" data-url="{{ route('autocomplete-select2person', ['search' => '']) }}" data-selected="{!! str_replace("\"", "'", json_encode($selected_members)) !!}" multiple>
+				<select class="form-control select2" name="members[]" id="members" data-placeholder="Members" data-url="{{ route('autocomplete-select2person', ['search' => '']) }}" data-selected="{!! $selected_members_string !!}" multiple>
 				</select>
 			</div>
 		</div>
