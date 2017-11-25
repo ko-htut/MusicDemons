@@ -107,19 +107,37 @@ class ArtistController extends Controller
              $artist->name =>  route('artist.show',$artist),
             'Edit'         =>  null
         );
-        $selected_members = $artist->members->map(function($member){
-            return (object)(
-                collect($member->toArray())
-                    ->only(['id','first_name','last_name','born','died','birth_place'])
-                    ->all()
-            );
-        });
-        foreach($selected_members as $member){
+        $active_members = $artist->members()
+            ->wherePivot('active','=',TRUE)
+            ->get()
+            ->map(function($member){
+                return (object)(
+                    collect($member->toArray())
+                        ->only(['id','first_name','last_name','born','died','birth_place'])
+                        ->all()
+                );
+            });
+        $past_members = $artist->members()
+            ->wherePivot('active','=',FALSE)
+            ->get()
+            ->map(function($member){
+                return (object)(
+                    collect($member->toArray())
+                        ->only(['id','first_name','last_name','born','died','birth_place'])
+                        ->all()
+                );
+            });
+        foreach($active_members as $member){
             $member->text = $member->first_name . " " . $member->last_name;
         }
-        $selected_members_string = Helpers::select2_selected($selected_members);
+        foreach($past_members as $member){
+            $member->text = $member->first_name . " " . $member->last_name;
+        }
+        
+        $active_members_string = Helpers::select2_selected($active_members);
+        $past_members_string = Helpers::select2_selected($past_members);
         $medium_types = MediumType::all();
-        return view('artist/edit', compact('artist','breadcrumb','selected_members_string','medium_types'));
+        return view('artist/edit', compact('artist','breadcrumb','active_members_string','past_members_string','medium_types'));
     }
 
     /**

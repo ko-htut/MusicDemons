@@ -18,10 +18,14 @@
           </span>
       </div>
   </div>
-  @if($youtube_url !== null)
+  @if($song->subject->youtube_id !== null)
     <div class="row">
       <div class="col-lg-12">
-        <iframe width="560" height="315" src="{{ 'https://www.youtube.com/embed/' . $youtube_url }}" frameborder="0" allowfullscreen class="d-block mx-auto mw-100"></iframe>
+        <div class="d-block mx-auto mw-100 text-center">
+          <div id="player"></div>
+          <br>
+          <label id="time"></label>
+        </div>
        </div>
      </div>
   @endif
@@ -62,8 +66,8 @@
           <i class="fa fa-facebook"></i>
           Media
       </div>
-      <div class="card-block">
-          <table class="table table-striped table-hover">
+      <div class="card-block table-responsive">
+          <table class="table table-striped table-hover m-0">
               <thead>
                   <tr>
                       <th>Value</th>
@@ -87,14 +91,50 @@
         <div class="card-header">
             <i class="fa fa-music"></i>
             Lyrics
+            @if($song->subject->youtube_id !== null)
+                <a class="btn btn-secondary pull-right" href="{{ route('song.sync',compact('song')) }}">
+                    <i class="fa fa-clock-o"></i>
+                </a>
+            @endif
         </div>
         <div class="card-block">
-            @component('generic.form.label', [
-              'label'          =>  'Lyrics',
-              'value'          =>  $song->lyrics->last()->lyrics,
-              'inputClass'     =>  'text-pre-line'
-            ])@endcomponent
+            <div class="row">
+                <div class="col-md-12 text-pre-line">{{ $song->lyrics->last()->lyrics }}</div>
+            </div>
         </div>
     </div>
+  @endif
+@endsection
+
+@section('javascript')
+  @if($song->subject->youtube_id !== null)
+    var player;
+    var timer;
+    function onYouTubeIframeAPIReady() {
+        player = new YT.Player('player', {
+          width: '640',
+          videoId: "{{ $song->subject->youtube_id }}",
+          events: {
+            'onReady': onPlayerReady,
+            'onStateChange': onPlayerStateChange
+          }
+        });
+      }
+      function onPlayerReady(event) {
+        //event.target.playVideo();
+      }
+      function onPlayerStateChange(event) {
+        //document.getElementById("state").innerHTML = event.data.toString();
+        if (event.data == YT.PlayerState.PLAYING) {
+            timer = setInterval(function(){
+                $("#time").html(Math.round(player.getCurrentTime() * 10) / 10);
+            }, 100);
+        } else if (timer !== null) {
+            clearInterval(timer);
+        }
+      }
+      function stopVideo() {
+        player.pauseVideo();
+      }
   @endif
 @endsection

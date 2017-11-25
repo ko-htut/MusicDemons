@@ -204,7 +204,7 @@ body {
   padding-right:0.5rem;
   padding-left:0.5rem;
   color:#B0BEC5;
-  content:"/";
+  content:"\203a";
 }
 h1 {
 	text-align:center;
@@ -294,4 +294,12 @@ ul.pagination > li > span {
   -moz-transition: none !important;
   -o-transition: none !important;
   transition: none !important;
+}
+
+iframe#player {
+  max-width:100%;
+}
+.py-6px {
+  padding-top:6px;
+  padding-bottom:6px;
 }

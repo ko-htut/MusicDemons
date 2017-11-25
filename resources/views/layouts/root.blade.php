@@ -49,6 +49,7 @@
    
 		<script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
 		<script type="text/javascript" src="{{ asset('js/custom.js') }}"></script>
+    <script type="text/javascript" src="https://www.youtube.com/iframe_api"></script>
     <script type="text/javascript">
     		@yield('javascript')
     </script>

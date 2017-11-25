@@ -36,9 +36,16 @@
         'label'     =>  'Year quit'
     ])@endcomponent
 		<div class="form-group row">
-			<label for="members" class="col-sm-4 col-xl-2">Members</label>
+			<label for="members" class="col-sm-4 col-xl-2">Current members</label>
 			<div class="col-sm-8 col-xl-10">
-				<select class="form-control select2" name="members[]" id="members" data-placeholder="Members" data-url="{{ route('autocomplete-select2person', ['search' => '']) }}" multiple>
+				<select class="form-control select2" name="members[]" id="members" data-placeholder="Current members" data-url="{{ route('autocomplete-select2person', ['search' => '']) }}" multiple>
+				</select>
+			</div>
+		</div>
+		<div class="form-group row">
+			<label for="past_members" class="col-sm-4 col-xl-2">Past members</label>
+			<div class="col-sm-8 col-xl-10">
+				<select class="form-control select2" name="past_members[]" id="past_members" data-placeholder="Past members" data-url="{{ route('autocomplete-select2person', ['search' => '']) }}" multiple>
 				</select>
 			</div>
 		</div>

@@ -63,8 +63,8 @@
           <i class="fa fa-facebook"></i>
           Media
       </div>
-      <div class="card-block">
-          <table class="table table-striped table-hover">
+      <div class="card-block table-responsive">
+          <table class="table table-striped table-hover m-0">
               <thead>
                   <tr>
                       <th>Value</th>
@@ -87,8 +87,8 @@
     <div class="card-header">
       <i class="fa fa-user-circle"></i> Member of
     </div>
-    <div class="card-block">
-      <table class="table table-striped table-hover">
+    <div class="card-block table-responsive">
+      <table class="table table-striped table-hover m-0">
         <thead>
           <tr>
             <th>Artist name</th>

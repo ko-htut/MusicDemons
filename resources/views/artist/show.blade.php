@@ -50,8 +50,8 @@
             <i class="fa fa-facebook"></i>
             Media
         </div>
-        <div class="card-block">
-            <table class="table table-striped table-hover">
+        <div class="card-block table-responsive">
+            <table class="table table-striped table-hover m-0">
                 <thead>
                     <tr>
                         <th>Value</th>
@@ -75,23 +75,34 @@
             <i class="fa fa-user"></i>
             Members
         </div>
-        <div class="card-block">
-            <table class="table table-striped table-hover">
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th class="hidden-xs-down">Joined</th>
-                        <th class="hidden-xs-down">Left</th>
-                    </tr>
-                </thead>
+        <div class="card-block table-responsive">
+            <table class="table table-striped table-hover m-0">
                 <tbody>
-        			      @foreach($artist->members as $member)
+        			      @foreach($artist->members()->wherePivot('active','=',TRUE)->get() as $member)
                         <tr>
                             <td>
                                 <a href="{{ route('person.show',['id' => $member->id]) }}">{{ $member->first_name . " " . $member->last_name }}</a>
                             </td>
-                            <td class="hidden-xs-down"></td>
-                            <td class="hidden-xs-down"></td>
+                        </tr>
+        			      @endforeach
+                </tbody>
+            </table>        
+        </div>
+    </div>
+    <br>
+    <div class="card">
+        <div class="card-header">
+            <i class="fa fa-user"></i>
+            Past members
+        </div>
+        <div class="card-block table-responsive">
+            <table class="table table-striped table-hover m-0">
+                <tbody>
+        			      @foreach($artist->members()->wherePivot('active','=',FALSE)->get() as $member)
+                        <tr>
+                            <td>
+                                <a href="{{ route('person.show',['id' => $member->id]) }}">{{ $member->first_name . " " . $member->last_name }}</a>
+                            </td>
                         </tr>
         			      @endforeach
                 </tbody>
@@ -107,8 +118,8 @@
                 <i class="fa fa-plus"></i>
             </a>
         </div>
-        <div class="card-block">
-            <table class="table table-striped table-hover">
+        <div class="card-block table-responsive">
+            <table class="table table-striped table-hover m-0">
                 <thead>
                     <tr>
                         <th>Title</th>

@@ -1,7 +1,7 @@
 @extends('layouts.root')
 
 @section('content')
-	<h1>Profile</h1>
+	<h4>Profile</h4>
 	<form action="{{ route('profile.store') }}" method="POST">
 		{{ csrf_field() }}
 		@component('generic.form.text', [

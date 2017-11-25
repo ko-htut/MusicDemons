@@ -26,7 +26,7 @@ class Person extends Model
     ];
     
     public function artist() {
-        return $this->belongsToMany('App\Entities\Artist');
+        return $this->belongsToMany('App\Entities\Artist')->withPivot('active');
     }
     
     public function getFullNameAttribute() {

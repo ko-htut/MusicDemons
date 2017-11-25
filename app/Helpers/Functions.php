@@ -4,7 +4,7 @@ namespace App;
 
 class Helpers {
     public static function select2_selected($items) {
-        $items_string = json_encode($items);
+        $items_string = json_encode($items, JSON_UNESCAPED_UNICODE);
         
         // first escape backslashes
         $items_string = str_replace("\\", "\\\\", $items_string);

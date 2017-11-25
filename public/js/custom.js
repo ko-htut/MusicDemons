@@ -149,7 +149,6 @@ $(document).ready(function(){
         
         var attr = $(this).attr('data-selected');
         if(typeof attr !== typeof undefined && attr !== false) {
-            debugger;
             var regex = /(?<!\\)\'/g;
             
             var tekst = attr.replace(regex,"\"");

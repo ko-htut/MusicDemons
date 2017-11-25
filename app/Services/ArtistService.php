@@ -20,7 +20,8 @@ class ArtistService {
         $artist->save();
         
         $artist->subject()->create();
-        $artist->members()->attach($artistData->members);
+        $artist->members()->attach($artistData->members, array('active' => TRUE));
+        $artist->members()->attach($artistData->past_members, array('active' => FALSE));
         
         foreach($artistData->media as $mediumData){
             $type = MediumType::find($mediumData->medium_type_id);
@@ -41,7 +42,8 @@ class ArtistService {
         $artist->user_update = Auth::user()->id;
         $artist->save();
         
-        $artist->members()->sync($artistData->members);
+        $artist->members()->sync($artistData->members, array('active' => TRUE));
+        $artist->members()->syncWithoutDetaching($artistData->past_members, array('active' => FALSE));
         
         // Delete old entities
         Medium::where('subject_id',$artist->subject->id)->delete();

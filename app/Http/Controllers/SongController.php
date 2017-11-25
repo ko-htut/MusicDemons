@@ -116,15 +116,7 @@ class SongController extends Controller
             'Songs'       =>  route('song.index'),
              $song->title  =>  null
         );
-        $youtube_url = null;
-        $youtube_type = MediumType::where('description','Youtube')->first();
-        if($youtube_type !== null) {
-            $youtube_video = Medium::where('medium_type_id',$youtube_type->id)->where('subject_id',$song->subject->id)->first();
-            if($youtube_video !== null) {
-                $youtube_url = last(explode('=', $youtube_video->value));
-            }
-        }
-        return view('song/show',compact('song','breadcrumb','youtube_url'));
+        return view('song/show',compact('song','breadcrumb'));
     }
 
     /**
@@ -180,5 +172,30 @@ class SongController extends Controller
     {
         $this->songService->destroy($song);
         return redirect()->route('song.index');
+    }
+    
+    /**
+     * Sync the lyrics of this song
+     *
+     * @param Song $song
+     *
+     */
+    public function sync(Song $song)
+    {
+        $breadcrumb = array(
+          'Home'               =>  route('home.index'),
+          'Songs'              =>  route('song.index'),
+           $song->title        =>  route('song.show',$song),
+          'Synchronize lyrics' =>  null
+        );
+        if($song->lyrics->count() === 0){
+            $lines = array();
+        } else {
+            $lines = explode("\r\n",$song->lyrics->last()->lyrics);
+            $lines = array_filter($lines,function($line){
+                return $line !== "";
+            });
+        }
+        return view('song/sync',compact('breadcrumb','song','lines'));
     }
 }
