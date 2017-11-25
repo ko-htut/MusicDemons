@@ -19,7 +19,7 @@ class Artist extends Model
     ];
     
     public function members() {
-        return $this->belongsToMany('App\Entities\Person');
+        return $this->belongsToMany('App\Entities\Person')->withPivot('active');
     }
     
     public function songs() {
