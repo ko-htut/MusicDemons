@@ -24,14 +24,14 @@
       @foreach($artists as $artist)
         <tr>
           <td>
-            <a href="{{ route('artist.show',$artist->id) }}">
+            <a href="{{ route('artist.show',$artist) }}">
               {{ $artist->name }}
             </a>
           </td>
           <td class="hidden-xs-down">{{ $artist->year_started }}</td>
           <td class="hidden-xs-down">{{ $artist->year_quit }}</td>
           <td class="trash">
-            <form action="{{ route('artist.destroy',$artist->id) }}" method="POST" class="d-inline-block">
+            <form action="{{ route('artist.destroy',$artist) }}" method="POST" class="d-inline-block">
               {{ csrf_field() }}
               {{ method_field('DELETE') }}
               <button type="submit" class="btn btn-warning" title="Remove artist">

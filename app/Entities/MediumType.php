@@ -11,7 +11,8 @@ class MediumType extends Model
     
     protected $fillable = [
         'description',
-        'base_url'
+        'base_url',
+        'icon_url'
     ];
     
     public function mediums() {

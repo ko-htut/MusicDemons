@@ -14,6 +14,7 @@
   <table class="table table-striped table-hover">
     <thead>
       <tr>
+        <th></th>
         <th>Description</th>
         <th>Base URL</th>
         <th></th>
@@ -22,6 +23,9 @@
     <tbody>
       @foreach($media_types as $medium)
         <tr>
+          <td>
+            <img src="{{ $medium->icon_url }}" width="16" height="16">
+          </td>
           <td>
             <a href="{{ route('mediumtypes.show',$medium->id) }}">
               {{ $medium->description }}

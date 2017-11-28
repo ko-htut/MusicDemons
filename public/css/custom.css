@@ -303,3 +303,17 @@ iframe#player {
   padding-top:6px;
   padding-bottom:6px;
 }
+
+.card-bottom {
+  left:auto;
+  margin-bottom:4rem;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+@media (max-width: 575px) {
+  .card.fixed-bottom {
+    position: relative;
+    display:inline-block;
+    box-shadow: none;
+    margin-bottom: 1rem;
+  }
+}

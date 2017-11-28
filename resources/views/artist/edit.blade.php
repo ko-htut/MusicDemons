@@ -1,7 +1,7 @@
 @extends('layouts.root')
 
 @section('content')
-	<form action="{{ route('artist.update',$artist->id) }}" method="POST">
+	<form action="{{ route('artist.update',$artist) }}" method="POST">
 		{{ csrf_field() }}
     {{ method_field('PUT') }}
     <div class="form-group row">

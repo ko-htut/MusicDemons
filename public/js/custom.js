@@ -149,15 +149,33 @@ $(document).ready(function(){
         
         var attr = $(this).attr('data-selected');
         if(typeof attr !== typeof undefined && attr !== false) {
-            var regex = /(?<!\\)\'/g;
             
-            var tekst = attr.replace(regex,"\"");
+            // sadly browsers other than Chrome/Opera don't support positive/negative lookbehinds
+            // which is a real shame
+            // credits to JBE
+            // https://www.versti.eu/TranslateProxy/https/stackoverflow.com/questions/641407/javascript-negative-lookbehind-equivalent/11347100#11347100
+            
+            // this is the regex I wanted to run: match single-quote, not preceded by backslash
+            //var regex = /(?<!\\)'/g;
+            //var tekst = attr.replace(regex,"\"");
+            
+            // declare inline reverse function
+            const reverse_func = s => s.split('').reverse().join('');
+            // declare reversed regex (match single-quote, not followed by backslash)
+            var reverse_regex = /'(?!\\)/g;
+            
+            // reverse the input, replace the non-escaped single-quotes by double-quotes, finally reverse again
+            var tekst = reverse_func(reverse_func(attr).replace(reverse_regex,"\""));
+            
+            // replace escaped single-quotes by normal single-quotes
             var tekst = tekst.replace(new RegExp("\\\\'","g"), "'");
             var items = JSON.parse(tekst);
             $(items).each(function(){
                 var newOption = new Option(this.text, this.id, true, true);
                 $selectbox.append(newOption).trigger('change');
             });
+            
+            // now this example is cross-browser !!!
         }
         
         $(this).css('display','block');

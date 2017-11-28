@@ -15,23 +15,22 @@
             </span>
         </div>
     </div>
-    <div class="row">
-      <div class="col-lg-12">
-        <div class="d-block mx-auto mw-100 text-center">
-          <div id="player"></div>
-          <br>
-          <label id="time"></label>
+    <div class="card fixed-bottom mr-3 card-bottom">
+      <div id="player"></div>
+      <div class="card-body">
+        <div class="card-text">
+          <label id="time" class="d-block text-center"></label>
         </div>
-       </div>
-     </div>
+      </div>
+    </div>
     <div class="form-group row">
 			<div class="col-md-12">
           @foreach($lines as $line)
               <div class="row">
-                  <div class="col-md-2">
+                  <div class="col-sm-2 col-xl-1">
                       <input type="text" class="form-control">
                   </div>
-                  <div class="col-md-10">
+                  <div class="col-sm-10 col-xl-11">
                       <label class="py-6px">{{ $line }}</label>
                   </div>
               </div>
@@ -46,7 +45,8 @@
     var timer;
     function onYouTubeIframeAPIReady() {
         player = new YT.Player('player', {
-          width: '640',
+          width: '320',
+          height: '180',
           videoId: "{{ $song->subject->youtube_id }}",
           events: {
             'onReady': onPlayerReady,

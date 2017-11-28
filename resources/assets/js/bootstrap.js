@@ -22,7 +22,7 @@ try {
     window.$ = window.jQuery = require('jquery');
     global.Tether = require('tether');
     require('bootstrap-sass');
-    require('select2/dist/js/select2.min.js');
+    require('select2');
 } catch (e){
 
 }
