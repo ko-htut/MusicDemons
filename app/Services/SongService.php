@@ -90,4 +90,10 @@ class SongService {
         $song->delete();
         return true;
     }
+    
+    public function sync(Lyric $lyric, \stdClass $synchronization) {
+        $lyric->timing = $synchronization->timing;
+        $lyric->save();
+        return $lyric;
+    }
 }

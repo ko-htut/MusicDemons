@@ -26,8 +26,8 @@ class ArtistUpdateRequest extends FormRequest {
             'name'        => $this->input('name'),
             'year_started'=> $this->input('year_started'),
             'year_quit'   => $this->input('year_quit'),
-            'members'     => $this->input('members'),
-            'past_members'=> $this->input('past_members'),
+            'members'     => $this->getMembers(),
+            'past_members'=> $this->getPastMembers(),
             'media'       => $this->getMedia()
         ];
     }
@@ -40,10 +40,26 @@ class ArtistUpdateRequest extends FormRequest {
         $media = array();
         for($i = 0; $i < $min; $i++){
             $media[$i] = (object) [
-                'medium_type_id'  =>  $this->input("medium_types")[$i],
-                'medium_value'    =>  $this->input("medium_values")[$i]
+                'medium_type_id'  =>  $this->input('medium_types')[$i],
+                'medium_value'    =>  $this->input('medium_values')[$i]
             ];
         }
         return $media;
+    }
+    
+    public function getMembers() {
+        $members = array();
+        if($this->has('members')) {
+            $members = $this->input('members');
+        }
+        return $members;
+    }
+    
+    public function getPastMembers() {
+        $past_members = array();
+        if($this->has('past_members')) {
+            $past_members = $this->input('past_members');
+        }
+        return $past_members;
     }
 }

@@ -92,7 +92,7 @@
             <i class="fa fa-music"></i>
             Lyrics
             @if($song->subject->youtube_id !== null)
-                <a class="btn btn-secondary pull-right" href="{{ route('song.sync',compact('song')) }}">
+                <a class="btn btn-secondary pull-right" href="{{ route('song.sync',compact('song')) }}" title="Create timeline for lyrics">
                     <i class="fa fa-clock-o"></i>
                 </a>
             @endif
@@ -108,6 +108,8 @@
 
 @section('javascript')
   @if($song->subject->youtube_id !== null)
+    var lines = {!! json_encode(array_values($lines)) !!};
+    var times = {!! json_encode($song->lyrics->last()->timing) !!};
     var player;
     var timer;
     function onYouTubeIframeAPIReady() {
@@ -115,19 +117,18 @@
           width: '640',
           videoId: "{{ $song->subject->youtube_id }}",
           events: {
-            'onReady': onPlayerReady,
             'onStateChange': onPlayerStateChange
           }
         });
       }
-      function onPlayerReady(event) {
-        //event.target.playVideo();
-      }
       function onPlayerStateChange(event) {
-        //document.getElementById("state").innerHTML = event.data.toString();
         if (event.data == YT.PlayerState.PLAYING) {
             timer = setInterval(function(){
-                $("#time").html(Math.round(player.getCurrentTime() * 10) / 10);
+                //$("#time").html(Math.round(player.getCurrentTime() * 10) / 10);
+                var txt = lines.filter(function(line,index){
+                    return parseFloat(times[index + 1]) > player.getCurrentTime();
+                });
+                $("#time").html(txt[0]);
             }, 100);
         } else if (timer !== null) {
             clearInterval(timer);

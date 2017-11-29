@@ -13,6 +13,10 @@ class Lyric extends Model
         'lyrics'
     ];
     
+    protected $casts = [
+        'timing'  =>  'array'
+    ];
+    
     public function song() {
         return $this->belongsTo('App\Entities\Song');
     }

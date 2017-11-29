@@ -13,6 +13,7 @@ use App\Http\Controllers\Controller;
 use App\Services\SongService;
 use App\Http\Requests\Song\SongCreateRequest;
 use App\Http\Requests\Song\SongUpdateRequest;
+use App\Http\Requests\Song\SongSyncRequest;
 
 class SongController extends Controller
 {
@@ -116,7 +117,15 @@ class SongController extends Controller
             'Songs'       =>  route('song.index'),
              $song->title  =>  null
         );
-        return view('song/show',compact('song','breadcrumb'));
+        if($song->lyrics->count() === 0){
+            $lines = array();
+        } else {
+            $lines = explode("\r\n",$song->lyrics->last()->lyrics);
+            $lines = array_filter($lines,function($line){
+                return $line !== "";
+            });
+        }
+        return view('song/show',compact('song','breadcrumb','lines'));
     }
 
     /**
@@ -197,5 +206,13 @@ class SongController extends Controller
             });
         }
         return view('song/sync',compact('breadcrumb','song','lines'));
+    }
+    
+    /**
+     * Store the timings for the song
+     */
+    public function sync_store(SongSyncRequest $request, Song $song) {
+        $this->songService->sync($song->lyrics->last(),$request->getSynchronization());
+        return redirect()->route('song.show',compact('song'));
     }
 }

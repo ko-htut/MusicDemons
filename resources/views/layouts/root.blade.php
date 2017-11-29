@@ -15,6 +15,12 @@
 		
 		@yield('css')
 		
+		<script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
+		<script type="text/javascript" src="{{ asset('js/custom.js') }}"></script>
+    <script type="text/javascript" src="https://www.youtube.com/iframe_api"></script>
+    <script type="text/javascript">
+    		@yield('javascript')
+    </script>
 		<script>
 			window.Laravel = {!! json_encode([
 				'csrfToken' => csrf_token(),
@@ -46,12 +52,5 @@
 			</div>
 		</div>
 		@include('shared.footer')
-   
-		<script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
-		<script type="text/javascript" src="{{ asset('js/custom.js') }}"></script>
-    <script type="text/javascript" src="https://www.youtube.com/iframe_api"></script>
-    <script type="text/javascript">
-    		@yield('javascript')
-    </script>
 	</body>
 </html>

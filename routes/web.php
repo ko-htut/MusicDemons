@@ -30,7 +30,7 @@ Route::get('person/{count?}/{page?}','PersonController@index')->name('person.pag
 Route::resource('song','SongController');
 Route::get('song/create/{artist}','SongController@createwithartist')->name('song.createwithartist');
 Route::get('song/{song}/sync','SongController@sync')->name('song.sync');
-Route::post('song/{song}/sync_store','SongController@store_sync')->name('song.syncstore');
+Route::put('song/{song}/sync','SongController@sync_store')->name('song.syncstore');
 Route::get('song/{count?}/{page?}','SongController@index')->name('song.page');
 Route::resource('mediumtypes','MediumTypesController');
 

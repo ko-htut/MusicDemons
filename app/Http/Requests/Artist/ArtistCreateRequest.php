@@ -26,8 +26,8 @@ class ArtistCreateRequest extends FormRequest {
             'name'        => $this->input('name'),
             'year_started'=> $this->input('year_started'),
             'year_quit'   => $this->input('year_quit'),
-            'members'     => $this->input('members'),
-            'past_members'=> $this->input('past_members'),
+            'members'     => $this->getMembers(),
+            'past_members'=> $this->getPastMembers(),
             'media'       => $this->getMedia()
         ];
     }
@@ -45,6 +45,22 @@ class ArtistCreateRequest extends FormRequest {
             ];
         }
         return $media;
+    }
+    
+    public function getMembers() {
+        $members = array();
+        if($this->has('members')) {
+            $members = $this->input('members');
+        }
+        return $members;
+    }
+    
+    public function getPastMembers() {
+        $past_members = array();
+        if($this->has('past_members')) {
+            $past_members = $this->input('past_members');
+        }
+        return $past_members;
     }
     
     /*public function messages() {
