@@ -124,11 +124,11 @@
       function onPlayerStateChange(event) {
         if (event.data == YT.PlayerState.PLAYING) {
             timer = setInterval(function(){
-                //$("#time").html(Math.round(player.getCurrentTime() * 10) / 10);
                 var txt = lines.filter(function(line,index){
-                    return parseFloat(times[index + 1]) > player.getCurrentTime();
+                    //return parseFloat(times[index + 1]) > player.getCurrentTime();
+                    return parseFloat(times[index]) < player.getCurrentTime();
                 });
-                $("#time").html(txt[0]);
+                $("#time").html(txt[txt.length - 1]);
             }, 100);
         } else if (timer !== null) {
             clearInterval(timer);
