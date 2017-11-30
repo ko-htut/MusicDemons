@@ -1,4 +1,4 @@
-declare var angular: any;
+//declare var angular: any;
 namespace TestApp {
 	class TestApp implements {
 		static $inject = [];

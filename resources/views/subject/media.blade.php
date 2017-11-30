@@ -17,9 +17,9 @@
          </div>
     @endforeach
 @endif
-<div class="row m-0" id="button-row">
+<div class="row m-0 medium-button-row">
     <div class="col-md-12 px-0">
-        <button type="button" class="btn btn-primary w-100" id="btnCreateMedium">
+        <button type="button" class="btn btn-primary w-100 btn-create-medium" id="btnCreateMedium">
             <i class="fa fa-plus"></i>
             Add
         </button>

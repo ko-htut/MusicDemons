@@ -35,6 +35,9 @@ class Helpers {
         if($elements->length === 0) {
             $elements = $xpath->query("//link[@rel='fluid-icon']/@href");
         }
+        if($elements->length === 0) {
+            $elements = $xpath->query("//link[@rel='icon']/@href");
+        }
         
         $image = $elements->item(0)->value;
         if(strpos($image,"//") === false){

@@ -4,7 +4,7 @@ function removeRow(button){
 }
 
 $(document).ready(function(){
-    $("#btnCreateMedium").click(function(){
+    $(".btn-create-medium").click(function(){
         $(`<div class="row m-0">
                <div class="col-md-4 ml-xl-0 px-0">
                    <select class="form-control" name="medium_types[]">
@@ -20,6 +20,6 @@ $(document).ready(function(){
                    </button>
                </div>
            </div>`
-        ).insertBefore("#button-row");
+        ).insertBefore($(this).closest(".medium-button-row"));
     });
 });

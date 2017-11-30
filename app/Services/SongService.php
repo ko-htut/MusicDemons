@@ -19,6 +19,7 @@ class SongService {
         if($songData->lyrics !== null) {
             $lyric = new Lyric();
             $lyric->lyrics = $songData->lyrics;
+            $lyric->timing = "";
             $lyric->user_insert = Auth::user()->id;
             $lyric->song()->associate($song);
             $lyric->save();
@@ -52,6 +53,7 @@ class SongService {
         if(empty($displayed_lyric)) {
             $new_lyric = new Lyric();
             $new_lyric->lyrics = $songData->lyrics;
+            $new_lyric->timing = "";
             $new_lyric->user_insert = Auth::user()->id;
             $new_lyric->song()->associate($song);
             $new_lyric->save();
@@ -62,6 +64,7 @@ class SongService {
             } else {
                 $new_lyric = new Lyric();
                 $new_lyric->lyrics = $songData->lyrics;
+                $new_lyric->timing = "";
                 $new_lyric->user_insert = Auth::user()->id;
                 $new_lyric->song()->associate($song);
                 $new_lyric->save();

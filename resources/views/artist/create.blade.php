@@ -7,6 +7,83 @@
       </artist-create>
     </div>
   --}}
+  <div class="modal fade" id="AddPersonModal">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Add new person</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="container-fluid">
+						<form>
+              <div class="form-group row">
+                <label for="first_name" class="col-sm-4 col-xl-2">First name</label>
+                <div class="col-sm-8 col-xl-10">
+                  <input type="text" class="form-control" name="first_name" id="first_name" value="" placeholder="" required="" autofocus="">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="last_name" class="col-sm-4 col-xl-2">Last name</label>
+                <div class="col-sm-8 col-xl-10">
+                  <input type="text" class="form-control" name="last_name" id="last_name" value="" placeholder="" required="">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="nickname" class="col-sm-4 col-xl-2">Nickname</label>
+                <div class="col-sm-8 col-xl-10">
+                  <input type="text" class="form-control" name="nickname" id="nickname" value="" placeholder="">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="born" class="col-sm-4 col-xl-2">Birth day</label>
+                <div class="col-sm-8 col-xl-10">
+                  <input type="date" class="form-control" name="born" id="born" value="" placeholder="">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="birth_place" class="col-sm-4 col-xl-2">Birth place</label>
+                <div class="col-sm-8 col-xl-10">
+                  <input type="text" class="form-control" name="birth_place" id="birth_place" value="" placeholder="">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="died" class="col-sm-4 col-xl-2">Died</label>
+                <div class="col-sm-8 col-xl-10">
+                  <input type="date" class="form-control" name="died" id="died" value="" placeholder="">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-4 col-xl-2">Media</label>
+                <div class="col-sm-8 col-xl-10">
+                  <div class="row m-0 medium-button-row" id="button-row">
+                    <div class="col-md-12 px-0">
+                      <button type="button" class="btn btn-primary w-100 btn-create-medium" id="btnCreatePersonMedium">
+                        <i class="fa fa-plus"></i>
+                        Add
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+     	    </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">
+            <i class="fa fa-times"></i>
+            Close
+          </button>
+          <button type="button" class="btn btn-primary">
+            <i class="fa fa-save"></i>
+            Save person
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
 	<form action="{{ route('artist.store') }}" method="POST">
     {{ csrf_field() }}
 		<div class="form-group row">
@@ -38,6 +115,7 @@
 		<div class="form-group row">
 			<label for="members" class="col-sm-4 col-xl-2">Current members</label>
 			<div class="col-sm-8 col-xl-10">
+        <a class="btn btn-warning float-right" title="Create new person" data-toggle="modal" href="#AddPersonModal"><i class="fa fa-plus"></i></a>
 				<select class="form-control select2" name="members[]" id="members" data-placeholder="Current members" data-url="{{ route('autocomplete-select2person', ['search' => '']) }}" multiple>
 				</select>
 			</div>
@@ -45,6 +123,7 @@
 		<div class="form-group row">
 			<label for="past_members" class="col-sm-4 col-xl-2">Past members</label>
 			<div class="col-sm-8 col-xl-10">
+        <a class="btn btn-warning float-right" title="Create new person" data-toggle="modal" href="#AddPersonModal"><i class="fa fa-plus"></i></a>
 				<select class="form-control select2" name="past_members[]" id="past_members" data-placeholder="Past members" data-url="{{ route('autocomplete-select2person', ['search' => '']) }}" multiple>
 				</select>
 			</div>

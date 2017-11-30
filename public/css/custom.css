@@ -214,8 +214,8 @@ h1, h2 {
 }
 label {
 	margin-bottom: 0;
-	padding-top: calc(0.5rem + 1px);
-	padding-bottom: calc(0.5rem + 1px);
+	padding-top: calc(0.5rem - 1px);
+	padding-bottom: calc(0.5rem - 2px);
 }
 .fa-cd:before{content: "\229a";}
 
@@ -268,6 +268,9 @@ a { color:#20a8d8; }
 }
 .select2.select2-container {
   width:100% !important;
+}
+.btn ~ .select2.select2-container {
+  width: calc(100% - 47px) !important;
 }
 
 .form-control.select2 {
