@@ -358,7 +358,7 @@ sudo systemctl restart apache2
 
 ```        
 cd /etc/apache2/sites-available/
-sudo cp 000-default.conf lyricdb.tk.conf
+sudo cp 000-default.conf lyricdb.conf
 ```
 
   </li>
@@ -373,7 +373,7 @@ DocumentRoot /var/www/LyricDB/public
   <li>Enable the site:
 
 ```        
-sudo a2ensite lyricdb.tk.conf
+sudo a2ensite lyricdb.conf
 ```
 
   </li>
@@ -399,4 +399,39 @@ sudo systemctl restart apache2
 ```
 
   </li>
+</ol>
+<h4>Set hostname</h4>
+At last, we can set a hostname for our Rapsberry Pi.
+<ol>
+	<li>Change the hostname-file:
+
+```        
+sudo nano /etc/hostname
+```
+
+	</li>
+	<li>Put <b>lyricdb</b> in the file. Save and exit nano (ctrl+O &#8594; Enter &#8594; ctrl+X)</li>
+	<li>Change the hosts-file:
+
+```        
+sudo nano /etc/hosts
+```
+
+	</li>
+	<li>Modify the entry for <b>127.0.1.1</b>. Replace <b>localhost</b> with <b>lyricdb</b>. Save and exit nano (ctrl+O &#8594; Enter &#8594; ctrl+X)</li>
+	<li>Install Samba and Winbind. This will ensure that the hostname is being broadcasted in the network:
+
+```        
+sudo apt-get -y install samba winbind
+```
+
+	</li>
+	<li>Restart the Raspberry Pi:
+
+```        
+sudo reboot
+```
+
+	</li>
+	<li>Now you can visit <a href="http://lyricdb" target="_blank">http://lyricdb</a> and you should see the Laravel website</li>
 </ol>
