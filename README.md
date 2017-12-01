@@ -444,7 +444,7 @@ sudo reboot
 npm install [package]
 ```
 
-to install them. You should then require the file in either the <b>/resources/assets/js/bootstrap.js</b> or <b>/resources/assets/sass/app.scss</b> file </li>
+to install them. You should then require the package in either the <b>/resources/assets/js/bootstrap.js</b> or <b>/resources/assets/sass/app.scss</b> file </li>
   <li>When you added new node-modules, registered them in the above mentioned file, and want to recompile these assets, run following command:
 
 ```        
