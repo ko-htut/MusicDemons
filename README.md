@@ -109,27 +109,24 @@ sudo apt-get -y install composer
   <li>Now we're going to configure everything</li>
   <li>Create an SQL-user</li>
   <ol>
-      <li>Log in as root sql-user:
+      <li>Log in as root sql-user:</li>
 
 ```        
 sudo mysql -u root
 ```
 
-      </li>
-      <li>Create a new user (I called him <b>pi</b> as well). Replace <b>password</b> with a password of your choice:
+      <li>Create a new user (I called him <b>pi</b> as well). Replace <b>password</b> with a password of your choice:</li>
 
 ```        
 CREATE USER 'pi'@'localhost' IDENTIFIED BY 'password';
 ```
 
-      </li>
-      <li>Allow your new SQL-user to do anything:
+      <li>Allow your new SQL-user to do anything:</li>
 
 ```        
 GRANT ALL PRIVILEGES ON *.* TO 'pi'@'localhost';
 ```
 
-      </li>
       <li>Reload the priviliges:
 
 ```        
