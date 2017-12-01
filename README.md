@@ -247,3 +247,156 @@ sudo apt-get -y install dh-autoreconf
   </li>
 </ol>
 <h4>Clone the LyricDB repository</h4>
+<ol>
+  <li>Go to the webfolder:
+
+```        
+cd /var/www
+```
+
+  </li>
+  <li>Remove the testsite:
+
+```        
+sudo rm -R html
+```
+
+  </li>
+  <li>Clone the source code for LyricDB:
+
+```        
+git clone https://github.com/PieterjanDeClippel/LyricDB
+```
+
+  </li>
+  <li>Go to the folder:
+
+```        
+cd LyricDB
+```
+
+  </li>
+  <li>Install the required packages:
+
+```        
+composer install
+```
+
+  </li>
+  <li>Copy the example .env-file. This file contains any configuration about the environment (passwords, ...):
+
+```        
+cp .env.example .env
+```
+
+  </li>
+  <li>Edit the file:
+
+```        
+sudo nano .env
+```
+
+  </li>
+  <li>Set <b>APP_NAME, APP_URL (http://[your-ip-address]), DB_DATABASE (LyricDB), DB_USERNAME (pi), DB_PASSWORD (your sql-password) to the proper values</li>
+  <li>Save and exit nano (ctrl+O &#8594; Enter &#8594; ctrl+X)</li>
+  <li>Generate an application key:
+
+```        
+php artisan key:generate
+```
+
+  </li>
+  <li>Create the database. Log in into the SQL command prompt:
+
+```        
+sudo mysql -u root
+CREATE DATABASE LyricDB;
+exit;
+```
+
+  </li>
+  <li>Install the database. This may take some time:
+
+```        
+php artisan migrate
+```
+
+  </li>
+  <li>In the latest version of Raspbian, the rewrite module is probably disabled. To enable mod-rewrite, run:
+
+```        
+sudo a2enmod rewrite
+```
+
+  </li>
+  <li>Also in the latest version of Apache, there's a big chance Apache doesn't allow rewriting for the webfolder. Check the following file:
+
+```        
+sudo nano /etc/apache2/apache2.conf
+```
+
+  </li>
+  <li>Ensure <b>AllowOverride</b> is set to <b>All</b>:
+
+```        
+<Directory /var/www/>
+	Options Indexes FollowSymLinks
+	AllowOverride All
+	Require all granted
+</Directory>
+```
+
+  </li>
+  <li>Restart Apache:
+
+```        
+sudo systemctl restart apache2
+```
+
+  </li>
+  <li>Create a new site by first copying the default VirtualHost-file:
+
+```        
+cd /etc/apache2/sites-available/
+sudo cp 000-default.conf lyricdb.tk.conf
+```
+
+  </li>
+  <li>Modify the file. Change following settings:
+
+```        
+ServerName lyricdb
+DocumentRoot /var/www/LyricDB/public
+```
+
+  </li>
+  <li>Enable the site:
+
+```        
+sudo a2ensite lyricdb.tk.conf
+```
+
+  </li>
+  <li>Restart Apache:
+
+```        
+sudo systemctl reload apache2
+```
+
+  </li>
+  <li>Change the owner of the <b>storage</b> folder:
+
+```        
+cd /var/www/LyricDB
+sudo chown -R www-data:www-data storage
+```
+
+  </li>
+  <li>Restart Apache:
+
+```        
+sudo systemctl restart apache2
+```
+
+  </li>
+</ol>
