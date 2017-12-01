@@ -297,7 +297,7 @@ sudo nano .env
 ```
 
   </li>
-  <li>Set <b>APP_NAME, APP_URL (http://[your-ip-address]), DB_DATABASE (LyricDB), DB_USERNAME (pi), DB_PASSWORD (your sql-password) to the proper values</li>
+  <li>Set <b>APP_NAME, APP_URL (http://[your-ip-address]), DB_DATABASE (LyricDB), DB_USERNAME (pi), DB_PASSWORD (your sql-password)</b> to the proper values</li>
   <li>Save and exit nano (ctrl+O &#8594; Enter &#8594; ctrl+X)</li>
   <li>Generate an application key:
 
