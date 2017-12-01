@@ -107,136 +107,143 @@ sudo apt-get -y install composer
 
   </li>
   <li>Now we're going to configure everything</li>
-  <li>Create an SQL-user</li>
-  <ol>
-      <li>Log in as root sql-user:</li>
+</ol>
+<h4>Create an SQL-user</h4>
+<ol>
+  <li>Log in as root sql-user:
 
 ```        
 sudo mysql -u root
 ```
 
-      <li>Create a new user (I called him <b>pi</b> as well). Replace <b>password</b> with a password of your choice:</li>
+  </li>
+  <li>Create a new user (I called him <b>pi</b> as well). Replace <b>password</b> with a password of your choice:
 
 ```        
 CREATE USER 'pi'@'localhost' IDENTIFIED BY 'password';
 ```
 
-      <li>Allow your new SQL-user to do anything:</li>
+  </li>
+  <li>Allow your new SQL-user to do anything:
 
 ```        
 GRANT ALL PRIVILEGES ON *.* TO 'pi'@'localhost';
 ```
 
-      <li>Reload the priviliges:
+  </li>
+  <li>Reload the priviliges:
 
 ```        
 FLUSH PRIVILEGES;
 ```
 
-      </li>
-      <li>Exit the SQL command prompt:
+  </li>
+  <li>Exit the SQL command prompt:
         
 ```        
 exit
 ```
 
-      </li>
-      <li>Restart the SQL-server:
+  </li>
+  <li>Restart the SQL-server:
         
 ```        
 sudo service mysql restart
 ```
 
-      </li>
-      <li>To hide the unimportant databases in PHPMyAdmin, modify this file:
+  </li>
+  <li>To hide the unimportant databases in PHPMyAdmin, modify this file:
         
 ```        
 sudo nano /etc/phpmyadmin/config.inc.php
 ```
 
-      </li>
-      <li>Add following line in the appropriate position (you'll see where). Save and exit (ctrl+O &#8594; Enter &#8594; ctrl+X):
+  </li>
+  <li>Add following line in the appropriate position (you'll see where). Save and exit (ctrl+O &#8594; Enter &#8594; ctrl+X):
         
 ```        
 $cfg['Servers'][$i]['hide_db'] = 'information_schema|performance_schema|mysql|phpmyadmin';
 ```
 
-      </li>
-  </ol>
-  <li>Configure FTP:</li>
-  <ol>
-      <li>Become the owner of the webfolder:
-        
+  </li>
+</ol>
+<h4>Configure FTP:</h4>
+<ol>
+  <li>Become the owner of the webfolder:
+
 ```        
 sudo chown -R pi /var/www
 ```
 
-      </li>
-      <li>Install vSFTPd:
-        
+  </li>
+  <li>Install vSFTPd:
+
 ```        
 sudo apt-get -y install vsftpd
 ```
 
-      </li>
-      <li>Modify the configuration file:
-        
+  </li>
+  <li>Modify the configuration file:
+
 ```        
 sudo nano /etc/vsftpd.conf
 ```
 
-      </li>
-      <li>Change write_enable=NO to:
-        
+  </li>
+  <li>Change write_enable=NO to:
+
 ```        
 write_enable=YES
 ```
 
-      </li>
-      <li>Add this line at the end of the file:
-        
+  </li>
+  <li>Add this line at the end of the file:
+
 ```        
 force_dot_files=YES
 ```
 
-      </li>
-      <li>Save and exit (ctrl+O &#8594; Enter &#8594; ctrl+X)</li>
-      <li>Restart vSFTPd:
-        
+  </li>
+  <li>Save and exit (ctrl+O &#8594; Enter &#8594; ctrl+X)</li>
+  <li>Restart vSFTPd:
+
 ```        
 sudo service vsftpd restart
 ```
 
-      </li>
-      <li>Create a softlink to the webfolder in your home-directory:
-        
+  </li>
+  <li>Create a softlink to the webfolder in your home-directory:
+
 ```        
 ln -s /var/www ~/www
 ```
 
-      </li>
-      <li>Install the node-package-manager:
-        
+  </li>
+</ol>
+<h4>NPM</h4>
+<ol>
+  <li>Install the node-package-manager:
+
 ```        
 sudo apt-get -y install npm
 ```
 
-      </li>
-      <li>Sadly this probably installed node-legacy. Uninstall nodejs and add the correct debian package to the apt-get repository. Finally install this version:
-        
+  </li>
+  <li>Sadly this probably installed node-legacy. Uninstall nodejs and add the correct debian package to the apt-get repository. Finally install this version:
+
 ```        
 sudo apt-get -y remove nodejs
 curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
 sudo apt-get -y install nodejs
 ```
 
-      </li>
-      <li>Finally, install dh-autoreconf
-        
+  </li>
+  <li>Finally, install dh-autoreconf
+
 ```        
 sudo apt-get -y install dh-autoreconf
 ```
 
-      </li>
-  </ol>
+  </li>
 </ol>
+<h4>Clone the LyricDB repository</h4>
