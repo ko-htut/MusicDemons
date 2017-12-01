@@ -297,7 +297,7 @@ sudo nano .env
 ```
 
   </li>
-  <li>Set <b>APP_NAME, APP_URL (http://[your-ip-address]), DB_DATABASE (LyricDB), DB_USERNAME (pi), DB_PASSWORD (your sql-password)</b> to the proper values</li>
+  <li>Set <b>APP_NAME, APP_URL (http://lyricdb), DB_DATABASE (LyricDB), DB_USERNAME (pi), DB_PASSWORD (your sql-password)</b> to the proper values</li>
   <li>Save and exit nano (ctrl+O &#8594; Enter &#8594; ctrl+X)</li>
   <li>Generate an application key:
 
@@ -403,35 +403,35 @@ sudo systemctl restart apache2
 <h4>Set hostname</h4>
 At last, we can set a hostname for our Rapsberry Pi.
 <ol>
-	<li>Change the hostname-file:
+  <li>Change the hostname-file:
 
 ```        
 sudo nano /etc/hostname
 ```
 
-	</li>
-	<li>Put <b>lyricdb</b> in the file. Save and exit nano (ctrl+O &#8594; Enter &#8594; ctrl+X)</li>
-	<li>Change the hosts-file:
+  </li>
+  <li>Put <b>lyricdb</b> in the file. Save and exit nano (ctrl+O &#8594; Enter &#8594; ctrl+X)</li>
+  <li>Change the hosts-file:
 
 ```        
 sudo nano /etc/hosts
 ```
 
-	</li>
-	<li>Modify the entry for <b>127.0.1.1</b>. Replace <b>localhost</b> with <b>lyricdb</b>. Save and exit nano (ctrl+O &#8594; Enter &#8594; ctrl+X)</li>
-	<li>Install Samba and Winbind. This will ensure that the hostname is being broadcasted in the network:
+  </li>
+  <li>Modify the entry for <b>127.0.1.1</b>. Replace <b>localhost</b> with <b>lyricdb</b>. Save and exit nano (ctrl+O &#8594; Enter &#8594; ctrl+X)</li>
+  <li>Install Samba and Winbind. This will ensure that the hostname is being broadcasted in the network:
 
 ```        
 sudo apt-get -y install samba winbind
 ```
 
-	</li>
-	<li>Restart the Raspberry Pi:
+  </li>
+  <li>Restart the Raspberry Pi:
 
 ```        
 sudo reboot
 ```
 
-	</li>
-	<li>Now you can visit <a href="http://lyricdb" target="_blank">http://lyricdb</a> and you should see the Laravel website</li>
+  </li>
+  <li>Now you can visit <a href="http://lyricdb" target="_blank">http://lyricdb</a> and you should see the Laravel website</li>
 </ol>
