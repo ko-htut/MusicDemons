@@ -34,6 +34,7 @@ This is an example of a Laravel project.
 </ol>
 <h4>Installation MobaXterm</h4>
 MobaXterm is a free application that allows you to connect to a server through FTP, SSH, SFTP, ...
+<br>
 <a href="https://mobaxterm.mobatek.net/download.html" target="_blank">Download MobaXterm</a>
 <h4>Basic setup of the Raspberry Pi</h4>
 <ol>
@@ -55,4 +56,55 @@ sudo passwd pi
 sudo dpkg-reconfigure tzdata
 ```
 
+  </li>
+  <li>Update the package-repository. Next, update the installed packages:
+  
+```
+sudo apt-get update && sudo apt-get -y upgrade
+```
+
+  </li>
+  <li>Update Raspbian. Next, choose to restart the Raspberry Pi:
+  
+```
+sudo rpi-update
+```
+
+  </li>
+  <li>Install the Apache-webserver. This software allows us to host websites:
+  
+```
+sudo apt-get -y install apache2
+```
+
+  </li>
+  <li>Install PHP7 and the module to Apache2. This software allows us to use server-side scripting when handling webrequests:
+  
+```
+sudo apt-get -y install php7.0 libapache2-mod-php7.0
+```
+
+  </li>
+  <li>Install MySQL-server and the module to PHP7. This software allows us to host databases and access the databases from PHP.
+  
+```
+sudo apt-get -y install mysql-server mysql-client php7.0-mysql
+```
+
+  </li>
+  <li>Install PHPMyAdmin. This software allows us to manage the databases on the SQL-server through a webinterface.
+  
+```
+sudo apt-get -y install phpmyadmin
+```
+
+  </li>
+  <li>At last, we'll need Composer. This is a dependency-manager that allows us to pull Laravel and automatically install the required packages. Note: Composer is only available in the apt-get repository starting from Raspbian Stretch. If you use older versions of Raspbian, you'll have to use <a href="http://getcomposer.org">getcomposer.org</a>.
+  
+```
+sudo apt-get -y install composer
+```
+
+  </li>
+  
 </ol>
