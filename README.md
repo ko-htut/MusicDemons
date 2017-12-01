@@ -435,3 +435,21 @@ sudo reboot
   </li>
   <li>Now you can visit <a href="http://lyricdb" target="_blank">http://lyricdb</a> and you should see the Laravel website</li>
 </ol>
+<h4>Managing Node-modules</h4>
+<ol>
+  <li>This repository already contains a file <b>/public/js/app.js</b>. This is a compilation of jquery, bootstrap, angular, angular-route, and some more libraries</li>
+  <li>If you'd wish to add more packages, you can just run
+
+```        
+npm install [package]
+```
+
+to install them. You should then require the file in either the <b>/resources/assets/js/bootstrap.js</b> or <b>/resources/assets/sass/app.scss</b> file </li>
+  <li>When you added new node-modules, registered them in the above mentioned file, and want to recompile these assets, run following command:
+
+```        
+npm run dev
+```
+
+  This will put the result of the compiled app.js and app.scss in the <b>public</b> folder</li>
+</ol>
