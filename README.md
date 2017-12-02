@@ -438,6 +438,13 @@ sudo reboot
 <h4>Managing Node-modules</h4>
 <ol>
   <li>This repository already contains a file <b>/public/js/app.js</b>. This is a compilation of jquery, bootstrap, angular, angular-route, and some more libraries</li>
+  <li>If you'd wish to recompile this file, you should first acquire all the needed node-packages. Therefore you need to run:
+
+```        
+npm install
+```
+
+  </li>
   <li>If you'd wish to add more packages, you can just run
 
 ```        
@@ -451,5 +458,5 @@ to install them. You should then require the package in either the <b>/resources
 npm run dev
 ```
 
-  This will put the result of the compiled app.js and app.scss in the <b>public</b> folder</li>
+  This will put the result of the compiled app.js and app.scss in the <b>public</b> folder. No further actions have to be taken.</li>
 </ol>
