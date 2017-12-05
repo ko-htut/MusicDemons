@@ -32,7 +32,7 @@
         'label'         =>  'Artists',
         'url'           =>  route('autocomplete-select2artist', ['search' => '']),
         'selected'      =>  $selected_artists ?? null,
-        'model'         =>  'Artist'
+        'model'         =>  'App\\Entities\\Artist'
     ])@endcomponent
     <div class="form-group row">
       <label for="lyrics" class="col-sm-4 col-xl-2">Lyrics</label>

@@ -116,13 +116,13 @@
         'name'          =>  'members',
         'label'         =>  'Current members',
         'url'           =>  route('autocomplete-select2person', ['search' => '']),
-        'model'         =>  'Person'
+        'model'         =>  'App\\Entities\\Person'
     ])@endcomponent
     @component('generic.form.select2',[
         'name'          =>  'past_members',
         'label'         =>  'Past members',
         'url'           =>  route('autocomplete-select2person', ['search' => '']),
-        'model'         =>  'Person'
+        'model'         =>  'App\\Entities\\Person'
     ])@endcomponent
     <div class="form-group row">
       <label class="col-sm-4 col-xl-2">Media</label>
