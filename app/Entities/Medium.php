@@ -13,6 +13,15 @@ class Medium extends Model
         'value'
     ];
     
+    protected $hidden = [
+        'user_insert',
+        'user_update',
+        'user_delete',
+        'created_at',
+        'updated_at',
+        'deleted_at'
+    ];
+    
     public function medium_type(){
         return $this->belongsTo('App\Entities\MediumType');
     }

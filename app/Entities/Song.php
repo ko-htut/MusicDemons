@@ -21,6 +21,15 @@ class Song extends Model
         'text'
     ];
     
+    protected $hidden = [
+        'user_insert',
+        'user_update',
+        'user_delete',
+        'created_at',
+        'updated_at',
+        'deleted_at'
+    ];
+    
     public function artists() {
         return $this->belongsToMany('App\Entities\Artist');
     }

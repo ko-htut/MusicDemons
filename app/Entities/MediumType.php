@@ -15,6 +15,15 @@ class MediumType extends Model
         'icon_url'
     ];
     
+    protected $hidden = [
+        'user_insert',
+        'user_update',
+        'user_delete',
+        'created_at',
+        'updated_at',
+        'deleted_at'
+    ];
+    
     public function mediums() {
         return $this->hasMany('App\Entities\Medium');
     }
