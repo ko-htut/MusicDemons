@@ -27,13 +27,13 @@
         'label'     =>  'Released',
         'value'     =>  $song->released
     ])@endcomponent
-		<div class="form-group row">
-			<label for="artists" class="col-sm-4 col-xl-2">Artists</label>
-			<div class="col-sm-8 col-xl-10">
-				<select class="form-control select2" name="artists[]" id="artists" data-placeholder="Artists" data-url="{{ route('autocomplete-select2artist', ['search' => '']) }}" data-selected="{!! $selected_artists_string !!}" multiple>
-				</select>
-			</div>
-		</div>
+    @component('generic.form.select2',[
+        'name'          =>  'artists',
+        'label'         =>  'Artists',
+        'url'           =>  route('autocomplete-select2artist', ['search' => '']),
+        'selected'      =>  $selected_artists ?? null,
+        'model'         =>  'Artist'
+    ])@endcomponent
     <div class="form-group row">
       <label for="lyrics" class="col-sm-4 col-xl-2">Lyrics</label>
 			<div class="col-sm-8 col-xl-10">
@@ -49,7 +49,7 @@
       <div class="col-sm-8 col-xl-10">
           @component('subject.media',[
               'medium_types'  => $medium_types,
-              'media'         => $song->subject->media
+              'media'         => count($old_media) !== 0 ? $old_media : $song->subject->media
           ])@endcomponent
       </div>
     </div>

@@ -112,27 +112,24 @@
         'name'      =>  'year_quit',
         'label'     =>  'Year quit'
     ])@endcomponent
-		<div class="form-group row">
-			<label for="members" class="col-sm-4 col-xl-2">Current members</label>
-			<div class="col-sm-8 col-xl-10">
-        <a class="btn btn-warning float-right" title="Create new person" data-toggle="modal" href="#AddPersonModal"><i class="fa fa-plus"></i></a>
-				<select class="form-control select2" name="members[]" id="members" data-placeholder="Current members" data-url="{{ route('autocomplete-select2person', ['search' => '']) }}" multiple>
-				</select>
-			</div>
-		</div>
-		<div class="form-group row">
-			<label for="past_members" class="col-sm-4 col-xl-2">Past members</label>
-			<div class="col-sm-8 col-xl-10">
-        <a class="btn btn-warning float-right" title="Create new person" data-toggle="modal" href="#AddPersonModal"><i class="fa fa-plus"></i></a>
-				<select class="form-control select2" name="past_members[]" id="past_members" data-placeholder="Past members" data-url="{{ route('autocomplete-select2person', ['search' => '']) }}" multiple>
-				</select>
-			</div>
-		</div>
+    @component('generic.form.select2',[
+        'name'          =>  'members',
+        'label'         =>  'Current members',
+        'url'           =>  route('autocomplete-select2person', ['search' => '']),
+        'model'         =>  'Person'
+    ])@endcomponent
+    @component('generic.form.select2',[
+        'name'          =>  'past_members',
+        'label'         =>  'Past members',
+        'url'           =>  route('autocomplete-select2person', ['search' => '']),
+        'model'         =>  'Person'
+    ])@endcomponent
     <div class="form-group row">
       <label class="col-sm-4 col-xl-2">Media</label>
       <div class="col-sm-8 col-xl-10">
           @component('subject.media',[
-              'medium_types'  => $medium_types
+              'medium_types'  => $medium_types,
+              'media'         => $old_media
           ])@endcomponent
       </div>
     </div>

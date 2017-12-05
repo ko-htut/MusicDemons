@@ -18,6 +18,10 @@ class Artist extends Model
         'year_quit' => 'integer'
     ];
     
+    protected $appends = [
+        'text'
+    ];
+    
     public function members() {
         return $this->belongsToMany('App\Entities\Person')->withPivot('active');
     }
@@ -33,4 +37,8 @@ class Artist extends Model
     //public function getRouteKeyName() {
     //    return 'name';
     //}
+    
+    public function getTextAttribute() {
+        return $this->name;
+    }                
 }

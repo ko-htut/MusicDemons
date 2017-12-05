@@ -17,6 +17,10 @@ class Song extends Model
         'released'  =>  'date'
     ];
     
+    protected $appends = [
+        'text'
+    ];
+    
     public function artists() {
         return $this->belongsToMany('App\Entities\Artist');
     }
@@ -27,5 +31,9 @@ class Song extends Model
     
     public function subject() {
         return $this->morphOne('App\Entities\Subject', 'subjectable');
+    }
+    
+    public function getTextAttribute() {
+        return $this->title;
     }
 }

@@ -13,10 +13,12 @@ class SongCreateRequest extends FormRequest {
     
     public function rules() {
         return [
-            'title'    => 'required|string|min:1|max:255',
-            'released' => 'nullable|date',
-            'artists'  => 'nullable',
-            'lyrics'   => 'nullable|string|min:10|max:65536'
+            'title'            => 'required|string|min:1|max:255',
+            'released'         => 'nullable|date',
+            'artists'          => 'nullable',
+            'lyrics'           => 'nullable|string|min:10|max:65536',
+            'medium_types.*'   => 'required|integer',
+            'medium_values.*'  => 'required|string'
         ];
     }
     

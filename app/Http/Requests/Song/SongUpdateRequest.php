@@ -16,7 +16,9 @@ class SongUpdateRequest extends FormRequest {
             'title'    => 'required|string|min:1|max:255',
             'released' => 'nullable|date',
             'artists'  => 'nullable',
-            'lyrics'   => 'nullable|string|min:10|max:65536'
+            'lyrics'   => 'nullable|string|min:10|max:65536',
+            'medium_types.*'   => 'required|integer',
+            'medium_values.*'  => 'required|string'
         ];
     }
     

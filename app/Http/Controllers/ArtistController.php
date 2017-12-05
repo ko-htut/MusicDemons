@@ -7,7 +7,8 @@ use Collective\Html;
 use App\User;
 use App\Entities\Artist;
 use App\Entities\MediumType;
-use App\Helpers;
+use App\Helpers\Functions;
+use App\Helpers\SubjectHelper;
 use App\Http\Controllers\Controller;
 use App\Services\ArtistService;
 use App\Http\Requests\Artist\ArtistCreateRequest;
@@ -54,7 +55,11 @@ class ArtistController extends Controller
                 'Add new artist'  => null
             );
             $medium_types = MediumType::all();
-            return view('artist/create',compact('breadcrumb','medium_types'));
+            
+            // retrieve the old media values
+            $old_media = SubjectHelper::get_old_media();
+            
+            return view('artist/create',compact('breadcrumb','medium_types','old_media'));
         } else {
             // first login to view this page
             return redirect()->guest('login');
@@ -113,7 +118,7 @@ class ArtistController extends Controller
             ->map(function($member){
                 return (object)(
                     collect($member->toArray())
-                        ->only(['id','first_name','last_name','born','died','birth_place'])
+                        ->only(['id','first_name','last_name','born','died','birth_place','text'])
                         ->all()
                 );
             });
@@ -123,21 +128,15 @@ class ArtistController extends Controller
             ->map(function($member){
                 return (object)(
                     collect($member->toArray())
-                        ->only(['id','first_name','last_name','born','died','birth_place'])
+                        ->only(['id','first_name','last_name','born','died','birth_place','text'])
                         ->all()
                 );
             });
-        foreach($active_members as $member){
-            $member->text = $member->first_name . " " . $member->last_name;
-        }
-        foreach($past_members as $member){
-            $member->text = $member->first_name . " " . $member->last_name;
-        }
         
-        $active_members_string = Helpers::select2_selected($active_members);
-        $past_members_string = Helpers::select2_selected($past_members);
         $medium_types = MediumType::all();
-        return view('artist/edit', compact('artist','breadcrumb','active_members_string','past_members_string','medium_types'));
+        $old_media = SubjectHelper::get_old_media();
+        
+        return view('artist/edit', compact('artist','breadcrumb','active_members','past_members','medium_types','old_media'));
     }
 
     /**

@@ -6,6 +6,8 @@ use Auth;
 use App\User;
 use App\Entities\Person;
 use App\Entities\MediumType;
+use App\Helpers\Functions;
+use App\Helpers\SubjectHelper;
 use Illuminate\Http\Request;
 use App\Services\PersonService;
 use App\Http\Requests\Person\PersonCreateRequest;
@@ -53,7 +55,11 @@ class PersonController extends Controller
                 'Add new person'  => null
             );
             $medium_types = MediumType::all();
-            return view('person/create',compact('breadcrumb','medium_types'));
+            
+            // retrieve the old media values
+            $old_media = SubjectHelper::get_old_media();
+            
+            return view('person/create',compact('breadcrumb','medium_types','old_media'));
         } else {
             // first login to view this page
             return redirect()->guest('login');
@@ -107,7 +113,11 @@ class PersonController extends Controller
             'Edit'                                           =>  null
         );
         $medium_types = MediumType::all();
-        return view('person/edit', compact('person','breadcrumb','medium_types'));
+        
+        // remap the two arrays to one array of mapped objects
+        $old_media = SubjectHelper::get_old_media();
+        
+        return view('person/edit', compact('person','breadcrumb','medium_types','old_media'));
     }
 
     /**

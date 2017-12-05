@@ -34,26 +34,26 @@
       'value'     =>  $artist->year_quit,
 			'required'  =>  false
 		])@endcomponent
-		<div class="form-group row">
-			<label for="members" class="col-sm-4 col-xl-2">Current members</label>
-			<div class="col-sm-8 col-xl-10">
-				<select class="form-control select2" name="members[]" id="members" data-placeholder="Current members" data-url="{{ route('autocomplete-select2person', ['search' => '']) }}" data-selected="{!! $active_members_string !!}" multiple>
-				</select>
-			</div>
-		</div>
-		<div class="form-group row">
-			<label for="past_members" class="col-sm-4 col-xl-2">Past members</label>
-			<div class="col-sm-8 col-xl-10">
-				<select class="form-control select2" name="past_members[]" id="past_members" data-placeholder="Past members" data-url="{{ route('autocomplete-select2person', ['search' => '']) }}" data-selected="{!! $past_members_string !!}" multiple>
-				</select>
-			</div>
-		</div>
+    @component('generic.form.select2',[
+        'name'          =>  'members',
+        'label'         =>  'Current members',
+        'url'           =>  route('autocomplete-select2person', ['search' => '']),
+        'selected'      =>  $active_members,
+        'model'         =>  'Person'
+    ])@endcomponent
+    @component('generic.form.select2',[
+        'name'          =>  'past_members',
+        'label'         =>  'Past members',
+        'url'           =>  route('autocomplete-select2person', ['search' => '']),
+        'selected'      =>  $past_members,
+        'model'         =>  'Person'
+    ])@endcomponent
     <div class="form-group row">
       <label class="col-sm-4 col-xl-2">Media</label>
       <div class="col-sm-8 col-xl-10">
           @component('subject.media',[
               'medium_types'  => $medium_types,
-              'media'         => $artist->subject->media
+		          'media'         => count($old_media) !== 0 ? $old_media : $artist->subject->media
           ])@endcomponent
       </div>
     </div>

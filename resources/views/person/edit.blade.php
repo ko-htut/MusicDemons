@@ -53,7 +53,7 @@
         <div class="col-sm-8 col-xl-10">
             @component('subject.media',[
                 'medium_types'  =>  $medium_types,
-                'media'         =>  $person->subject->media
+		            'media'         => count($old_media) !== 0 ? $old_media : $person->subject->media
             ])@endcomponent
         </div>
     </div>

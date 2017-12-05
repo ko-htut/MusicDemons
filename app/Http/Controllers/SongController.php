@@ -8,7 +8,8 @@ use App\Entities\Song;
 use App\Entities\Artist;
 use App\Entities\MediumType;
 use App\Entities\Medium;
-use App\Helpers;
+use App\Helpers\Functions;
+use App\Helpers\SubjectHelper;
 use App\Http\Controllers\Controller;
 use App\Services\SongService;
 use App\Http\Requests\Song\SongCreateRequest;
@@ -56,7 +57,11 @@ class SongController extends Controller
                 'Add new song' => null
             );
             $medium_types = MediumType::all();
-            return view('song/create',compact('breadcrumb','medium_types'));
+            
+            // retrieve the old media values
+            $old_media = SubjectHelper::get_old_media();
+            
+            return view('song/create',compact('breadcrumb','medium_types', 'old_media'));
         } else {
             // first login to view this page
             return redirect()->guest('login');
@@ -77,6 +82,9 @@ class SongController extends Controller
             'Add new song' => null
         );
         $medium_types = MediumType::all();
+        // retrieve the old media values
+        $old_media = SubjectHelper::get_old_media();
+        
         $selected_artists = array((object)(
             collect($artist->toArray())
                 ->only(['id','name','year_started','year_quit'])
@@ -86,8 +94,8 @@ class SongController extends Controller
             $artist->text = $artist->name;
         }
         
-        $selected_artists_string = Helpers::select2_selected($selected_artists);
-        return view('song/create',compact('breadcrumb','selected_artists_string','medium_types'));
+        //$selected_artists_string = Functions::select2_selected($selected_artists);
+        return view('song/create',compact('breadcrumb','selected_artists','medium_types','old_media'));
     }
 
     /**
@@ -113,10 +121,19 @@ class SongController extends Controller
     public function show(Song $song)
     {
         $breadcrumb = array(
-            'Home'        =>  route('home.index'),
-            'Songs'       =>  route('song.index'),
-             $song->title  =>  null
+            'Home'          =>  route('home.index'),
+            'Artists'       =>  route('artist.index'),
+            'artist_list'   =>  collect($song->artists)->map(function($artist){
+                return [$artist->name, route('artist.show', compact('artist'))];
+            })->reduce(function ($assoc, $keyValuePair) {
+                list($key, $value) = $keyValuePair;
+                $assoc[$key] = $value;
+                return $assoc;
+            }),
+            'Songs'         =>  null,
+            $song->title    =>  null
         );
+        
         if($song->lyrics->count() === 0){
             $lines = array();
         } else {
@@ -134,29 +151,33 @@ class SongController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-     public function edit(Song $song)
-     {
-         $breadcrumb = array(
-            'Home'        =>  route('home.index'),
-            'Songs'       =>  route('song.index'),
-             $song->title  =>  route('song.show',$song),
-            'Edit'        =>  null
-         );
-         $medium_types = MediumType::all();
-         $selected_artists = $song->artists->map(function($artist){
-             return (object)(
-                 collect($artist->toArray())
-                     ->only(['id','name','year_started','year_quit'])
-                     ->all()
-             );
-         });
-         foreach($selected_artists as $artist){
-             $artist->text = $artist->name;
-         }
-         //convert object to proper select2-string
-         $selected_artists_string = Helpers::select2_selected($selected_artists);
-         return view('song/edit',compact('song','breadcrumb','selected_artists_string','medium_types'));
-     }
+    public function edit(Song $song)
+    {
+        $breadcrumb = array(
+           'Home'        =>  route('home.index'),
+           'Songs'       =>  route('song.index'),
+            $song->title  =>  route('song.show',$song),
+           'Edit'        =>  null
+        );
+        $medium_types = MediumType::all();
+        
+        // retrieve the old media values
+        $old_media = SubjectHelper::get_old_media();
+        
+        $selected_artists = $song->artists->map(function($artist){
+            return (object)(
+                collect($artist->toArray())
+                    ->only(['id','name','year_started','year_quit'])
+                    ->all()
+            );
+        });
+        foreach($selected_artists as $artist){
+            $artist->text = $artist->name;
+        }
+        //convert object to proper select2-string
+        //$selected_artists_string = Functions::select2_selected($selected_artists);
+        return view('song/edit',compact('song','breadcrumb','selected_artists','medium_types','old_media'));
+    }
 
     /**
      * Update the specified resource in storage.

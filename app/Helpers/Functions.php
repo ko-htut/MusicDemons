@@ -1,8 +1,8 @@
 <?php
 
-namespace App;
+namespace App\Helpers;
 
-class Helpers {
+class Functions {
     public static function select2_selected($items) {
         $items_string = json_encode($items, JSON_UNESCAPED_UNICODE);
         

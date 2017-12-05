@@ -42,16 +42,14 @@ class AutocompleteController extends Controller
 
     public function select2artist($search)
     {
-        $query = Artist::select('id','name');
         if($search != null){
-            $query = $query->where('name','like', "%$search%");
+            $query = Artist::where('name','like', "%$search%");
+            $data = $query->get();
+            return response()->json($data);
+        } else {
+            $data = Artist::all();
+            return response()->json($data);
         }
-        $data = $query->get();
-        foreach($data as $item){
-            $item->text = $item->name;
-            unset($item->name);
-        }
-        return response()->json($data);
     }
     public function select2person($search)
     {

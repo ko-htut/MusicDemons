@@ -17,7 +17,9 @@ class ArtistCreateRequest extends FormRequest {
             'year_started'  => 'required|integer|digits:4',
             'year_quit'     => 'nullable|integer|digits:4',
             'members'       => 'nullable',
-            'past_members'  => 'nullable'
+            'past_members'  => 'nullable',
+            'medium_types.*'   => 'required|integer',
+            'medium_values.*'  => 'required|string'
         ];
     }
     

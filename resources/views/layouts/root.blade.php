@@ -17,6 +17,7 @@
   		@yield('css')
 		</style>
 		<script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
+    <script type="text/javascript" src="/js/assets/TestApp.js"></script>
 		<script type="text/javascript" src="{{ asset('js/custom.js') }}"></script>
     <script type="text/javascript" src="https://www.youtube.com/iframe_api"></script>
     <script type="text/javascript">
@@ -37,11 +38,23 @@
 			<div class="content">
 				<ol class="breadcrumb">
 					@if(!empty($breadcrumb))
-						@foreach($breadcrumb as $text => $url)
-							@if(empty($url))
+						@foreach($breadcrumb as $text => $url_or_array)
+              @if(is_array($url_or_array))
+                <li>
+                  <ol>
+                    @foreach($url_or_array as $item_text => $item_url)
+                      @if(empty($item_url))
+                        <li>{{ $item_text }}</li>
+                      @else
+                        <li><a href="{{ $item_url }}">{{ $item_text }}</a></li>
+                      @endif
+                    @endforeach
+                  </ol>
+                </li>
+							@elseif(empty($url_or_array))
 								<li>{{ $text }}</li>
 							@else
-								<li><a href="{{ $url }}">{{ $text }}</a></li>
+								<li><a href="{{ $url_or_array }}">{{ $text }}</a></li>
 							@endif
 						@endforeach
 					@endif

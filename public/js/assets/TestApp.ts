@@ -6,7 +6,7 @@ namespace TestApp {
 		constructor(){
 		}
 		
-		Tekst: string;
+		Tekst: string = "";
 		BtnClick = () => {
 			this.Tekst = "hallo daar";
 		}

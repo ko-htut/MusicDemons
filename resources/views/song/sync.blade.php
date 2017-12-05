@@ -28,7 +28,13 @@
           @foreach($lines as $line)
               <div class="row">
                   <div class="col-sm-2 col-xl-1">
-                      <input type="text" class="form-control" name="times[]" value="{{ $song->lyrics->last()->timing[$loop->index] }}">
+                      <input type="text" class="form-control" name="times[]" value="{{
+                          !is_array($song->lyrics->last()->timing)
+                          ? ''
+                          : count($song->lyrics->last()->timing) > $loop->index
+                          ? $song->lyrics->last()->timing[$loop->index]
+                          : ''
+                      }}">
                   </div>
                   <div class="col-sm-10 col-xl-11">
                       <label class="py-6px">{{ $line }}</label>

@@ -25,6 +25,10 @@ class Person extends Model
         'full_name'
     ];
     
+    protected $appends = [
+        'text'
+    ];
+    
     public function artist() {
         return $this->belongsToMany('App\Entities\Artist')->withPivot('active');
     }
@@ -39,5 +43,9 @@ class Person extends Model
     
     public function subject() {
         return $this->morphOne('App\Entities\Subject', 'subjectable');
+    }
+    
+    public function getTextAttribute() {
+        return $this->first_name . " " . $this->last_name;
     }
 }
