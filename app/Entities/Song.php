@@ -21,6 +21,10 @@ class Song extends Model
         'text'
     ];
     
+    protected $with = [
+        'latest_lyrics'
+    ];
+    
     protected $hidden = [
         'user_insert',
         'user_update',
@@ -36,6 +40,10 @@ class Song extends Model
     
     public function lyrics() {
         return $this->hasMany('App\Entities\Lyric');
+    }
+    
+    public function latest_lyrics() {
+        return $this->hasOne('App\Entities\Lyric')->latest();
     }
     
     public function subject() {

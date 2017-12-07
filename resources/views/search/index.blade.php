@@ -53,7 +53,6 @@
             </div>
         </div>
     </div>
-		{{ csrf_field() }}
 		@component('generic.form.text', [
 			'name'      =>  'search',
 			'label'     =>  'Enter a search term',
@@ -61,18 +60,4 @@
 			'autofocus' =>  true
 		])@endcomponent
 	</form>
-@endsection
-
-@section('javascript')
-  <script type="text/javascript">
-    $(document).ready(function(){
-        /*$(".search-btn-all").click(function(event){
-            if($(event.currentTarget).hasClass('btn-primary')){
-                $(".search-btn").removeClass('btn-primary').addClass('btn-secondary');
-            } else {
-                $(".search-btn").removeClass('btn-secondary').addClass('btn-primary');
-            }
-        });*/
-    });
-  </script>
 @endsection

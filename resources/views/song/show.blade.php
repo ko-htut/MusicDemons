@@ -107,9 +107,10 @@
 @endsection
 
 @section('javascript')
+        if(){
   @if($song->subject->youtube_id !== null)
     var lines = {!! json_encode(array_values($lines)) !!};
-    var times = {!! json_encode($song->lyrics->last()->timing) !!};
+    var times = {!! $song->latest_lyrics === null ? '[]' : json_encode($song->latest_lyrics->timing) !!};
     var player;
     var timer;
     function onYouTubeIframeAPIReady() {

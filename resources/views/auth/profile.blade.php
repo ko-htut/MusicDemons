@@ -1,9 +1,19 @@
 @extends('layouts.root')
 
 @section('content')
-	<h4>Profile</h4>
 	<form action="{{ route('profile.store') }}" method="POST">
 		{{ csrf_field() }}
+    <div class="form-group row">
+      <div class="col-12">
+        <h4 class="d-inline-block">Profile</h4>
+        <span class="float-right">
+  				<button type="submit" class="btn btn-primary">
+            <i class="fa fa-save"></i>
+            Update profile
+          </button>
+        </span>
+      </div>
+    </div>
 		@component('generic.form.text', [
 			'name'      =>  'name',
 			'label'     =>  'Name',
@@ -28,13 +38,5 @@
 			'label'     =>  'Repeat password',
       'required'  =>  false
 		])@endcomponent
-		<div class="row">
-			<div class="col-12 text-center">
-				<button type="submit" class="btn btn-primary">
-          <i class="fa fa-save"></i>
-          Update profile
-        </button>
-			</div>
-		</div>
 	</form>
 @endsection

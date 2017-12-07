@@ -134,10 +134,10 @@ class SongController extends Controller
             $song->title    =>  null
         );
         
-        if($song->lyrics->count() === 0){
+        if($song->latest_lyrics === null){
             $lines = array();
         } else {
-            $lines = explode("\r\n",$song->lyrics->last()->lyrics);
+            $lines = explode("\r\n",$song->latest_lyrics->lyrics);
             $lines = array_filter($lines,function($line){
                 return $line !== "";
             });

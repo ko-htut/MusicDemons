@@ -22,4 +22,10 @@ Route::group(['prefix' => '', 'as' => 'api-'], function() {
         Route::post('raw/person','AutocompleteController@rawperson')->name('rawperson');
         Route::post('raw/artist','AutocompleteController@rawartist')->name('rawartist');
     });
+    
+    Route::group(['prefix' => 'v1', 'as' => 'v1-'], function() {
+        Route::resource('artist','Api\v1\ArtistController');
+        Route::resource('person','Api\v1\PersonController');
+        Route::resource('song','Api\v1\SongController');
+    });
 });

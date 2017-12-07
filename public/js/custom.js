@@ -86,12 +86,12 @@ $(document).ready(function(){
 			var name = $(sender).next().attr('name').slice(0,-2);
 			
       // toggle the input's value
-      if($(input).val() === '') {
-        $(input).val($(input).attr('data-value'));
-        $(sender).fixClass('btn-primary','btn-secondary');
-      } else {
-        $(input).val('');
+      if($(input).is(':checked')) {
+        $(input).prop("checked", false);
         $(sender).fixClass('btn-secondary','btn-primary');
+      } else {
+        $(input).prop("checked", true);
+        $(sender).fixClass('btn-primary','btn-secondary');
       }
       applyCheckAllButtons(name);
 		});
@@ -146,6 +146,9 @@ $(document).ready(function(){
 						minimumInputLength: 1,
 						placeholder: $(this).attr("data-placeholder")
 				});
+        
+        // or you can follow the instructions at
+        // https://select2.org/programmatic-control/add-select-clear-items#preselecting-options-in-an-remotely-sourced-ajax-select2
         
         var attr = $(this).attr('data-selected');
         if(typeof attr !== typeof undefined && attr !== false) {

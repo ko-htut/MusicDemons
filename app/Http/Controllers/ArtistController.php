@@ -69,7 +69,7 @@ class ArtistController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  App\Http\Requests\ArtistCreateRequest  $request
      * @return \Illuminate\Http\Response
      */
     public function store(ArtistCreateRequest $request)
@@ -84,7 +84,7 @@ class ArtistController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  App\Entities\Artist  $artist
      * @return \Illuminate\Http\Response
      */
     public function show(Artist $artist)
@@ -101,7 +101,7 @@ class ArtistController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  App\Entities\Artist $artist
      * @return \Illuminate\Http\Response
      */
     public function edit(Artist $artist)
@@ -142,8 +142,8 @@ class ArtistController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  App\Http\Requests\ArtistUpdateRequest  $request
+     * @param  App\Entities\Artist $artist
      * @return \Illuminate\Http\Response
      */
     public function update(ArtistUpdateRequest $request, Artist $artist)
@@ -155,7 +155,7 @@ class ArtistController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  App\Entities\Artist $artist
      * @return \Illuminate\Http\Response
      */
     public function destroy(Artist $artist)
