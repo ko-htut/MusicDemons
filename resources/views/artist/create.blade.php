@@ -1,5 +1,9 @@
 @extends('layouts.root')
 
+@section('title')
+  <title>LyricDB - Add Artist</title>
+@endsection
+
 @section('content')
   {{--
     <div id="app">

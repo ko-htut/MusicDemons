@@ -1,5 +1,9 @@
 @extends('layouts.root')
 
+@section('title')
+  <title>LyricDB - About</title>
+@endsection
+
 @section('content')
 	  <form action="{{ route('about.sendmail') }}" method="POST">
          {{ csrf_field() }}

@@ -1,5 +1,9 @@
 @extends('layouts.root')
 
+@section('title')
+  <title>LyricDB - Internal server error</title>
+@endsection
+
 @section('content')    <div class="error-page">
     <h2 class="headline text-info"> 500</h2>
     <div class="error-content">

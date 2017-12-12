@@ -1,5 +1,9 @@
 @extends('layouts.root')
 
+@section('title')
+  <title>LyricDB - Login</title>
+@endsection
+
 @section('content')
 	<h1>Login</h1>
 	<form action="{{ route('login') }}" method="POST">

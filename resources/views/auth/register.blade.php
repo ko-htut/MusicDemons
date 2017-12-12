@@ -1,5 +1,9 @@
 @extends('layouts.root')
 
+@section('title')
+  <title>LyricDB - Register</title>
+@endsection
+
 @section('content')
 	<h1>Create an account</h1>
 	<form action="{{ route('register') }}" method="POST">

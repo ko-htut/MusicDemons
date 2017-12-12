@@ -1,5 +1,9 @@
 @extends('layouts.root')
 
+@section('title')
+  <title>LyricDB - Add medium-type</title>
+@endsection
+
 @section('content')
 	<form action="{{ route('mediumtypes.store') }}" method="POST">
 		{{ csrf_field() }}

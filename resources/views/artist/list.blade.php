@@ -1,5 +1,9 @@
 @extends('layouts.root')
 
+@section('title')
+  <title>LyricDB - Artists</title>
+@endsection
+
 @section('content')
   <div class="form-group row">
       <div class="col-12">

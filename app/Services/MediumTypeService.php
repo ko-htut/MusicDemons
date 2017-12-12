@@ -4,7 +4,7 @@ namespace App\Services;
 
 use Auth;
 use App\Entities\MediumType;
-use App\Helpers;
+use App\Helpers\Functions;
 
 class MediumTypeService {
     public function create(\stdClass $mediumTypeData) {
@@ -13,7 +13,7 @@ class MediumTypeService {
         $mediumType->description  = $mediumTypeData->description;
         $mediumType->base_url = $mediumTypeData->base_url;
         if(strpos($mediumTypeData->base_url, ".") !== false) {
-            $mediumType->icon_url = Helpers::get_icon($mediumTypeData->base_url);
+            $mediumType->icon_url = Functions::get_icon($mediumTypeData->base_url);
         }
         
         $mediumType->user_insert = Auth::user()->id;
@@ -26,7 +26,7 @@ class MediumTypeService {
         $mediumType->description  = $mediumTypeData->description;
         $mediumType->base_url = $mediumTypeData->base_url;
         if(strpos($mediumTypeData->base_url, ".") !== false) {
-            $mediumType->icon_url = Helpers::get_icon($mediumTypeData->base_url);
+            $mediumType->icon_url = Functions::get_icon($mediumTypeData->base_url);
         }
         
         $mediumType->user_update = Auth::user()->id;

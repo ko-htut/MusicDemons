@@ -50,9 +50,6 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
-        //$method_names = get_class_methods($this);
-        //return response()->view("errors.index",compact('exception','method_names'),403);
-
         $code = $this->isHttpException($exception)
               ? $exception->getStatusCode()
               : 500;
@@ -61,9 +58,6 @@ class Handler extends ExceptionHandler
 						"Home"         =>  route('home.index'),
 						"Error $code"  =>  null
 				);
-        
-        //$method_names = get_class_methods($exception);
-        //return response()->view("errors.index",compact('breadcrumb','exception','method_names'),403);
 
         if (view()->exists("errors.$code")) {
             return response()->view("errors.$code", compact('breadcrumb'), $code);
@@ -74,16 +68,11 @@ class Handler extends ExceptionHandler
     
     protected function unauthenticated($request, AuthenticationException $exception)
     {
-				$breadcrumb = array(
-						"Home"         =>  route('home.index'),
-						"Error $code"  =>  null
-				);
-        
         return redirect()->guest(route('login'));
-        if (view()->exists("errors.401")) {
+        /*if (view()->exists("errors.401")) {
             return response()->view("errors.401", compact('breadcrumb'), 401);
         } else {
             return parent::render($request, $exception);
-        }
+        }*/
     }
 }

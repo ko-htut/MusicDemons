@@ -1,5 +1,9 @@
 @extends('layouts.root')
 
+@section('title')
+  <title>LyricDB - Not found</title>
+@endsection
+
 @section('content')
     <div class="error-page">
         <h2 class="headline text-info"> 404</h2>

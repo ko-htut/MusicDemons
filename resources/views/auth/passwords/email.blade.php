@@ -1,5 +1,9 @@
 @extends('layouts.root')
 
+@section('title')
+  <title>LyricDB - Send password reset link</title>
+@endsection
+
 @section('content')
 	<h1>Reset password</h1>
 	<form action="{{ route('password.email') }}" method="POST">

@@ -1,5 +1,9 @@
 @extends('layouts.root')
 
+@section('title')
+  <title>LyricDB - {{ $artist->name }}</title>
+@endsection
+
 @section('content')        
     <div class="row">
         <div class="col-12">

@@ -1,5 +1,9 @@
 @extends('layouts.root')
 
+@section('title')
+  <title>LyricDB - Search</title>
+@endsection
+
 @section('content')
 	<form action="{{ route('search-search') }}" method="GET">
     <div class="form-group row">

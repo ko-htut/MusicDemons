@@ -27,7 +27,7 @@ class ArtistController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index() {
-        $artists = Artist::all();
+        $artists = Artist::with(array('members','songs'))->get();
         return response()->json($artists);
     }
     

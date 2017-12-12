@@ -1,5 +1,9 @@
 @extends('layouts.root')
 
+@section('title')
+  <title>LyricDB - Edit {{ $artist->name }}</title>
+@endsection
+
 @section('content')
 	<form action="{{ route('artist.update',$artist) }}" method="POST">
 		{{ csrf_field() }}

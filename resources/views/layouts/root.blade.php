@@ -10,19 +10,16 @@
     <link rel="stylesheet" href="{{ asset('css/menu-icon.css') }}">
 		<link rel="stylesheet" href="{{ asset('css/toggle-button.css') }}">
 		<link rel="stylesheet" href="{{ asset('css/custom.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/bootstrap-dialog-fix.css') }}">   
+    <link rel="stylesheet" href="{{ asset('css/bootstrap-dialog-fix.css') }}">
+    <link rel="shortcut icon" href="{{ asset('img/music_note.png') }}">
 		<link rel="search" type="application/opensearchdescription+xml" title="Search through LyricDB" href="https://lyricdb.tk/opensearch.xml">
-		<title>{{ config('app.name', 'Laravel') }}</title>
+		@section('title')
+      <title>{{ config('app.name', 'Laravel') }}</title>
+    @endsection
+    @yield('title')
     <style>
   		@yield('css')
 		</style>
-		<script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
-    <script type="text/javascript" src="/js/assets/TestApp.js"></script>
-		<script type="text/javascript" src="{{ asset('js/custom.js') }}"></script>
-    <script type="text/javascript" src="https://www.youtube.com/iframe_api"></script>
-    <script type="text/javascript">
-    		@yield('javascript')
-    </script>
 		<script>
 			window.Laravel = {!! json_encode([
 				'csrfToken' => csrf_token(),
@@ -66,5 +63,12 @@
 			</div>
 		</div>
 		@include('shared.footer')
+		<script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
+    <!--<script type="text/javascript" src="/js/assets/TestApp.js"></script>-->
+		<script type="text/javascript" src="{{ asset('js/custom.js') }}"></script>
+    <script type="text/javascript" src="https://www.youtube.com/iframe_api"></script>
+    <script type="text/javascript">
+    		@yield('javascript')
+    </script>
 	</body>
 </html>

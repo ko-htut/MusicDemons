@@ -1,5 +1,9 @@
 @extends('layouts.root')
 
+@section('title')
+  <title>LyricDB - Sync {{ $song->title }}</title>
+@endsection
+
 @section('content')
 	<form action="{{ route('song.syncstore',$song) }}" method="POST">
 		{{ csrf_field() }}

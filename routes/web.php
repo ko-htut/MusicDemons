@@ -40,7 +40,7 @@ Route::group(['prefix' => 'search', 'as' => 'search-'], function() {
     Route::get('{subject?}','SearchController@index')->name('form');
     
     // Route to show the results
-    Route::get('{subject?}/{search?}','SearchController@search')->name('search');
+    Route::get('{subject}/{search}','SearchController@search')->name('search');
 });
 
 // Routes for the search engine (select2 and opensearch)

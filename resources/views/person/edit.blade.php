@@ -1,12 +1,16 @@
 @extends('layouts.root')
 
+@section('title')
+  <title>LyricDB - Edit {{ $person->full_name }}</title>
+@endsection
+
 @section('content')
 	<form action="{{ route('person.update',$person->id) }}" method="POST">
 		{{ csrf_field() }}
     {{ method_field('PUT') }}
     <div class="form-group row">
         <div class="col-12">
-            <h4 class="d-inline-block">Edit person: {{ $person->name }}</h4>
+            <h4 class="d-inline-block">Edit person: {{ $person->full_name }}</h4>
             <span class="float-right">
         				<button type="submit" class="btn btn-primary">
         					<i class="fa fa-save"></i>

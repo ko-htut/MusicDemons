@@ -32,8 +32,8 @@ class SearchController extends Controller
         return view('search/index',compact('breadcrumb','selected'));
     }
     
-    public function search($search_terms,$search)
+    public function search($subject,$search)
     {
-        return view('search/results',compact('search_terms','search'));
+        return view('search/results',compact('subject','search'));
     }
 }

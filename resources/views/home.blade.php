@@ -1,10 +1,14 @@
 @extends('layouts.root')
 
+@section('title')
+  <title>LyricDB - Home</title>
+@endsection
+
 @section('content')
     <h1>Home</h1>
-    <div ng-app="TestApp" ng-controller="TestApp as vm">
-        @{{ vm.Message }}
-        <br>
-        <button ng-click="vm.BtnClick()">Verander tekst</button>
+    <div id="app">
+        <passport-clients></passport-clients>
+        <passport-authorized-clients></passport-authorized-clients>
+        <passport-personal-access-tokens></passport-personal-access-tokens>
     </div>
 @endsection

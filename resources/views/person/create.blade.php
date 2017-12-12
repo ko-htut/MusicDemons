@@ -1,5 +1,9 @@
 @extends('layouts.root')
 
+@section('title')
+  <title>LyricDB - Add Person</title>
+@endsection
+
 @section('content')
 	<form action="{{ route('person.store') }}" method="POST">
 		{{ csrf_field() }}
