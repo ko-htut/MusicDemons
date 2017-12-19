@@ -33,7 +33,7 @@
           </td>
           <td class="hidden-xs-down">
               @if($song->released !== null)
-                  {{ date('d-m-Y',strtotime($song->released)) }}
+                  {{ $song->released !== null ? date('d-m-Y',strtotime($song->released)) : '' }}
               @endif
           </td>
           <td class="trash">

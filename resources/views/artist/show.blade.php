@@ -69,7 +69,7 @@
                     @foreach($artist->songs as $song)
                         <tr>
                             <td><a href="{{ route('song.show', compact('song')) }}">{{ $song->title }}</a></td>
-                            <td class="hidden-xs-down">{{ date('d/m/Y', strtotime($song->released)) }}</td>
+                            <td class="hidden-xs-down">{{ $song->released !== null ? date('d/m/Y', strtotime($song->released)) : '' }}</td>
                         </tr>
                     @endforeach
                 </tbody>

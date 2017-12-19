@@ -13,6 +13,9 @@ use Illuminate\Http\Request;
 use App\Services\PersonService;
 use App\Http\Requests\Person\PersonCreateRequest;
 use App\Http\Requests\Person\PersonUpdateRequest;
+use Yajra\Datatables\Datatables;
+
+// https://github.com/yajra/laravel-datatables
 
 class PersonController extends Controller
 {
@@ -73,5 +76,14 @@ class PersonController extends Controller
     public function destroy(Person $person) {
         $this->personService->destroy($person);
         return response()->json(array());
+    }
+    
+    /**
+     * Expose data to the DataTables.net module
+     *
+     */
+    public function datatables() {
+        $people = Person::all();
+        return Datatables::of($people)->make(true);
     }
 }
