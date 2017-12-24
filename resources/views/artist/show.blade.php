@@ -8,22 +8,25 @@
     <div class="row">
         <div class="col-12">
             <h4 class="d-inline-block">{{ $artist->name }}</h4>
-            <span class="float-right">
-                <a href="{{ route('artist.edit', $artist) }}" class="btn btn-primary">
-              		<i class="fa fa-pencil"></i> Edit
-              	</a>
-                <form action="{{ route('artist.destroy', $artist) }}" method="POST" class="d-inline-block">
-                  {{ csrf_field() }}
-                  {{ method_field('DELETE') }}
-                  <button type="submit" class="btn btn-secondary">
-                    <i class="fa fa-trash-o"></i> Remove
-                  </button>
-                </form>
-                @if($add_another !== null)
-                  <a href="{{ route('artist.create') }}" class="btn btn-secondary">
-                    <i class="fa fa-plus"></i> Add another
-                  </a>
-                @endif
+            <span class="float-none float-sm-right d-block d-sm-inline-block">
+                <span class="float-none float-sm-right d-block d-sm-inline-block">
+                    <a href="{{ route('artist.edit', $artist) }}" class="btn btn-primary d-block d-sm-inline-block">
+                  		<i class="fa fa-pencil"></i> Edit
+                  	</a>
+                    <form action="{{ route('artist.destroy', $artist) }}" method="POST" class="d-block d-sm-inline-block">
+                      {{ csrf_field() }}
+                      {{ method_field('DELETE') }}
+                      <button type="submit" class="btn btn-secondary btn-block d-sm-inline-block">
+                        <i class="fa fa-trash-o"></i> Remove
+                      </button>
+                    </form>
+                    @if($add_another !== null)
+                      <a href="{{ route('artist.create') }}" class="btn btn-secondary d-block d-sm-inline-block">
+                        <i class="fa fa-plus"></i> Add another
+                      </a>
+                    @endif
+                </span>
+                @include('subject.likebuttons', ['subject' => $artist->subject])
             </span>
         </div>
     </div>

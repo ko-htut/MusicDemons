@@ -25,6 +25,18 @@ class Subject extends Model
         return $this->hasMany('App\Entities\Medium');
     }
     
+    public function like_users() {
+        return $this->belongsToMany('App\User','likes','subject_id','user_id')->withPivot('like');
+    }
+    
+    public function likes() {
+        return $this->like_users()->wherePivot('like',true);
+    }
+    
+    public function dislikes() {
+        return $this->like_users()->wherePivot('like',false);
+    }
+    
     public function getYoutubeIdAttribute() {
         $youtube_type = MediumType::where('description','Youtube')->first();
         

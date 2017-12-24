@@ -8,17 +8,20 @@
   <div class="row">
       <div class="col-12">
           <h4 class="d-inline-block">{{ $song->title }}</h4>
-          <span class="float-right">
-              <a href="{{ route('song.edit', $song) }}" class="btn btn-primary">
-            		<i class="fa fa-pencil"></i> Edit
-            	</a>
-              <form action="{{ route('song.destroy', $song) }}" method="POST" class="d-inline-block">
-                {{ csrf_field() }}
-                {{ method_field('DELETE') }}
-                <button type="submit" class="btn btn-secondary">
-                  <i class="fa fa-trash-o"></i> Remove
-                </button>
-              </form>
+          <span class="float-none float-sm-right d-block d-sm-inline-block">
+	            <span class="float-none float-sm-right d-block d-sm-inline-block">
+                  <a href="{{ route('song.edit', $song) }}" class="btn btn-primary d-block d-sm-inline-block">
+                		<i class="fa fa-pencil"></i> Edit
+                	</a>
+                  <form action="{{ route('song.destroy', $song) }}" method="POST" class="d-block d-sm-inline-block">
+                    {{ csrf_field() }}
+                    {{ method_field('DELETE') }}
+                    <button type="submit" class="btn btn-secondary btn-block d-sm-inline-block">
+                      <i class="fa fa-trash-o"></i> Remove
+                    </button>
+                  </form>
+              </span>
+              @include('subject.likebuttons', ['subject' => $song->subject])
           </span>
       </div>
   </div>

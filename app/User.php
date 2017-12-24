@@ -27,4 +27,8 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+    
+    public function liked_subjects() {
+        return $this->belongsToMany('App\Entities\Subject')->withPivot('like');
+    }
 }
