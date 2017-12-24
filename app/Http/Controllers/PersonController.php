@@ -31,14 +31,7 @@ class PersonController extends Controller
 						'Home'      =>  route('home.index'),
 						'People'    =>  null
 				);
-        $total  = Person::count();
-        $people = Person::orderby('first_name')
-                        ->orderby('last_name')
-                        ->skip(($page - 1) * $count)
-                        ->take($count)
-                        ->get();
-        $routeName = 'person.page';
-        return view('person/list',compact('breadcrumb','people','count','page','total','routeName'));
+        return view('person/list',compact('breadcrumb'));
     }
 
     /**

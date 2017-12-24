@@ -15,6 +15,8 @@ use App\Services\SongService;
 use App\Http\Requests\Song\SongCreateRequest;
 use App\Http\Requests\Song\SongUpdateRequest;
 use App\Http\Requests\Song\SongSyncRequest;
+use App\Http\Requests\Song\SongSearchRequest;
+use Yajra\Datatables\Datatables;
 
 class SongController extends Controller
 {
@@ -78,5 +80,21 @@ class SongController extends Controller
     public function destroy(Song $song) {
         $this->songService->destroy($song);
         return response()->json(array());
+    }
+    
+    /**
+     * Expose data to the DataTables.net module
+     *
+     */
+    public function datatables(SongSearchRequest $request) {
+        $search = $request->getSearchString();
+        $songs = Song::query()
+            ->when($search, function($query) use ($search){
+                $query->where(function($query2) use ($search){
+                    return $query2->where('title','like',"%$search%");
+                });
+            });
+        
+        return Datatables::of($songs)->make(true);
     }
 }

@@ -32,13 +32,7 @@ class ArtistController extends Controller
 						'Home'      =>  route('home.index'),
 						'Artists'   =>  null
 				);
-        $total = Artist::count();
-        $artists = Artist::orderby('name')
-                         ->skip(($page - 1) * $count)
-                         ->take($count)
-                         ->get();
-        $routeName = 'artist.page';
-        return view('artist/list',compact('breadcrumb','artists','count','page','total','routeName'));
+        return view('artist/list',compact('breadcrumb'));
     }
 
     /**

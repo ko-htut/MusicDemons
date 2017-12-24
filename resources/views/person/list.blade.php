@@ -21,7 +21,6 @@
         <th>Name</th>
         <th class="hidden-xs-down">Born</th>
         <th class="hidden-xs-down">Died</th>
-        <th></th>
       </tr>
     </thead>
   </table>
@@ -30,16 +29,19 @@
 @section('javascript')
   // https://github.com/DataTables/DataTablesSrc/blob/master/js/ext/ext.classes.js#L7
   $(document).ready(function(){
-    $("#peopleTable").DataTable({
+    var peopleTable = $("#peopleTable").DataTable({
       processing: true,
-      //serverSide: true,
+      serverSide: true,
       ajax: {
         url:  "{{ route('api-v1-person.datatables') }}",
-        type: "POST"
+        type: "POST",
+        /*data: function(data){
+            data.filter_search = "a";
+        }*/
       },
       columns: [{
           data: "text",
-          name: "Name",
+          name: "first_name",
           fnCreatedCell: function(nTd, sData, oData, iRow, iCol){
             $(nTd).html("<a href=\"/person/" + oData.id + "\">" + oData.text + "</a>");
           }
@@ -54,7 +56,10 @@
             } else {
               return moment(data).format("DD/MM/YYYY");
             }
-          }
+          },
+          fnCreatedCell: function(nTd, sData, oData, iRow, iCol){
+            $(nTd).addClass("hidden-xs-down");
+          },
         },{
           data: "died",
           name: "Died",
@@ -66,26 +71,12 @@
             } else {
               return moment(data).format("DD/MM/YYYY");
             }
-          }
+          },
+          fnCreatedCell: function(nTd, sData, oData, iRow, iCol){
+            $(nTd).addClass("hidden-xs-down");
+          },
         }
       ],
-      /*buttons: {
-        dom: {
-          button: {
-            tag: 'button',
-            className: 'btn btn-default'
-          },
-          buttonLiner: {
-            tag: 'button',
-            className: 'btn btn-default'
-          }
-        }
-      },*/
-      /*classes: {
-        sPageButton: 'page-link d-inline-block',
-	      sPageButtonActive: 'active',
-	      sPageButtonDisabled: 'disabled',
-      },*/
       language: {
         paginate: {
           previous: "&laquo;",

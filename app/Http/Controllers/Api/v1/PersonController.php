@@ -13,6 +13,7 @@ use Illuminate\Http\Request;
 use App\Services\PersonService;
 use App\Http\Requests\Person\PersonCreateRequest;
 use App\Http\Requests\Person\PersonUpdateRequest;
+use App\Http\Requests\Api\Person\PersonSearchRequest;
 use Yajra\Datatables\Datatables;
 
 // https://github.com/yajra/laravel-datatables
@@ -82,8 +83,15 @@ class PersonController extends Controller
      * Expose data to the DataTables.net module
      *
      */
-    public function datatables() {
-        $people = Person::all();
+    public function datatables(PersonSearchRequest $request) {
+        $search = $request->getSearchString();
+        $people = Person::query()
+            ->when($search, function($query) use ($search){
+                $query->where(function($query2) use ($search){
+                    return $query2->whereRaw("concat(first_name,' ',last_name) like '%$search%'");
+                });
+            });
+        
         return Datatables::of($people)->make(true);
     }
 }

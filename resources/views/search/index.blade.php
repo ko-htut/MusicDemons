@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-	<form action="{{ route('search-search') }}" method="GET">
+	<form action="{{ route('search-results') }}" method="GET">
     <div class="form-group row">
         <div class="col-12">
             <h4 class="d-inline-block">Search</h4>

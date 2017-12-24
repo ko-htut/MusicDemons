@@ -13,6 +13,8 @@ use App\Http\Controllers\Controller;
 use App\Services\ArtistService;
 use App\Http\Requests\Artist\ArtistCreateRequest;
 use App\Http\Requests\Artist\ArtistUpdateRequest;
+use App\Http\Requests\Artist\ArtistSearchRequest;
+use Yajra\Datatables\Datatables;
 
 class ArtistController extends Controller
 {
@@ -73,5 +75,21 @@ class ArtistController extends Controller
     public function destroy(Artist $artist) {
         $this->artistService->destroy($artist);
         return response()->json(array());
+    }
+    
+    /**
+     * Expose data to the DataTables.net module
+     *
+     */
+    public function datatables(ArtistSearchRequest $request) {
+        $search = $request->getSearchString();
+        $artists = Artist::query()
+            ->when($search, function($query) use ($search){
+                $query->where(function($query2) use ($search){
+                    return $query2->where('name','like',"%$search%");
+                });
+            });
+        
+        return Datatables::of($artists)->make(true);
     }
 }

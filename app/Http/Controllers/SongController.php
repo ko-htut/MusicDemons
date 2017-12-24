@@ -34,13 +34,7 @@ class SongController extends Controller
             'Home'  =>  route('home.index'),
             'Songs' =>  null
         );
-        $total = Song::count();
-        $songs = Song::orderby('title')
-                     ->skip(($page - 1) * $count)
-                     ->take($count)
-                     ->get();
-        $routeName = 'song.page';
-        return view('song/list',compact('breadcrumb','songs','count','page','total','routeName'));
+        return view('song/list',compact('breadcrumb'));
     }
     
     /**

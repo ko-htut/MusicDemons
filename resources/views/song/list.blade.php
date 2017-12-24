@@ -15,38 +15,53 @@
           </span>
       </div>
   </div>
-  <table class="table table-striped table-hover">
+  <table id="songsTable" class="table table-striped table-hover w-100" cellspacing="0">
     <thead>
       <tr>
         <th>Title</th>
         <th class="hidden-xs-down">Released</th>
-        <th></th>
       </tr>
     </thead>
-    <tbody>
-      @foreach($songs as $song)
-        <tr>
-          <td>
-            <a href="{{ route('song.show',$song->id) }}">
-              {{ $song->title }}
-            </a>
-          </td>
-          <td class="hidden-xs-down">
-              @if($song->released !== null)
-                  {{ $song->released !== null ? date('d-m-Y',strtotime($song->released)) : '' }}
-              @endif
-          </td>
-          <td class="trash">
-            <form action="{{ route('song.destroy',$song->id) }}" method="POST" class="d-inline-block">
-              {{ csrf_field() }}
-              {{ method_field('DELETE') }}
-              <button type="submit" class="btn btn-warning" title="Remove song">
-                <i class="fa fa-trash"></i>
-              </button>
-            </form>
-          </td>
-        </tr>
-      @endforeach
-    </tbody>
   </table>
+@endsection
+
+@section('javascript')
+  $(document).ready(function(){
+    var songsTable = $("#songsTable").DataTable({
+      processing: true,
+      serverSide: true,
+      ajax: {
+        url: "{{ route('api-v1-song.datatables') }}",
+        type: "POST"
+      },
+      columns: [{
+        data: "title",
+        name: "title",
+        fnCreatedCell: function(nTd, sData, oData, iRow, iCol){
+          $(nTd).html("<a href=\"/song/" + oData.id + "\">" + oData.text + "</a>");
+        }
+      },{
+        data: "released",
+        name: "released",
+        fnCreatedCell: function(nTd, sData, oData, iRow, iCol){
+          $(nTd).addClass("hidden-xs-down");
+        },
+        render: function(data,type,row){
+          if ( type !== 'display' && type !== 'filter' ) {
+            return data;
+          } else if(data == null){
+            return "";
+          } else {
+            return moment(data).format("DD/MM/YYYY");
+          }
+        }
+      }],
+      language: {
+        paginate: {
+          previous: "&laquo;",
+          next: "&raquo;",
+        },
+      },
+    });
+  });
 @endsection
