@@ -13,7 +13,7 @@ use Illuminate\Http\Request;
 use App\Services\PersonService;
 use App\Http\Requests\Person\PersonCreateRequest;
 use App\Http\Requests\Person\PersonUpdateRequest;
-use App\Http\Requests\Api\Person\PersonSearchRequest;
+use App\Http\Requests\Person\PersonSearchRequest;
 use Yajra\Datatables\Datatables;
 
 // https://github.com/yajra/laravel-datatables
