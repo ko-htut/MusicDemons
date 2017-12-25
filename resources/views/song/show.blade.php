@@ -12,8 +12,8 @@
 	            <span class="float-none float-sm-right d-block d-sm-inline-block">
                   <a href="{{ route('song.edit', $song) }}" class="btn btn-primary d-block d-sm-inline-block">
                 		<i class="fa fa-pencil"></i> Edit
-                	</a>
-                  <form action="{{ route('song.destroy', $song) }}" method="POST" class="d-block d-sm-inline-block">
+                	</a><!--
+                  --><form action="{{ route('song.destroy', $song) }}" method="POST" class="d-block d-sm-inline-block">
                     {{ csrf_field() }}
                     {{ method_field('DELETE') }}
                     <button type="submit" class="btn btn-secondary btn-block d-sm-inline-block">
@@ -21,7 +21,9 @@
                     </button>
                   </form>
               </span>
-              @include('subject.likebuttons', ['subject' => $song->subject])
+                @component('subject.likebuttons', [
+                    'subject' => $song->subject
+                ])@endcomponent
           </span>
       </div>
   </div>

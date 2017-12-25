@@ -12,21 +12,23 @@
               <span class="float-none float-sm-right d-block d-sm-inline-block">
                   <a href="{{ route('person.edit', $person) }}" class="btn btn-primary d-block d-sm-inline-block">
                 		<i class="fa fa-pencil"></i> Edit
-                	</a>
-                  <form action="{{ route('person.destroy', $person) }}" method="POST" class="d-block d-sm-inline-block">
+                	</a><!--
+                  --><form action="{{ route('person.destroy', $person) }}" method="POST" class="d-block d-sm-inline-block">
                     {{ csrf_field() }}
                     {{ method_field('DELETE') }}
                     <button type="submit" class="btn btn-secondary btn-block d-sm-inline-block">
                       <i class="fa fa-trash-o"></i> Remove
                     </button>
-                  </form>
+                  </form><!--
                   @if($add_another !== null)
-                    <a href="{{ route('person.create') }}" class="btn btn-secondary d-block d-sm-inline-block">
+                    --><a href="{{ route('person.create') }}" class="btn btn-secondary d-block d-sm-inline-block">
                       <i class="fa fa-plus"></i> Add another
-                    </a>
+                    </a><!--
                   @endif
-              </span>
-              @include('subject.likebuttons', ['subject' => $person->subject])
+              --></span>
+                @component('subject.likebuttons', [
+                    'subject' => $person->subject
+                ])@endcomponent
           </span>
       </div>
   </div>
