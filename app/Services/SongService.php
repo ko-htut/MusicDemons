@@ -40,6 +40,11 @@ class SongService {
                 $medium->save();
             }
         });
+        
+        if($songData->picture !== null) {
+            $songData->picture->move('images', $song->subject->id);
+        }
+        
         return $song;
     }
     
@@ -84,6 +89,10 @@ class SongService {
                 $medium->medium_type()->associate($type);
                 $medium->subject()->associate($song->subject);
                 $medium->save();
+            }
+        
+            if($songData->picture !== null) {
+                $songData->picture->move('images', $song->subject->id);
             }
             
             // will the new association be applied immediately?

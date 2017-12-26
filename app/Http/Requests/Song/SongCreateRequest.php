@@ -17,6 +17,7 @@ class SongCreateRequest extends FormRequest {
             'released'         => 'nullable|date',
             'artists'          => 'nullable',
             'lyrics'           => 'nullable|string|min:10|max:65536',
+            'picture'          => 'image|max:20000',
             'medium_types.*'   => 'required|integer',
             'medium_values.*'  => 'required|string'
         ];
@@ -28,6 +29,7 @@ class SongCreateRequest extends FormRequest {
             'released' => $this->input('released'),
             'artists'  => $this->input('artists'),
             'lyrics'   => $this->input('lyrics'),
+            'picture'  => $this->file('picture'),
             'media'       => $this->getMedia()
         ];
     }

@@ -38,32 +38,41 @@
       <i class="fa fa-info"></i> General information
     </div>
     <div class="card-block">
-    	@component('generic.form.label', [
-    		'label'     =>  'First name',
-    		'value'     =>  $person->first_name
-    	])@endcomponent
-    	@component('generic.form.label', [
-    		'label'     =>  'Last name',
-    		'value'     =>  $person->last_name
-    	])@endcomponent
-      @if($person->nickname !== null)
-      	@component('generic.form.label', [
-      		'label'     =>  'Nickname',
-      		'value'     =>  $person->nickname
-      	])@endcomponent
-      @endif
-    	@component('generic.form.label', [
-    		'label'     =>  'Birth day',
-    		'value'     =>  ($person->born !== null ? date('d-m-Y',strtotime($person->born)) : '')
-    	])@endcomponent
-    	@component('generic.form.label', [
-    		'label'     =>  'Birth place',
-    		'value'     =>  $person->birth_place
-    	])@endcomponent
-    	@component('generic.form.label', [
-    		'label'     =>  'Died',
-    		'value'     =>  ($person->died !== null ? date('d-m-Y',strtotime($person->died)) : '')
-    	])@endcomponent
+      <div class="row">
+          <div class="{{ $person->subject->has_image ? 'col-md-8' : 'col-md-12' }}">
+            	@component('generic.form.label', [
+            		'label'     =>  'First name',
+            		'value'     =>  $person->first_name
+            	])@endcomponent
+            	@component('generic.form.label', [
+            		'label'     =>  'Last name',
+            		'value'     =>  $person->last_name
+            	])@endcomponent
+              @if($person->nickname !== null)
+              	@component('generic.form.label', [
+              		'label'     =>  'Nickname',
+              		'value'     =>  $person->nickname
+              	])@endcomponent
+              @endif
+            	@component('generic.form.label', [
+            		'label'     =>  'Birth day',
+            		'value'     =>  ($person->born !== null ? date('d-m-Y',strtotime($person->born)) : '')
+            	])@endcomponent
+            	@component('generic.form.label', [
+            		'label'     =>  'Birth place',
+            		'value'     =>  $person->birth_place
+            	])@endcomponent
+            	@component('generic.form.label', [
+            		'label'     =>  'Died',
+            		'value'     =>  ($person->died !== null ? date('d-m-Y',strtotime($person->died)) : '')
+            	])@endcomponent
+          </div>
+          @if($person->subject->has_image)
+              <div class="col-md-4">
+                  <img src="{{ $person->subject->image }}" class="mw-100">
+              </div>
+          @endif
+      </div>
     </div>
   </div>
   <br>

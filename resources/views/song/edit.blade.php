@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-	<form action="{{ route('song.update',$song->id) }}" method="POST">
+	<form action="{{ route('song.update',$song->id) }}" method="POST" enctype="multipart/form-data">
 		{{ csrf_field() }}
     {{ method_field('PUT') }}
     <div class="form-group row">
@@ -43,6 +43,12 @@
         'label'    => 'Lyrics',
         'value'    => $song->lyrics->count() === 0 ? '' : $song->lyrics->last()->lyrics,
         'required' => false
+    ])@endcomponent
+    @component('generic.form.file',[
+        'name'      =>  'picture',
+        'label'     =>  'Image',
+        'accept'    =>  'image/*',
+        'required'  =>  false
     ])@endcomponent
     <div class="form-group row">
       <label class="col-sm-4 col-xl-2">Media</label>

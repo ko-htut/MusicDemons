@@ -53,4 +53,15 @@ class Subject extends Model
             }
         }
     }
+    
+    public function getHasImageAttribute() {
+        return file_exists(public_path('images/' . $this->id));
+    }
+    public function getImageAttribute() {
+        if(file_exists(public_path('images/' . $this->id))){
+            return '/images/' . $this->id;
+        } else {
+            return null;
+        }
+    }
 }

@@ -39,18 +39,27 @@
             General information
         </div>
         <div class="card-block">
-          	@component('generic.form.label', [
-            		'label'     =>  'Artist name',
-            		'value'     =>  $artist->name
-          	])@endcomponent
-          	@component('generic.form.label', [
-            		'label'     =>  'Year started',
-            		'value'     =>  $artist->year_started
-          	])@endcomponent
-          	@component('generic.form.label', [
-            		'label'     =>  'Year quit',
-            		'value'     =>  $artist->year_quit
-          	])@endcomponent
+            <div class="row">
+                <div class="{{ $artist->subject->has_image ? 'col-md-8' : 'col-md-12' }}">
+                  	@component('generic.form.label', [
+                    		'label'     =>  'Artist name',
+                    		'value'     =>  $artist->name
+                  	])@endcomponent
+                  	@component('generic.form.label', [
+                    		'label'     =>  'Year started',
+                    		'value'     =>  $artist->year_started
+                  	])@endcomponent
+                  	@component('generic.form.label', [
+                    		'label'     =>  'Year quit',
+                    		'value'     =>  $artist->year_quit
+                  	])@endcomponent
+                </div>
+                @if($artist->subject->has_image)
+                    <div class="col-md-4">
+                        <img src="{{ $artist->subject->image }}" class="mw-100">
+                    </div>
+                @endif
+            </div>
         </div>
     </div>
     <br>

@@ -18,6 +18,7 @@ class ArtistCreateRequest extends FormRequest {
             'year_quit'     => 'nullable|integer|digits:4',
             'members'       => 'nullable',
             'past_members'  => 'nullable',
+            'picture'       => 'image|max:20000',
             'medium_types.*'   => 'required|integer',
             'medium_values.*'  => 'required|string'
         ];
@@ -30,6 +31,7 @@ class ArtistCreateRequest extends FormRequest {
             'year_quit'   => $this->input('year_quit'),
             'members'     => $this->getMembers(),
             'past_members'=> $this->getPastMembers(),
+            'picture'     => $this->file('picture'),
             'media'       => $this->getMedia()
         ];
     }

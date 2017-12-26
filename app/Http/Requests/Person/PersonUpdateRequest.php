@@ -19,6 +19,7 @@ class PersonUpdateRequest extends FormRequest {
             'born'          => 'nullable|date',
             'died'          => 'nullable|date',
             'birth_place'   => 'nullable|string|min:1|max:255',
+            'picture'          => 'image|max:20000',
             'medium_types.*'   => 'required|integer',
             'medium_values.*'  => 'required|string'
         ];
@@ -32,6 +33,7 @@ class PersonUpdateRequest extends FormRequest {
             'born'          => $this->input('born'),
             'died'          => $this->input('died'),
             'birth_place'   => $this->input('birth_place'),
+            'picture'       => $this->file('picture'),
             'media'       => $this->getMedia()
         ];
     }

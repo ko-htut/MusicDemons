@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-	<form action="{{ route('song.store') }}" method="POST">
+	<form action="{{ route('song.store') }}" method="POST" enctype="multipart/form-data">
 		{{ csrf_field() }}
 		<div class="form-group row">
 			<div class="col-12">
@@ -40,6 +40,12 @@
         'label'    => 'Lyrics',
         'value'    => '',
         'required' => false
+    ])@endcomponent
+    @component('generic.form.file',[
+        'name'      =>  'picture',
+        'label'     =>  'Image',
+        'accept'    =>  'image/*',
+        'required'  =>  false
     ])@endcomponent
     <div class="form-group row">
       <label class="col-sm-4 col-xl-2">Media</label>

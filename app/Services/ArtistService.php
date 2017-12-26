@@ -32,6 +32,10 @@ class ArtistService {
             $medium->save();
         }
         
+        if($artistData->picture !== null) {
+            $artistData->picture->move('images', $artist->subject->id);
+        }
+        
         return $artist;
     }
     
@@ -63,6 +67,10 @@ class ArtistService {
             $medium->medium_type()->associate($type);
             $medium->subject()->associate($artist->subject);
             $medium->save();
+        }
+        
+        if($artistData->picture !== null) {
+            $artistData->picture->move('images', $artist->subject->id);
         }
         
         return $artist;

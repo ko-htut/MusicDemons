@@ -88,7 +88,7 @@
       </div>
     </div>
   </div>
-	<form action="{{ route('artist.store') }}" method="POST">
+	<form action="{{ route('artist.store') }}" method="POST" enctype="multipart/form-data">
     {{ csrf_field() }}
 		<div class="form-group row">
 			<div class="col-12">
@@ -127,6 +127,12 @@
         'label'         =>  'Past members',
         'url'           =>  route('autocomplete-select2person', ['search' => '']),
         'model'         =>  'App\\Entities\\Person'
+    ])@endcomponent
+    @component('generic.form.file',[
+        'name'      =>  'picture',
+        'label'     =>  'Image',
+        'accept'    =>  'image/*',
+        'required'  =>  false
     ])@endcomponent
     <div class="form-group row">
       <label class="col-sm-4 col-xl-2">Media</label>

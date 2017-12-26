@@ -32,6 +32,11 @@ class PersonService {
             $medium->save();
         }
         
+        if($personData->picture !== null) {
+            //$personData->picture->storeAs('images', $person->subject->id);
+            $personData->picture->move('images', $person->subject->id);
+        }
+        
         return $person;
     }
     
@@ -56,6 +61,10 @@ class PersonService {
             $medium->medium_type()->associate($type);
             $medium->subject()->associate($person->subject);
             $medium->save();
+        }
+        
+        if($personData->picture !== null) {
+            $personData->picture->move('images', $person->subject->id);
         }
         
         return $person;

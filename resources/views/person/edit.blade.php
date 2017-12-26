@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-	<form action="{{ route('person.update',$person->id) }}" method="POST">
+	<form action="{{ route('person.update',$person->id) }}" method="POST" enctype="multipart/form-data">
 		{{ csrf_field() }}
     {{ method_field('PUT') }}
     <div class="form-group row">
@@ -51,6 +51,12 @@
         'name'    =>  'died',
         'label'   =>  'Died',
         'value'   =>  $person->died
+    ])@endcomponent
+    @component('generic.form.file',[
+        'name'      =>  'picture',
+        'label'     =>  'Image',
+        'accept'    =>  'image/*',
+        'required'  =>  false
     ])@endcomponent
     <div class="form-group row">
         <label class="col-sm-4 col-xl-2">Media</label>

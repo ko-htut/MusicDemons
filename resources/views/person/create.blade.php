@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-	<form action="{{ route('person.store') }}" method="POST">
+	<form action="{{ route('person.store') }}" method="POST" enctype="multipart/form-data">
 		{{ csrf_field() }}
 		<div class="form-group row">
 			<div class="col-12">
@@ -46,6 +46,12 @@
         'name'      =>  'died',
         'label'     =>  'Died'
     ])@endcomponent
+    @component('generic.form.file',[
+        'name'      =>  'picture',
+        'label'     =>  'Image',
+        'accept'    =>  'image/*',
+        'required'  =>  false
+    ])@endcomponent
     <div class="form-group row">
       <label class="col-sm-4 col-xl-2">Media</label>
       <div class="col-sm-8 col-xl-10">
@@ -62,9 +68,7 @@
     </div>
     <div class="card-block">
       <p class="card-text">The person you are trying to add is probably already present in the database. Please check before adding this person.</p>
-      <div class="d-block" id="people">
-      
-      </div>
+      <div class="d-block" id="people"></div>
     </div>
   </div>
 @endsection

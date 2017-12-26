@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-	<form action="{{ route('artist.update',$artist) }}" method="POST">
+	<form action="{{ route('artist.update',$artist) }}" method="POST" enctype="multipart/form-data">
 		{{ csrf_field() }}
     {{ method_field('PUT') }}
     <div class="form-group row">
@@ -51,6 +51,12 @@
         'url'           =>  route('autocomplete-select2person', ['search' => '']),
         'selected'      =>  $past_members,
         'model'         =>  'App\\Entities\\Person'
+    ])@endcomponent
+    @component('generic.form.file',[
+        'name'      =>  'picture',
+        'label'     =>  'Image',
+        'accept'    =>  'image/*',
+        'required'  =>  false
     ])@endcomponent
     <div class="form-group row">
       <label class="col-sm-4 col-xl-2">Media</label>
