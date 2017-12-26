@@ -21,9 +21,9 @@
                     </button>
                   </form>
               </span>
-                @component('subject.likebuttons', [
-                    'subject' => $song->subject
-                ])@endcomponent
+              @component('subject.likebuttons', [
+                  'subject' => $song->subject
+              ])@endcomponent
           </span>
       </div>
   </div>
@@ -116,35 +116,36 @@
 @endsection
 
 @section('javascript')
-  @if($song->subject->youtube_id !== null)
-    var lines = {!! json_encode(array_values($lines)) !!};
-    var times = {!! $song->latest_lyrics === null ? '[]' : json_encode($song->latest_lyrics->timing) !!};
-    var player;
-    var timer;
-    function onYouTubeIframeAPIReady() {
-        player = new YT.Player('player', {
-          width: '640',
-          videoId: "{{ $song->subject->youtube_id }}",
-          events: {
-            'onStateChange': onPlayerStateChange
-          }
-        });
-      }
-      function onPlayerStateChange(event) {
-        if (event.data == YT.PlayerState.PLAYING) {
-            timer = setInterval(function(){
-                var txt = lines.filter(function(line,index){
-                    //return parseFloat(times[index + 1]) > player.getCurrentTime();
-                    return parseFloat(times[index]) < player.getCurrentTime();
-                });
-                $("#time").html(txt[txt.length - 1]);
-            }, 100);
-        } else if (timer !== null) {
-            clearInterval(timer);
+    @if($song->subject->youtube_id !== null)
+        var lines = {!! json_encode(array_values($lines)) !!};
+        var times = {!! $song->latest_lyrics === null ? '[]' : json_encode($song->latest_lyrics->timing) !!};
+        var player;
+        var timer;
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player('player', {
+                width: '640',
+                videoId: "{{ $song->subject->youtube_id }}",
+                events: {
+                    'onStateChange': onPlayerStateChange
+                }
+            });
         }
-      }
-      function stopVideo() {
-        player.pauseVideo();
-      }
-  @endif
+        function onPlayerStateChange(event) {
+            if (event.data == YT.PlayerState.PLAYING) {
+                timer = setInterval(function(){
+                    var txt = lines.filter(function(line,index){
+                        //return parseFloat(times[index + 1]) > player.getCurrentTime();
+                        return parseFloat(times[index]) < player.getCurrentTime();
+                    });
+                    $("#time").html(txt[txt.length - 1]);
+                }, 100);
+            } else if (timer !== null) {
+                clearInterval(timer);
+            }
+        }
+        function stopVideo() {
+            player.pauseVideo();
+        }
+    @endif
+    @include('subject.likebuttons_js', ['subject' => $song->subject])
 @endsection

@@ -49,5 +49,8 @@ Route::group(['prefix' => '', 'as' => 'api-'], function() {
             Route::delete('{song}','Api\v1\SongController@destroy')->name('destroy');
             Route::post('datatables','Api\v1\SongController@datatables')->name('datatables');
         });
+        Route::group(['prefix' => 'subject', 'as' => 'subject.'], function() {
+            Route::post('{subject}/like','Api\v1\SubjectController@like')->middleware('auth:api')->name('like');
+        });
     });
 });

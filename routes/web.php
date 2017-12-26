@@ -52,4 +52,6 @@ Route::group(['prefix' => 'autocomplete', 'as' => 'autocomplete-'], function() {
 
 Route::get('test/{param1}/{param2}', 'TestController@ArrayParameters');
 
-Route::post('like/{subject}','LikesController@like')->name('like');
+Route::group(['prefix' => 'subject', 'as' => 'subject.'], function() {
+    Route::post('{subject}/like','SubjectController@like')->middleware('auth')->name('like');
+});

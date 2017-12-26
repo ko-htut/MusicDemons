@@ -38,16 +38,12 @@
         'selected'      =>  $selected_artists ?? null,
         'model'         =>  'App\\Entities\\Artist'
     ])@endcomponent
-    <div class="form-group row">
-      <label for="lyrics" class="col-sm-4 col-xl-2">Lyrics</label>
-			<div class="col-sm-8 col-xl-10">
-        <textarea class="form-control" rows="15" name="lyrics" id="lyrics">{{
-          $song->lyrics->count() === 0 ?
-          '' :
-          $song->lyrics->last()->lyrics
-        }}</textarea>
-      </div>
-    </div>
+    @component('generic.form.textarea',[
+        'name'     => 'lyrics',
+        'label'    => 'Lyrics',
+        'value'    => $song->lyrics->count() === 0 ? '' : $song->lyrics->last()->lyrics,
+        'required' => false
+    ])@endcomponent
     <div class="form-group row">
       <label class="col-sm-4 col-xl-2">Media</label>
       <div class="col-sm-8 col-xl-10">

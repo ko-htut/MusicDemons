@@ -120,3 +120,7 @@
     </div>
   </div>
 @endsection
+
+@section('javascript')
+    @include('subject.likebuttons_js')
+@endsection

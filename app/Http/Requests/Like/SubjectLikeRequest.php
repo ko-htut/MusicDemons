@@ -2,10 +2,10 @@
 
 namespace App\Http\Requests\Like;
 
+use Auth;
 use App\User;
 use App\Entities\Subject;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Support\Facades\Auth;
 
 class SubjectLikeRequest extends FormRequest {
     public function authorize() {
@@ -19,8 +19,6 @@ class SubjectLikeRequest extends FormRequest {
     }
     
     public function getLike() {
-        return (object) [
-            'like'       => $this->input('like')
-        ];
+        return (bool)$this->input('like');
     }
 }

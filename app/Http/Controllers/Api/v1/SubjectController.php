@@ -1,14 +1,17 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api\v1;
 
 use Auth;
+use Collective\Html;
+use App\User;
 use Illuminate\Http\Request;
 use App\Entities\Subject;
 use App\Services\SubjectService;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\Like\SubjectLikeRequest;
 
-class LikesController extends Controller
+class SubjectController extends Controller
 {
     private $subjectService;
     public function __construct(SubjectService $subjectService){
@@ -17,7 +20,8 @@ class LikesController extends Controller
 
     public function like(Subject $subject, SubjectLikeRequest $request) {
         $this->subjectService->like($subject, $request->getLike());
-        switch($subject->subjectable_type) {
+        return "1";
+        /*switch($subject->subjectable_type) {
             case 'App\\Entities\\Song':
                 return redirect()->route('song.show',$subject->subjectable);
                 break;
@@ -27,6 +31,6 @@ class LikesController extends Controller
             case 'App\\Entities\\Person':
                 return redirect()->route('person.show',$subject->subjectable);
                 break;
-        }
+        }*/
     }
 }

@@ -151,3 +151,7 @@
         </div>
     @endif
 @endsection
+
+@section('javascript')
+    @include('subject.likebuttons_js')
+@endsection
