@@ -40,7 +40,6 @@ class ArtistController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(ArtistCreateRequest $request) {
-        return json_encode(Auth::user());
         $artist = $this->artistService->create($request->getArtist());
         return response()->json($artist);
     }

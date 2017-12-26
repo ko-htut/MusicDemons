@@ -23,16 +23,5 @@ class SubjectController extends Controller
         $result['like'] = $request->getLike();
         
         return response()->json($result);
-        /*switch($subject->subjectable_type) {
-            case 'App\\Entities\\Song':
-                return redirect()->route('song.show',$subject->subjectable);
-                break;
-            case 'App\\Entities\\Artist':
-                return redirect()->route('artist.show',$subject->subjectable);
-                break;
-            case 'App\\Entities\\Person':
-                return redirect()->route('person.show',$subject->subjectable);
-                break;
-        }*/
     }
 }

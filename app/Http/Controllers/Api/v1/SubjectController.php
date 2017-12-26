@@ -20,17 +20,11 @@ class SubjectController extends Controller
 
     public function like(Subject $subject, SubjectLikeRequest $request) {
         $this->subjectService->like($subject, $request->getLike());
-        return "1";
-        /*switch($subject->subjectable_type) {
-            case 'App\\Entities\\Song':
-                return redirect()->route('song.show',$subject->subjectable);
-                break;
-            case 'App\\Entities\\Artist':
-                return redirect()->route('artist.show',$subject->subjectable);
-                break;
-            case 'App\\Entities\\Person':
-                return redirect()->route('person.show',$subject->subjectable);
-                break;
-        }*/
+        
+        $result['likes'] = $subject->likes->count();
+        $result['dislikes'] = $subject->dislikes->count();
+        $result['like'] = $request->getLike();
+        
+        return response()->json($result);
     }
 }
