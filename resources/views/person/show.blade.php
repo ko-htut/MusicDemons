@@ -122,5 +122,5 @@
 @endsection
 
 @section('javascript')
-    @include('subject.likebuttons_js')
+    @include('subject.likebuttons_js', ['subject' => $person->subject])
 @endsection
