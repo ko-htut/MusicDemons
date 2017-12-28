@@ -32,6 +32,8 @@
     var peopleTable = $("#peopleTable").DataTable({
       processing: true,
       serverSide: true,
+      pageLength: {{ $count }},
+      displayStart: {{ ($page - 1) * $count }},
       ajax: {
         url:  "{{ route('api-v1-person.datatables') }}",
         type: "POST",
@@ -83,6 +85,13 @@
           next: "&raquo;",
         },
       },
+    });
+    $('#peopleTable').on('page.dt length.dt',function(event,settings){
+        var info = peopleTable.page.info();
+        window.history.pushState({
+            html: "",
+            pageTitle: ""
+        },"","/person/" + info.length + "/" + (info.page+1));
     });
   });
 @endsection

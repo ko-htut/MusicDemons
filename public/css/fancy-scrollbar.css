@@ -1,0 +1,20 @@
+.fancy-scroll::-webkit-scrollbar {
+	position:absolute;
+	width:10px;
+	margin-left:-10px;
+	-webkit-appearance:none;
+}
+.fancy-scroll::-webkit-scrollbar-thumb {
+	height:50px;
+	background-color:#11171a;
+	background-clip: content-box;
+	border-color:transparent;
+	border-style:solid;
+	border-width: 1px 2px;
+	border-radius:10px;
+}
+.fancy-scroll::-webkit-scrollbar-track {
+	background-color: #506067;
+	border-right:1px solid #1c2429;
+	border-left:1px solid #1c2429;
+}

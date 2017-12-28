@@ -28,9 +28,11 @@
 
 @section('javascript')
   $(document).ready(function(){
-    var artistsTable = $("#artistsTable").DataTable({
+    var artistsTable = $('#artistsTable').DataTable({
       processing: true,
       serverSide: true,
+      pageLength: {{ $count }},
+      displayStart: {{ ($page - 1) * $count }},
       ajax: {
         url: "{{ route('api-v1-artist.datatables') }}",
         type: "POST"
@@ -60,6 +62,13 @@
           next: "&raquo;",
         },
       },
+    });
+    $('#artistsTable').on('page.dt length.dt',function(event,settings){
+        var info = artistsTable.page.info();
+        window.history.pushState({
+            html: "",
+            pageTitle: ""
+        },"","/artist/" + info.length + "/" + (info.page+1));
     });
   });
 @endsection

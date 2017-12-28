@@ -26,13 +26,13 @@ class ArtistController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($count = 20, $page = 1)
+    public function index($count = 10, $page = 1)
     {
 				$breadcrumb = array(
 						'Home'      =>  route('home.index'),
 						'Artists'   =>  null
 				);
-        return view('artist/list',compact('breadcrumb'));
+        return view('artist/list',compact('breadcrumb','count','page'));
     }
 
     /**

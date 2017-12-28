@@ -1,0 +1,27 @@
+.breadcrumb {
+	background:#FFF;
+	border-bottom: 1px solid #ccc;
+	margin:0;
+}
+.breadcrumb ol {
+  padding-left:0;
+  display:inline-block;
+}
+.breadcrumb li {
+  display: inline-block;
+  color: #b0bec5;
+}
+.breadcrumb > li + li::before {
+  display: inline-block;
+  padding-right:0.5rem;
+  padding-left:0.5rem;
+  color:#B0BEC5;
+  content:"\203a";
+}
+.breadcrumb > li > ol > li + li:before {
+  display: inline-block;
+  margin-left: -2px;
+  padding-right:0.5rem;
+  color:#B0BEC5;
+  content:",";
+}

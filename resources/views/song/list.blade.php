@@ -30,6 +30,8 @@
     var songsTable = $("#songsTable").DataTable({
       processing: true,
       serverSide: true,
+      pageLength: {{ $count }},
+      displayStart: {{ ($page - 1) * $count }},
       ajax: {
         url: "{{ route('api-v1-song.datatables') }}",
         type: "POST"
@@ -62,6 +64,13 @@
           next: "&raquo;",
         },
       },
+    });
+    $('#songsTable').on('page.dt length.dt',function(event,settings){
+        var info = songsTable.page.info();
+        window.history.pushState({
+            html: "",
+            pageTitle: ""
+        },"","/song/" + info.length + "/" + (info.page+1));
     });
   });
 @endsection
