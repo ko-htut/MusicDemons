@@ -65,12 +65,15 @@
         },
       },
     });
+    
+    var route = "{{ route('song.page', array('count' => ':count', 'page' => ':page')) }}";
     $('#songsTable').on('page.dt length.dt',function(event,settings){
         var info = songsTable.page.info();
+        var pagedUrl = route.replace(':count', info.length).replace(':page',info.page+1);
         window.history.pushState({
             html: "",
             pageTitle: ""
-        },"","/song/" + info.length + "/" + (info.page+1));
+        },"", pagedUrl);
     });
   });
 @endsection

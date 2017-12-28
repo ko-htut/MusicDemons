@@ -63,12 +63,14 @@
         },
       },
     });
+    var route = "{{ route('artist.page', array('count' => ':count', 'page' => ':page')) }}";
     $('#artistsTable').on('page.dt length.dt',function(event,settings){
         var info = artistsTable.page.info();
+        var pagedUrl = route.replace(':count', info.length).replace(':page',info.page+1);
         window.history.pushState({
             html: "",
             pageTitle: ""
-        },"","/artist/" + info.length + "/" + (info.page+1));
+        },"",pagedUrl);
     });
   });
 @endsection
