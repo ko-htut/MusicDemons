@@ -16,6 +16,14 @@ class AboutController extends Controller
         return view('about',compact('breadcrumb'));
     }
     
+    public function api() {
+        $breadcrumb = array(
+            'Home'    =>  route('home.index'),
+            'API'     =>  null
+        );
+        return view('api',compact('breadcrumb'));
+    }
+    
     public function send_mail(SendMailRequest $request) {
         if(Auth::check()){
             //$request->getMessage();

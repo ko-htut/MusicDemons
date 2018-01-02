@@ -101,6 +101,9 @@
 		  <ul>
 			@if(Auth::check())
         <li>
+          <a href="{{ route('profile.likes') }}"><i class="fa fa-heart"></i>Likes</a>
+        </li>
+        <li>
           <a href="{{ route('profile.index') }}"><i class="fa fa-user-o"></i>Profile</a>
         </li>
 				<li>
@@ -121,6 +124,9 @@
 		</li>
 		<li>
 			<a href="{{ route('about.index') }}"><i class="fa fa-info"></i>About/Contact</a>
+		</li>
+		<li>
+			<a href="{{ route('about.api') }}"><i class="fa fa-code"></i>API access</a>
 		</li>
 	</ul>
 </nav>

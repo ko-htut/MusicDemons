@@ -18,10 +18,12 @@ Route::get('/', function () {
 Auth::routes();
 Route::get('/profile', 'Auth\ProfileController@index')->name('profile.index');
 Route::post('/profile', 'Auth\ProfileController@store')->name('profile.store');
+Route::get('/likes', 'Auth\ProfileController@likes')->name('profile.likes');
 Route::get('/home', 'HomeController@index')->name('home.index');
 Route::get('/about','AboutController@index')->name('about.index');
 Route::post('/about','AboutController@send_mail')->name('about.sendmail');
 Route::get('/mail-success','AboutController@mail_success')->name('about.mailsuccess');
+Route::get('/api','AboutController@api')->name('about.api');
 
 Route::resource('artist','ArtistController');
 Route::get('artist/{count?}/{page?}','ArtistController@index')->name('artist.page');

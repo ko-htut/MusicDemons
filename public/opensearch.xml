@@ -6,4 +6,5 @@
   <Url type="text/html" method="get" template="https://lyricdb.tk/search/all/{searchTerms}" />
   <Url type="application/x-suggestions+json" method="GET" template="https://lyricdb.tk/autocomplete/opensearch/all/{searchTerms}" />
   <Url type="application/opensearchdescription+xml" rel="self" template="https://lyricdb.tk/opensearch.xml" />
+  <Image height="128" width="128" type="image/png">https://lyricdb.tk/img/music_note_4.png</Image>
 </OpenSearchDescription>

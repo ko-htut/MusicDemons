@@ -38,4 +38,12 @@ class ProfileController extends Controller
             return redirect()->route('login');
         }
     }
+    
+    public function likes() {
+        $breadcrumb = array(
+            'Home'      =>  route('home.index'),
+            'Likes'     =>  null
+        );
+        return view('likes', compact('breadcrumb'));
+    }
 }

@@ -4,6 +4,7 @@ namespace App\Entities;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use DateTimeInterface;
 
 class Person extends Model
 {
@@ -37,6 +38,12 @@ class Person extends Model
         'updated_at',
         'deleted_at'
     ];
+    
+    // don't include time in json-string
+    //protected $dateFormat = "d/m/Y";
+    protected function serializeDate(DateTimeInterface $date) {
+        return $date->format('d-m-Y');
+    }
     
     public function artist() {
         return $this->belongsToMany('App\Entities\Artist')->withPivot('active');
