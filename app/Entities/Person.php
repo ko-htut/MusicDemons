@@ -40,9 +40,9 @@ class Person extends Model
     ];
     
     // don't include time in json-string
-    //protected $dateFormat = "d/m/Y";
+    //protected $dateFormat = "m/d/Y";
     protected function serializeDate(DateTimeInterface $date) {
-        return $date->format('d-m-Y');
+        return $date->format('m/d/Y');
     }
     
     public function artist() {
