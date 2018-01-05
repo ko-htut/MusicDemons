@@ -20,7 +20,7 @@ try {
 
 try {
     window.$ = window.jQuery = require('jquery');
-    global.Tether = require('tether');
+    //global.Tether = require('tether');
     require('bootstrap-sass');
     require('select2');
 } catch (e){
