@@ -17,7 +17,14 @@ body {
   padding-left:45px;
 }
 
-.app-footer {
+@media (max-width: 575px) {
+  .app-header h1 {
+    font-size: 1.5rem;
+    margin: 0.85rem 0 !important;
+  }
+}
+
+.footer {
 	position:fixed;
 	z-index:100;
 	border-top: 1px solid #ccc;
@@ -57,7 +64,7 @@ body {
 .content {
 	position:absolute;
 	right:0;
-	transition:left 0.3s;
+	transition:all 0.3s;
 	padding-bottom:55px;
   background:#E4E5E6;
 }
@@ -140,7 +147,7 @@ body {
     .sidebar-auto .sidebar {
         left:0;
     }
-    .sidebar-auto .content, .sidebar-auto .footer {
+    .sidebar-auto .content, .sidebar-auto + .footer {
         left:220px;
         width:calc(100% - 220px);
     }
@@ -149,7 +156,7 @@ body {
     .sidebar-auto .sidebar {
         left: -220px;
     }
-    .sidebar-auto .content, .sidebar-auto .footer {
+    .sidebar-auto .content, .sidebar-auto + .footer {
         left: 0;
         width:100%;
     }
@@ -159,23 +166,25 @@ body {
 .sidebar-hidden .sidebar {
 	  left: -220px;
 }
-.sidebar-hidden .content, .sidebar-hidden .footer {
+.sidebar-hidden .content, .sidebar-hidden + .footer {
 	  left:0;
+    width: 100%;
 }
 
 /* Force show the sidebar */
 .sidebar-show .sidebar {
 	  left: 0;
 }
-.sidebar-show .content, .sidebar-hidden .footer {
+.sidebar-show .content, .sidebar-show + .footer {
 	  left: 220px;
+    width: calc(100% - 220px);
 }
 
 /* Smartphone: sidebar full width */
 @media (max-width: 575px) {
     .sidebar {
         width: 100%;
-        z-index: 5;
+        z-index: 200;
     }
     .sidebar > nav ul > li > a,
     .sidebar > nav ul > li > span,
@@ -186,8 +195,9 @@ body {
     .sidebar-auto .sidebar {
     	  left: -100%;
     }
-    .content {
+    .footer, .content {
         left: 0 !important;
+        width: 100% !important;
     }
 }
 

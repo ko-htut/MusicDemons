@@ -1,3 +1,3 @@
-<div class="app-footer">
+<div class="footer">
 	Credentials
 </div>
