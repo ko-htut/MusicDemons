@@ -11,15 +11,11 @@
 |
 */
 
-Route::get('/', function () {
-    return redirect('/home');
-});
-
 Auth::routes();
 Route::get('/profile', 'Auth\ProfileController@index')->name('profile.index');
 Route::post('/profile', 'Auth\ProfileController@store')->name('profile.store');
 Route::get('/likes', 'Auth\ProfileController@likes')->name('profile.likes');
-Route::get('/home', 'HomeController@index')->name('home.index');
+Route::get('/', 'HomeController@index')->name('home.index');
 Route::get('/about','AboutController@index')->name('about.index');
 Route::post('/about','AboutController@send_mail')->name('about.sendmail');
 Route::get('/mail-success','AboutController@mail_success')->name('about.mailsuccess');
@@ -53,7 +49,15 @@ Route::group(['prefix' => 'autocomplete', 'as' => 'autocomplete-'], function() {
 });
 
 Route::get('test/{param1}/{param2}', 'TestController@ArrayParameters');
+Route::get('test/auth', 'TestController@authorized_test');
 
 Route::group(['prefix' => 'subject', 'as' => 'subject.'], function() {
     Route::post('{subject}/like','SubjectController@like')->middleware('auth')->name('like');
+});
+
+Route::group(['prefix' => 'sitemap', 'as' => 'sitemap-'], function() {
+    Route::get('', 'SitemapController@all')->name('all');
+    Route::get('artist/{start}/{end}', 'SitemapController@artist_chunk')->name('artist.chunk');
+    Route::get('person/{start}/{end}', 'SitemapController@person_chunk')->name('person.chunk');
+    Route::get('song/{start}/{end}', 'SitemapController@song_chunk')->name('song.chunk');
 });

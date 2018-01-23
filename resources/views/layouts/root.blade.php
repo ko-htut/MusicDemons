@@ -1,30 +1,42 @@
 <!DOCTYPE html>
 <html lang="{{ config('app.locale') }}">
 	<head>
+		<!-- Global site tag (gtag.js) - Google Analytics -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-89371074-3"></script>
+		<script>
+			window.dataLayer = window.dataLayer || [];
+			function gtag(){dataLayer.push(arguments);}
+			gtag('js', new Date());
+			gtag('config', 'UA-89371074-3');
+		</script>
+
 		<!-- https://stackoverflow.com/questions/44769250/incompatible-units-rem-and-px-with-bootstrap-4-alpha-6-->
 		<meta charset="UTF-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta name="csrf-token" content="{{ csrf_token() }}">
+		<meta name="description" content="MusicDemons is an open-source and open-data project where artists and songs can be entered. This data is accessible through a public API-endpoint">
+		<meta name="keywords" content="music,lyrics,database,api,open-source,open-data">
+		<meta name="author" content="Pieterjan De Clippel">
 		<link rel="stylesheet" href="{{ asset('css/app.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/menu-icon.css') }}">
+		<link rel="stylesheet" href="{{ asset('css/menu-icon.css') }}">
 		<link rel="stylesheet" href="{{ asset('css/toggle-button.css') }}">
 		<link rel="stylesheet" href="{{ asset('css/fancy-scrollbar.css') }}">
 		<link rel="stylesheet" href="{{ asset('css/breadcrumb.css') }}">
 		<link rel="stylesheet" href="{{ asset('css/custom.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/bootstrap-xtra.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/bootstrap-dialog-fix.css') }}">
+		<link rel="stylesheet" href="{{ asset('css/bootstrap-xtra.css') }}">
+		<link rel="stylesheet" href="{{ asset('css/bootstrap-dialog-fix.css') }}">
     
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css">
-    
-    <link rel="shortcut icon" href="{{ asset('img/music_note.png') }}">
-		<link rel="search" type="application/opensearchdescription+xml" title="Search through LyricDB" href="https://lyricdb.tk/opensearch.xml">
+		<link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css">
+
+		<link rel="shortcut icon" href="{{ asset('img/music_note.png') }}">
+		<link rel="search" type="application/opensearchdescription+xml" title="Search through MusicDemons" href="{{ url('opensearch.xml') }}">
 		@section('title')
-      <title>{{ config('app.name', 'Laravel') }}</title>
-    @endsection
-    @yield('title')
-    <style>
-  		@yield('css')
+			<title>{{ config('app.name', 'Laravel') }}</title>
+		@endsection
+		@yield('title')
+		<style>
+			@yield('css')
 		</style>
 		<script>
 			window.Laravel = {!! json_encode([
@@ -34,7 +46,7 @@
 	</head>
 	<body>
 		@include('shared.header')
-		<div class="app-body">
+		<div class="app-body sidebar-auto" id="app-body">
 			<div class="sidebar">
 				@include('shared.navbar')
 			</div>

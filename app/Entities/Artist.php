@@ -35,6 +35,10 @@ class Artist extends Model
         return $this->belongsToMany('App\Entities\Person')->withPivot('active');
     }
     
+    public function active_members() {
+        return $this->belongsToMany('App\Entities\Person')->withPivot('active')->wherePivot('active',TRUE);
+    }
+    
     public function songs() {
         return $this->belongsToMany('App\Entities\Song');
     }

@@ -83,7 +83,7 @@ class ArtistController extends Controller
      */
     public function datatables(ArtistSearchRequest $request) {
         $search = $request->getSearchString();
-        $artists = Artist::query()
+        $artists = Artist::with('active_members')
             ->when($search, function($query) use ($search){
                 $query->where(function($query2) use ($search){
                     return $query2->where('name','like',"%$search%");

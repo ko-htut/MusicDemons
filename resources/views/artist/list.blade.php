@@ -19,6 +19,7 @@
     <thead>
       <tr>
         <th>Name</th>
+        <th class="hidden-lg-down">Members</th>
         <th class="hidden-xs-down">Year started</th>
         <th class="hidden-xs-down">Year quit</th>
       </tr>
@@ -42,6 +43,26 @@
         name: "name",
         fnCreatedCell: function(nTd, sData, oData, iRow, iCol){
           $(nTd).html("<a href=\"/artist/" + oData.id + "\">" + oData.text + "</a>");
+        }
+      },{
+        data: "active_members",
+        sortable: false,
+        searchable: false,
+        fnCreatedCell: function(nTd, sData, oData, iRow, iCol){
+          var result = "";
+          $(sData).each(function(index,person){
+            result += "<a href=\"/person/" + person.id + "\">" + person.text + "</a>";
+            if(index != sData.length - 1){
+              // there will be another member
+              result += ", ";
+            }
+            if((index == 4) & (index != sData.length - 1)){
+                // 5 items max, exit the loop
+                result += "...";
+                return false;
+            }
+          });
+          $(nTd).addClass("hidden-lg-down").html(result);
         }
       },{
         data: "year_started",

@@ -19,6 +19,7 @@
     <thead>
       <tr>
         <th>Title</th>
+        <th class="hidden-xs-down">Artists</th>
         <th class="hidden-xs-down">Released</th>
       </tr>
     </thead>
@@ -41,6 +42,21 @@
         name: "title",
         fnCreatedCell: function(nTd, sData, oData, iRow, iCol){
           $(nTd).html("<a href=\"/song/" + oData.id + "\">" + oData.text + "</a>");
+        }
+      },{
+        data: "artists",
+        sortable: false,
+        searchable: false,
+        fnCreatedCell: function(nTd, sData, oData, iRow, iCol){
+          var result = "";
+          $(sData).each(function(index, artist){
+            result += "<a href=\"/artist/" + artist.id + "\">" + artist.text + "</a>";
+            if(index != sData.length - 1){
+              result += ", ";
+            }
+          });
+          $(nTd).addClass("hidden-xs-down")
+                .html(result);
         }
       },{
         data: "released",

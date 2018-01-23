@@ -1,33 +1,25 @@
-function tryCollapseSidebar() {
-  if($(window).width() < 767){
-		var body = $('.app-body')[0];
-    $(body).fixClass('sidebar-collapsed','');
-    $('.navbar-toggler').fixClass('','open');
-	}else{
-		var body = $('.app-body')[0];
-    $(body).fixClass('','sidebar-collapsed');
-    $('.navbar-toggler').fixClass('open','');
-	}
-}
-
 $(document).ready(function(){
-    $(".sidebar, .content, .app-footer").addClass('no-transition');
-    tryCollapseSidebar();
-    $(".sidebar, .content, .app-footer").each(function(){
-        $(this).offsetLeft;
-    });
-    //debugger;
-    setTimeout(function() {
-        $(".sidebar, .content, .app-footer").removeClass('no-transition');
-    }, 500);
-    
     // navbar
 		$('.sidebar > nav > ul > li:has(ul) > span').each(function(){
 			$(this).append("<span></span>");
 		});
 		$('.navbar-toggler').click(function(){
-			$('.app-body').toggleClass('sidebar-collapsed');
-      $(this).toggleClass('open');
+  		if($("#app-body").hasClass("sidebar-hidden")) {
+  			$("#app-body").removeClass("sidebar-hidden").addClass("sidebar-show");
+        $("#navbar-toggler").removeClass("closed").addClass("open");
+  		} else if($("#app-body").hasClass("sidebar-show")) {
+  			$("#app-body").removeClass("sidebar-show").addClass("sidebar-hidden");
+        $("#navbar-toggler").removeClass("open").addClass("closed");
+  		} else if($("#app-body").hasClass("sidebar-auto")) {
+  			if($(window).width() > 767) {
+  				$("#app-body").removeClass("sidebar-auto").addClass("sidebar-hidden");
+          $("#navbar-toggler").removeClass("auto").addClass("closed");
+  			} else {
+  				$("#app-body").removeClass("sidebar-auto").addClass("sidebar-show");
+          $("#navbar-toggler").removeClass("auto").addClass("open");
+  			}
+  		}
+      //$(this).toggleClass('open');
 		});
 		$('nav ul > li > span').click(function(){
 			var nav = $(this).closest('nav');
@@ -38,8 +30,5 @@ $(document).ready(function(){
 				$(this).addClass('open');
 				$(this).next().slideDown();
 			}
-		});
-		$(window).on('resize',function(){
-			tryCollapseSidebar();
 		});
 });

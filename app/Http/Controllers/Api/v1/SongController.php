@@ -88,7 +88,7 @@ class SongController extends Controller
      */
     public function datatables(SongSearchRequest $request) {
         $search = $request->getSearchString();
-        $songs = Song::query()
+        $songs = Song::with('artists')
             ->when($search, function($query) use ($search){
                 $query->where(function($query2) use ($search){
                     return $query2->where('title','like',"%$search%");
