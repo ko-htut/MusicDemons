@@ -71,7 +71,7 @@
 	
 	
 	<xsl:template match="sitemap:urlset">
-        <h1>Muzikum XML Sitemap</h1>
+        <h1>MusicDemons XML Sitemap</h1>
         <div id="content">
 			<table cellpadding="5">
 				<tr style="border-bottom:1px black solid;">
@@ -108,7 +108,7 @@
 	
 	
 	<xsl:template match="sitemap:sitemapindex">
-        <h1>XML Sitemap Index</h1>
+        <h1>MusicDemons XML Sitemap Index</h1>
 		<div id="content">
 			<table cellpadding="5">
 				<tr style="border-bottom:1px black solid;">

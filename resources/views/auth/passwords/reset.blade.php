@@ -1,7 +1,7 @@
 @extends('layouts.root')
 
 @section('title')
-  <title>LyricDB - Reset password</title>
+  <title>{{ config('app.name', 'Laravel') }} - Reset password</title>
 @endsection
 
 @section('content')

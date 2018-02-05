@@ -1,7 +1,7 @@
 @extends('layouts.root')
 
 @section('title')
-  <title>LyricDB - Unauthenticated</title>
+  <title>{{ config('app.name', 'Laravel') }} - Unauthenticated</title>
 @endsection
 
 @section('content')    <div class="error-page">

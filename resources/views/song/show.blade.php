@@ -1,7 +1,7 @@
 @extends('layouts.root')
 
 @section('title')
-  <title>LyricDB - {{ $song->title }}</title>
+  <title>{{ config('app.name', 'Laravel') }} - {{ $song->title }}</title>
 @endsection
 
 @section('content')
@@ -140,20 +140,25 @@
             });
         }
         function onPlayerStateChange(event) {
-            if (event.data == YT.PlayerState.PLAYING) {
-                timer = setInterval(function(){
-                    var txt = lines.filter(function(line,index){
-                        //return parseFloat(times[index + 1]) > player.getCurrentTime();
-                        return parseFloat(times[index]) < player.getCurrentTime();
-                    });
-                    $("#time").html(txt[txt.length - 1]);
-                }, 100);
-            } else if (timer !== null) {
-                clearInterval(timer);
+            switch(event.data) {
+                case YT.PlayerState.PLAYING:
+                    // start queueing the lyric lines
+                    timer = setInterval(function(){
+                        var txt = lines.filter(function(line,index){
+                            return parseFloat(times[index]) < player.getCurrentTime();
+                        });
+                        $("#time").html(txt[txt.length - 1]);
+                    }, 100);
+                    break;
+                case YT.PlayerState.ENDED:
+                    // stop queueing the lyric lines
+                    clearInterval(timer);
+                    break;
+                default:
+                    // stop queueing the lyric lines
+                    clearInterval(timer);
+                    break;                                    
             }
-        }
-        function stopVideo() {
-            player.pauseVideo();
         }
     @endif
     @include('subject.likebuttons_js', ['subject' => $song->subject])

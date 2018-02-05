@@ -1,7 +1,7 @@
 @extends('layouts.root')
 
 @section('title')
-  <title>LyricDB - Internal server error</title>
+  <title>{{ config('app.name', 'Laravel') }} - Internal server error</title>
 @endsection
 
 @section('content')    <div class="error-page">

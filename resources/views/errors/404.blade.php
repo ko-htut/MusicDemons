@@ -1,7 +1,7 @@
 @extends('layouts.root')
 
 @section('title')
-  <title>LyricDB - Not found</title>
+  <title>{{ config('app.name', 'Laravel') }} - Not found</title>
 @endsection
 
 @section('content')

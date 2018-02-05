@@ -1,7 +1,7 @@
 @extends('layouts.root')
 
 @section('title')
-  <title>LyricDB - Login</title>
+  <title>{{ config('app.name', 'Laravel') }} - Login</title>
 @endsection
 
 @section('content')

@@ -1,7 +1,7 @@
 @extends('layouts.root')
 
 @section('title')
-  <title>LyricDB - Sync {{ $song->title }}</title>
+  <title>{{ config('app.name', 'Laravel') }} - Sync {{ $song->title }}</title>
 @endsection
 
 @section('content')

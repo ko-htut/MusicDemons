@@ -36,6 +36,10 @@ class MediumTypeService {
     }
     
     public function destroy(MediumType $mediumType) {
+        foreach($mediumType->mediums as $medium) {
+            $medium->delete();
+        }
+    
         $mediumType->user_delete = Auth::user()->id;
         $mediumType->save();
     

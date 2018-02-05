@@ -1,3 +1,3 @@
 <div class="footer">
-	Credentials
+	&copy; MusicDemons &#8211; Pieterjan De Clippel
 </div>

@@ -32,15 +32,6 @@ Route::put('song/{song}/sync','SongController@sync_store')->name('song.syncstore
 Route::get('song/{count?}/{page?}','SongController@index')->name('song.page');
 Route::resource('mediumtypes','MediumTypesController');
 
-// this is for the search form only
-Route::group(['prefix' => 'search', 'as' => 'search-'], function() {
-    // Route to show the form
-    Route::get('{subject?}','SearchController@index')->name('form');
-    
-    // Route to show the results
-    Route::get('{subject}/{search}','SearchController@search')->name('results');
-});
-
 // Routes for the search engine (select2 and opensearch)
 Route::group(['prefix' => 'autocomplete', 'as' => 'autocomplete-'], function() {
     Route::get('opensearch/{subject}/{search}', 'AutocompleteController@opensearch')->name('opensearch');

@@ -1,7 +1,7 @@
 @extends('layouts.root')
 
 @section('title')
-  <title>LyricDB - Forbidden</title>
+  <title>{{ config('app.name', 'Laravel') }} - Forbidden</title>
 @endsection
 
 @section('content')    <div class="error-page">

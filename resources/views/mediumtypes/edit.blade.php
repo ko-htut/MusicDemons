@@ -1,7 +1,7 @@
 @extends('layouts.root')
 
 @section('title')
-  <title>LyricDB - Edit medium-type: {{ $mediumtype->description }}</title>
+  <title>{{ config('app.name', 'Laravel') }} - Edit medium-type: {{ $mediumtype->description }}</title>
 @endsection
 
 @section('content')
