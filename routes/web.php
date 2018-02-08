@@ -52,3 +52,7 @@ Route::group(['prefix' => 'sitemap', 'as' => 'sitemap-'], function() {
     Route::get('person/{start}/{end}', 'SitemapController@person_chunk')->name('person.chunk');
     Route::get('song/{start}/{end}', 'SitemapController@song_chunk')->name('song.chunk');
 });
+
+Route::group(['prefix' => 'components', 'as' => 'components-'], function() {
+    Route::get('autocomplete', 'AngularComponentController@autocomplete')->name('autocomplete');
+});

@@ -26,7 +26,7 @@ class Subject extends Model
     }
     
     public function like_users() {
-        return $this->belongsToMany('App\User','likes','subject_id','user_id')->withPivot('like');
+        return $this->belongsToMany('App\User','MusicDemons.likes','subject_id','user_id')->withPivot('like');
     }
     
     public function likes() {

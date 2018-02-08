@@ -81,6 +81,7 @@
 			</div>
 		</div>
 		@include('shared.footer')
+    @yield('pre_scripts')
 		<script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
 		<script type="text/javascript" src="{{ asset('js/custom/classHelper.js') }}"></script>
 		<script type="text/javascript" src="{{ asset('js/custom/select2.js') }}"></script>
@@ -91,8 +92,10 @@
     <script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>
     <script type="text/javascript" src="https://www.youtube.com/iframe_api"></script>
+    @yield('scripts')
     <script type="text/javascript">
     		@yield('javascript')
     </script>
+    @yield('post_scripts')
 	</body>
 </html>

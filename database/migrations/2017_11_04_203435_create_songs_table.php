@@ -19,11 +19,11 @@ class CreateSongsTable extends Migration
             $table->date('released')->nullable();
             
             $table->integer('user_insert')->nullable()->unsigned();
-            $table->foreign('user_insert')->references('id')->on('users');
+            $table->foreign('user_insert')->references('id')->on('Internal.users');
             $table->integer('user_update')->nullable()->unsigned();
-            $table->foreign('user_update')->references('id')->on('users');
+            $table->foreign('user_update')->references('id')->on('Internal.users');
             $table->integer('user_delete')->nullable()->unsigned();
-            $table->foreign('user_delete')->references('id')->on('users');
+            $table->foreign('user_delete')->references('id')->on('Internal.users');
             
             $table->timestamps();
             $table->softDeletes();

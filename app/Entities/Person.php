@@ -13,8 +13,7 @@ class Person extends Model
     protected $fillable = [
         'first_name',
         'last_name',
-        'nickname',
-        'birth_place'
+        'nickname'
     ];
     
     protected $casts = [
@@ -63,5 +62,9 @@ class Person extends Model
     
     public function getTextAttribute() {
         return $this->first_name . " " . $this->last_name;
+    }
+    
+    public function birth_place() {
+        return $this->belongsTo('App\Entities\Addresses\Place');
     }
 }
