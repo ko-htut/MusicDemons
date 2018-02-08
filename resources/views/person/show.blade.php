@@ -128,45 +128,6 @@
       </table>
     </div>
   </div>
-  <br>
-  <div class="card">
-    <div class="card-header">
-      Angular Test
-    </div>
-    <div class="card-block" ng-app="TestApp" ng-controller="TestApp as vm">
-      @{{ vm.message }}
-      <br>
-      <!-- https://pieterjan.pro/test.txt -->
-      <!-- https://adres-autocomplete.pieterjan.pro/api/v1/continent/autocomplete -->
-      <autocomplete url="'https://adres-autocomplete.pieterjan.pro/api/v1/continent/autocomplete'" count="5" placeholder="'Type een continent in'" item-selected="vm.showContinent(item)">
-      </autocomplete>
-    </div>
-  </div>
-@endsection
-
-@section('pre_scripts')
-@endsection
-
-@section('scripts')
-    <script type="text/javascript" src="/js/angularjs/components/Autocomplete.js"></script>
-    <script type="text/javascript">
-        var TestApp;
-        (function (TestApp_1) {
-            var TestApp = (function() {
-                function TestApp() {
-                    this.$onInit = function() { };
-                    this.message = "Hello World";
-                    this.showContinent = function(item) {
-                        debugger;
-                    }
-                }
-                TestApp.$inject = [];
-                return TestApp;
-            }());
-            angular.module("TestApp",["Components"])
-                .controller("TestApp", TestApp);
-        })(TestApp || (TestApp = {}));
-    </script>
 @endsection
 
 @section('javascript')
