@@ -1,13 +1,30 @@
-<div class="form-group row">
+<div class="form-group row"{!! isset($id) ? (" id=\"$id\"") : "" !!}>
     <label for="{{ $name }}" class="col-sm-4 col-xl-2">{{ $label }}</label>
     <div class="col-sm-8 col-xl-10">
-        <select class="form-control select2"
-            name="{{ $name }}[]"
-            id="{{ $name }}"
-            data-placeholder="{{ $label }}"
-            data-url="{{ $url }}"
-            data-selected="{!! (old($name) !== null) ? App\Helpers\Functions::select2_selected(app($model)::find(old($name))) : (empty($selected) ? '[]' : App\Helpers\Functions::select2_selected($selected)) !!}"
-            multiple>
-        </select>
+        @if(isset($ajax))
+            @component('generic.input.select2',[
+                'name'         =>  $name,
+                'multiple'     =>  (isset($multiple) && !!$multiple),
+                'required'     =>  (isset($required) && !!$required),
+                'disabled'     =>  (isset($disabled) && !!$disabled),
+                'placeholder'  =>  $label,
+                'selected'     =>  $selected ?? array(),
+                'ajax'         =>  [
+                    'url'          =>  $ajax['url']
+                ],
+                'model'        =>  $model
+            ])@endcomponent
+        @else
+            @component('generic.input.select2',[
+                'name'         =>  $name,
+                'multiple'     =>  (isset($multiple) && !!$multiple),
+                'required'     =>  (isset($required) && !!$required),
+                'disabled'     =>  (isset($disabled) && !!$disabled),
+                'placeholder'  =>  $label,
+                'items'        =>  $items,                
+                'selected'     =>  $selected ?? array(),
+                'model'        =>  $model
+            ])@endcomponent
+        @endif
     </div>
 </div>

@@ -29,11 +29,14 @@
         'label'     =>  'Released'
     ])@endcomponent
     @component('generic.form.select2',[
-        'name'          =>  'artists',
-        'label'         =>  'Artists',
-        'url'           =>  route('autocomplete-select2artist', ['search' => '']),
-        'selected'      =>  $selected_artists ?? null,
-        'model'         =>  'App\\Entities\\Artist'
+      'name'          =>  'artists',
+      'label'         =>  'Artists',
+      'multiple'      =>  true,
+      'ajax'          =>  [
+				'url'           =>  route('autocomplete-select2artist', ['search' => ''])
+			],
+      'selected'      =>  $selected_artists ?? null,
+      'model'         =>  'App\\Entities\\Artist'
     ])@endcomponent
     @component('generic.form.textarea',[
         'name'     => 'lyrics',

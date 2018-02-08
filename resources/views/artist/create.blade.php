@@ -117,16 +117,22 @@
         'label'     =>  'Year quit'
     ])@endcomponent
     @component('generic.form.select2',[
-        'name'          =>  'members',
-        'label'         =>  'Current members',
-        'url'           =>  route('autocomplete-select2person', ['search' => '']),
-        'model'         =>  'App\\Entities\\Person'
+      'name'          =>  'members',
+      'label'         =>  'Current members',
+      'multiple'      =>  true,
+      'ajax'          =>  [
+				'url'           =>  route('autocomplete-select2person', ['search' => ''])
+			],
+      'model'         =>  'App\\Entities\\Person'
     ])@endcomponent
     @component('generic.form.select2',[
-        'name'          =>  'past_members',
-        'label'         =>  'Past members',
-        'url'           =>  route('autocomplete-select2person', ['search' => '']),
-        'model'         =>  'App\\Entities\\Person'
+      'name'          =>  'past_members',
+      'label'         =>  'Past members',
+      'multiple'      =>  true,
+      'ajax'          =>  [
+				'url'           =>  route('autocomplete-select2person', ['search' => ''])
+			],
+      'model'         =>  'App\\Entities\\Person'
     ])@endcomponent
     @component('generic.form.file',[
         'name'      =>  'picture',
