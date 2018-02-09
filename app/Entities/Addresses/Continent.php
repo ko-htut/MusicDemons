@@ -15,7 +15,7 @@ class Continent extends Model
         'code'
     ];
     protected $appends = [
-        'text'
+        'text',
     ];
     
     protected $hidden = [

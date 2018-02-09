@@ -15,6 +15,9 @@ class Region extends Model
 
     protected $fillable = [
     ];
+    protected $appends = [
+        'text'
+    ];
     
     public function place() {
         return $this->morphOne('App\Entities\Addresses\Place','placeable');
@@ -72,5 +75,9 @@ class Region extends Model
     }
     public function getPlaceIdAttribute() {
         return $this->place->id;
+    }
+    
+    public function getTextAttribute() {
+        return $this->place->name;
     }
 }

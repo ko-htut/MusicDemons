@@ -16,7 +16,7 @@ class PersonService {
         $person->nickname = $personData->nickname;
         $person->born = $personData->born;
         $person->died = $personData->died;
-        $person->birth_place = $personData->birth_place;
+        $person->birth_place()->associate($personData->birth_place);
         
         $person->user_insert = Auth::user()->id;
         $person->save();
@@ -33,7 +33,6 @@ class PersonService {
         }
         
         if($personData->picture !== null) {
-            //$personData->picture->storeAs('images', $person->subject->id);
             $personData->picture->move('images', $person->subject->id);
         }
         
@@ -46,7 +45,7 @@ class PersonService {
         $person->nickname = $personData->nickname;
         $person->born = $personData->born;
         $person->died = $personData->died;
-        $person->birth_place = $personData->birth_place;
+        $person->birth_place()->associate($personData->birth_place);
         
         $person->user_update = Auth::user()->id;
         $person->save();

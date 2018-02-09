@@ -14,6 +14,9 @@ class City extends Model
     protected $fillable = [
         'postal_code',
     ];
+    protected $appends = [
+        'text'
+    ];
     
     protected $hidden = [
         'user_insert',
@@ -30,5 +33,9 @@ class City extends Model
     
     public function parent_place() {
         return $this->belongsTo('App\Entities\Addresses\Place');
+    }
+    
+    public function getTextAttribute() {
+        return $this->place->name;
     }
 }

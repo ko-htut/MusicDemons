@@ -38,9 +38,15 @@
         'name'      =>  'born',
         'label'     =>  'Birth day'
     ])@endcomponent
-    @component('generic.form.text',[
-        'name'      =>  'birth_place',
-        'label'     =>  'Birth place'
+    @component('generic.form.select2',[
+      'name'            =>  'birth_place',
+      'label'           =>  'Birth place',
+      'multiple'        =>  false,
+      'ajax'            =>  [
+				'url'             =>  'https://adres-autocomplete.pieterjan.pro/api/v1/place/autocomplete',
+        'method'          =>  'post'
+			],
+      'model'         =>  'App\\Entities\\Place'
     ])@endcomponent
     @component('generic.form.date',[
         'name'      =>  'died',

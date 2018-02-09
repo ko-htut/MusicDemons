@@ -18,7 +18,7 @@ class PersonUpdateRequest extends FormRequest {
             'nickname'      => 'nullable|string',
             'born'          => 'nullable|date',
             'died'          => 'nullable|date',
-            'birth_place'   => 'nullable|string|min:1|max:255',
+            'birth_place'   => 'nullable|integer',
             'picture'          => 'image|max:20000',
             'medium_types.*'   => 'required|integer',
             'medium_values.*'  => 'required|string'

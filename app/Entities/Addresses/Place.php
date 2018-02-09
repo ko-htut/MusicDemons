@@ -14,6 +14,9 @@ class Place extends Model
     protected $fillable = [
         'name'
     ];
+    protected $appends = [
+        'text'
+    ];
     
     protected $hidden = [
         'user_insert',
@@ -31,4 +34,8 @@ class Place extends Model
     //public function regions() {
     //    return $this->hasMany('App\Entities\Region','parent_place_id');
     //}
+    
+    public function getTextAttribute() {
+        return $this->name . " (" . class_basename($this->placeable_type) . ")";
+    }
 }

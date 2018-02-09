@@ -15,6 +15,9 @@ class Country extends Model
     protected $fillable = [
         'code'
     ];
+    protected $appends = [
+        'text'
+    ];
     
     protected $hidden = [
         'user_insert',
@@ -47,5 +50,9 @@ class Country extends Model
     
     public function structure() {
         return $this->belongsTo('App\Entities\Addresses\Structure');
+    }
+    
+    public function getTextAttribute() {
+        return $this->place->name;
     }
 }
