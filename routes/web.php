@@ -39,6 +39,7 @@ Route::group(['prefix' => 'autocomplete', 'as' => 'autocomplete-'], function() {
     Route::get('select2/person/{search}','AutocompleteController@select2person')->name('select2person');
 });
 
+Route::get('test/structure/{place}', 'TestController@structure_test');
 Route::get('test/{param1}/{param2}', 'TestController@ArrayParameters');
 Route::get('test/auth', 'TestController@authorized_test');
 

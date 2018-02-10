@@ -2,6 +2,7 @@
 
 namespace App\Entities\Addresses;
 
+use App\Entities\Addresses\Region;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -36,6 +37,11 @@ class Place extends Model
     //}
     
     public function getTextAttribute() {
-        return $this->name . " (" . class_basename($this->placeable_type) . ")";
+        if($this->placeable_type === "App\\Entities\\Addresses\\Region") {
+            $region = Region::find($this->placeable_id);
+            return $this->name . " (" . $region->structure_element->description . ")";
+        } else {
+            return $this->name . " (" . class_basename($this->placeable_type) . ")";
+        }
     }
 }
