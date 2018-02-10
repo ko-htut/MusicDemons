@@ -55,22 +55,40 @@ class Region extends Model
         // child-regions or child-cities ?
         $child_structure_elements = $this->parent_country->structure->elements->where('index','>',$this->structure_element->index);
         if($child_structure_elements->count() === 0) {
+            
             // child-cities
-            return [];
+            return collect([]);
+            
         } else {
+            
             // child-regions
-            return Region::where('parent_place_id','=',$this->place->id)->get();
+            return Region::whereHas('parent_place',function($query) {
+                return $query->where('id','=',$this->place->id);
+            });
+            
         }
     }
     public function getChildCitiesAttribute() {
-        // child-regions or child-cities ?
         $child_structure_elements = $this->parent_country->structure->elements->where('index','>',$this->structure_element->index);
         if($child_structure_elements->count() === 0) {
+            
             // child-cities
-            return City::where('parent_place_id','=',$this->place->id)->get();
+            return City::where('parent_place_id','=',$this->place->id);
+            
         } else {
+            
             // child-regions
-            return [];
+            return City::whereIn(
+                'id',
+                Region::whereHas('parent_place', function($query) {
+                    $query->where('id','=',$this->place->id);
+                })->get()
+                  ->map(function($item, $key) {
+                      return $item->child_cities->get();
+                  })->collapse()
+                  ->pluck('id')
+            );
+            
         }
     }
     public function getPlaceIdAttribute() {
