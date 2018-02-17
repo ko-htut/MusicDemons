@@ -10,7 +10,7 @@
     {{ method_field('PUT') }}
     <div class="form-group row">
         <div class="col-12">
-            <h4 class="d-inline-block">Synchronize song: {{ $song->title }}</h4>
+            <h1 class="d-inline-block">Synchronize song: {{ $song->title }}</h1>
             <span class="float-right">
         				<button type="submit" class="btn btn-primary">
         					<i class="fa fa-save"></i>

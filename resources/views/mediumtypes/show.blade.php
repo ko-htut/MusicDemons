@@ -7,7 +7,7 @@
 @section('content')
   <div class="row">
       <div class="col-12">
-          <h4 class="d-inline-block">{{ $mediumtype->description }}</h4>
+          <h1 class="d-inline-block">{{ $mediumtype->description }}</h1>
           <span class="float-right">
               <a href="{{ route('mediumtypes.edit', $mediumtype) }}" class="btn btn-primary">
             		<i class="fa fa-pencil"></i> Edit

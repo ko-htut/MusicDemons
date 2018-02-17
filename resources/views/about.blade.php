@@ -9,7 +9,7 @@
          {{ csrf_field() }}
         <div class="form-group row">
             <div class="col-md-12">
-                <h4>About</h4>
+                <h1>About</h1>
             </div>
         </div>
         <div class="form-group row">

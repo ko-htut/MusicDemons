@@ -6,7 +6,7 @@
 		<div></div>
 	</div>
 	<a href="{{ route('home.index') }}" class="no-underline">
-		<h1 class="text-success font-weight-bold d-inline-block my-1">Music</h1>
-		<h1 class="text-danger font-weight-bold d-inline-block my-1">Demons</h1>
+		<span class="text-success font-weight-bold d-inline-block my-1 logo">Music</span>
+		<span class="text-danger font-weight-bold d-inline-block my-1 logo">Demons</span>
 	</a>
 </div>

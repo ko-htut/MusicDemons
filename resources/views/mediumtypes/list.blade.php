@@ -7,7 +7,7 @@
 @section('content')
   <div class="form-group row">
       <div class="col-12">
-          <h4 class="d-inline-block">All mediatypes</h4>
+          <h1 class="d-inline-block">All mediatypes</h1>
           <span class="float-right">
             	<a href="{{ route('mediumtypes.create') }}" class="btn btn-primary">
             		<i class="fa fa-plus"></i> Add medium

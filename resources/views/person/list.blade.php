@@ -7,7 +7,7 @@
 @section('content')
   <div class="form-group row">
       <div class="col-12">
-          <h4 class="d-inline-block">All people</h4>
+          <h1 class="d-inline-block">All people</h1>
           <span class="float-right">
             	<a href="{{ route('person.create') }}" class="btn btn-primary">
             		<i class="fa fa-plus"></i> Add person

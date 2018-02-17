@@ -26,13 +26,11 @@
 		<link rel="stylesheet" href="{{ asset('css/custom.css') }}">
 		<link rel="stylesheet" href="{{ asset('css/bootstrap-xtra.css') }}">
 		<link rel="stylesheet" href="{{ asset('css/bootstrap-dialog-fix.css') }}">
-    
 		<link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css">
-
 		<link rel="shortcut icon" href="{{ asset('img/music_note.png') }}">
 		<link rel="search" type="application/opensearchdescription+xml" title="Search through MusicDemons" href="{{ url('opensearch.xml') }}">
 		@section('title')
-			<title>{{ config('app.name', 'Laravel') }}</title>
+			<title>{{ config('app.name', 'Laravel') }} - First Open-Source and Open-Data Music/Lyrics Database</title>
 		@endsection
 		@yield('title')
 		<style>

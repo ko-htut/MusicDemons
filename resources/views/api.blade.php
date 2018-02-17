@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-    <h4>API</h4>
+    <h1>API</h1>
     <h5>v1</h5>
     <div class="table-responsive">
         <table class="table table-bordered m-0">

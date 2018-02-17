@@ -6,7 +6,7 @@
 
 @section('content')
     <div class="error-page">
-        <h2 class="headline text-info"> 404</h2>
+        <h1 class="headline text-info">404</h1>
         <div class="error-content">
             <h3><i class="fa fa-warning text-yellow"></i> Oops! Page not found.</h3>
             <p>

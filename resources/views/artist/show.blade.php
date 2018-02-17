@@ -7,7 +7,7 @@
 @section('content')        
     <div class="row">
         <div class="col-12">
-            <h4 class="d-inline-block">{{ $artist->name }}</h4>
+            <h1 class="d-inline-block">{{ $artist->name }}</h1>
             <span class="float-none float-sm-right d-block d-sm-inline-block">
                 <span class="float-none float-sm-right d-block d-sm-inline-block">
                     <a href="{{ route('artist.edit', $artist) }}" class="btn btn-primary d-block d-sm-inline-block">

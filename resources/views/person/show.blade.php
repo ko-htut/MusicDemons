@@ -7,7 +7,7 @@
 @section('content')
   <div class="row">
       <div class="col-12">
-          <h4 class="d-inline-block">{{ $person->first_name . " " . $person->last_name }}</h4>
+          <h1 class="d-inline-block">{{ $person->first_name . " " . $person->last_name }}</h1>
           <span class="float-none float-sm-right d-block d-sm-inline-block">
               <span class="float-none float-sm-right d-block d-sm-inline-block">
                   <a href="{{ route('person.edit', $person) }}" class="btn btn-primary d-block d-sm-inline-block">
