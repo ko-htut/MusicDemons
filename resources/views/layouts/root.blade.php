@@ -15,9 +15,13 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta name="csrf-token" content="{{ csrf_token() }}">
-		<meta name="description" content="MusicDemons is an open-source and open-data project where artists and songs can be entered. This data is accessible through a public API-endpoint">
+		@section('description')
+			<meta name="description" content="MusicDemons is an open-source and open-data project where artists and songs can be entered. This data is accessible through a public API-endpoint">
+		@endsection
+		@yield('description')
 		<meta name="keywords" content="music,lyrics,database,api,open-source,open-data">
 		<meta name="author" content="Pieterjan De Clippel">
+		
 		<link rel="stylesheet" href="{{ asset('css/app.css') }}">
 		<link rel="stylesheet" href="{{ asset('css/menu-icon.css') }}">
 		<link rel="stylesheet" href="{{ asset('css/toggle-button.css') }}">
@@ -33,6 +37,7 @@
 			<title>{{ config('app.name', 'Laravel') }} - First Open-Source and Open-Data Music/Lyrics Database</title>
 		@endsection
 		@yield('title')
+		
 		<style>
 			@yield('css')
 		</style>

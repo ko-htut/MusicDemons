@@ -4,6 +4,10 @@
   <title>{{ config('app.name', 'Laravel') }} - {{ $person->full_name }}</title>
 @endsection
 
+@section('description')
+  <meta name="description" content="All information about {{ $person->name }} is available on MusicDemons.">
+@endsection
+
 @section('content')
   <div class="row">
       <div class="col-12">

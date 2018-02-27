@@ -4,6 +4,10 @@
   <title>{{ config('app.name', 'Laravel') }} - {{ $song->title }}</title>
 @endsection
 
+@section('description')
+  <meta name="description" content="The lyrics of {{ $song->title }} and video with extra information is available on MusicDemons.">
+@endsection
+
 @section('content')
   <div class="row">
       <div class="col-12">
@@ -29,12 +33,23 @@
   </div>
   @if($song->subject->youtube_id !== null)
     <div class="row">
-      <div class="col-lg-12">
-        <div class="d-block mx-auto mw-100 text-center">
+      <div class="col-md-12 text-center">
+        <div class="mw-100">
           <div id="player"></div>
-          <br>
-          <label id="time"></label>
         </div>
+       </div>
+     </div>
+     <div class="row">
+       <div class="col-md-12 text-center">
+         <span class="h5 d-block" id="lyric_1"></span>
+         <span class="h5 d-block" id="lyric_2"></span>
+         <span class="h5 d-block" id="lyric_3"></span>
+         <span class="h3 d-block" id="lyric_4"></span>
+         <span class="h1 d-block" id="lyric_5"></span>
+         <span class="h3 d-block" id="lyric_6"></span>
+         <span class="h5 d-block" id="lyric_7"></span>
+         <span class="h5 d-block" id="lyric_8"></span>
+         <span class="h5 d-block" id="lyric_9"></span>
        </div>
      </div>
   @endif
@@ -144,10 +159,35 @@
                 case YT.PlayerState.PLAYING:
                     // start queueing the lyric lines
                     timer = setInterval(function(){
-                        var txt = lines.filter(function(line,index){
-                            return parseFloat(times[index]) < player.getCurrentTime();
+                        var current_index = -2;
+                        for(var index = 0; index < lines.length; index++) {
+                            if(parseFloat(times[index]) > player.getCurrentTime()) {
+                                // line "index" is still to come. So current index is index - 1.
+                                current_index = index - 1;
+                                break;
+                            }
+                        }
+                        if(current_index == -2) {
+                            // previous for-loop did not result in hits.
+                            // this means all lines have passed.
+                            current_index = lines.length - 1;
+                        }
+                        for(var i = 1; i < 10; i++) {
+                            if( (0 <= current_index - 5 + i) & (current_index - 5 + i < lines.length) ) {
+                                $("#lyric_" + i).html(lines[current_index - 5 + i]);
+                            } else {
+                                $("#lyric_" + i).html("&nbsp;");
+                            }
+                        }
+                        
+                        
+                        // take 4 more lines
+                        /*var txt = lines.filter(function(line,index){
+                            return parseFloat(times[index - 4]) < player.getCurrentTime();
                         });
-                        $("#time").html(txt[txt.length - 1]);
+                        for(var i = 1; i < 10; i++) {
+                            $("#lyric_" + i).html(txt[txt.length - 10 + i]);
+                        }*/
                     }, 100);
                     break;
                 case YT.PlayerState.ENDED:
