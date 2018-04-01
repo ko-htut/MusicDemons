@@ -57,18 +57,18 @@
 				<ol class="breadcrumb">
 					@if(!empty($breadcrumb))
 						@foreach($breadcrumb as $text => $url_or_array)
-              @if(is_array($url_or_array))
-                <li>
-                  <ol>
-                    @foreach($url_or_array as $item_text => $item_url)
-                      @if(empty($item_url))
-                        <li>{{ $item_text }}</li>
-                      @else
-                        <li><a href="{{ $item_url }}">{{ $item_text }}</a></li>
-                      @endif
-                    @endforeach
-                  </ol>
-                </li>
+							@if(is_array($url_or_array))
+								<li>
+									<ol>
+										@foreach($url_or_array as $item_text => $item_url)
+											@if(empty($item_url))
+												<li>{{ $item_text }}</li>
+											@else
+												<li><a href="{{ $item_url }}">{{ $item_text }}</a></li>
+											@endif
+										@endforeach
+									</ol>
+								</li>
 							@elseif(empty($url_or_array))
 								<li>{{ $text }}</li>
 							@else
@@ -79,26 +79,26 @@
 				</ol>
 				<div class="container-fluid">
 					@yield('content')
-          @include('shared.pager')
+					@include('shared.pager')
 				</div>
 			</div>
 		</div>
 		@include('shared.footer')
-    @yield('pre_scripts')
+		@yield('pre_scripts')
 		<script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
 		<script type="text/javascript" src="{{ asset('js/custom/classHelper.js') }}"></script>
 		<script type="text/javascript" src="{{ asset('js/custom/select2.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('js/custom/checkbuttons.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('js/custom/rowsclickable.js') }}"></script>
+		<script type="text/javascript" src="{{ asset('js/custom/checkbuttons.js') }}"></script>
+		<script type="text/javascript" src="{{ asset('js/custom/rowsclickable.js') }}"></script>
 		<script type="text/javascript" src="{{ asset('js/custom.js') }}"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"></script>
-    <script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
-    <script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>
-    <script type="text/javascript" src="https://www.youtube.com/iframe_api"></script>
-    @yield('scripts')
-    <script type="text/javascript">
-    		@yield('javascript')
-    </script>
-    @yield('post_scripts')
+		<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"></script>
+		<script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+		<script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>
+		<script type="text/javascript" src="https://www.youtube.com/iframe_api"></script>
+		@yield('scripts')
+		<script type="text/javascript">
+			@yield('javascript')
+		</script>
+		@yield('post_scripts')
 	</body>
 </html>

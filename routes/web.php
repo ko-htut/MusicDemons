@@ -23,14 +23,14 @@ Route::get('/api', 'AboutController@api')->name('about.api');
 Route::get('/robots.txt', 'RobotsController@robots')->name('robots');
 
 Route::resource('artist','ArtistController');
-Route::get('artist/{count?}/{page?}','ArtistController@index')->name('artist.page');
+Route::get('artist/all/{count?}/{page?}','ArtistController@index')->name('artist.page');
 Route::resource('person','PersonController');
-Route::get('person/{count?}/{page?}','PersonController@index')->name('person.page');
+Route::get('person/all/{count?}/{page?}','PersonController@index')->name('person.page');
 Route::resource('song','SongController');
 Route::get('song/create/{artist}','SongController@createwithartist')->name('song.createwithartist');
 Route::get('song/{song}/sync','SongController@sync')->name('song.sync');
 Route::put('song/{song}/sync','SongController@sync_store')->name('song.syncstore');
-Route::get('song/{count?}/{page?}','SongController@index')->name('song.page');
+Route::get('song/all/{count?}/{page?}','SongController@index')->name('song.page');
 Route::resource('mediumtypes','MediumTypesController');
 
 // Routes for the search engine (select2 and opensearch)
@@ -38,6 +38,11 @@ Route::group(['prefix' => 'autocomplete', 'as' => 'autocomplete-'], function() {
     Route::get('opensearch/{subject}/{search}', 'AutocompleteController@opensearch')->name('opensearch');
     Route::get('select2/artist/{search}','AutocompleteController@select2artist')->name('select2artist');
     Route::get('select2/person/{search}','AutocompleteController@select2person')->name('select2person');
+});
+
+// Routes for the search form
+Route::group(['prefix' => 'search', 'as' => 'search.'], function() {
+    Route::get('{subject?}/{search_term?}','SearchController@index')->name('index');
 });
 
 Route::group(['prefix' => 'subject', 'as' => 'subject.'], function() {
@@ -54,3 +59,7 @@ Route::group(['prefix' => 'sitemap', 'as' => 'sitemap-'], function() {
 Route::group(['prefix' => 'components', 'as' => 'components-'], function() {
     Route::get('autocomplete', 'AngularComponentController@autocomplete')->name('autocomplete');
 });
+
+//Route::domain('adres-autocomplete.pieterjan.pro')->group(['prefix' => 'addresses', 'as' => 'addresses-'], function() {
+//    Route::get('place/{id}',function(){ return ""; });
+//});

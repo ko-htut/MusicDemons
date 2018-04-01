@@ -47,10 +47,6 @@ class Artist extends Model
         return $this->morphOne('App\Entities\Subject', 'subjectable');
     }
     
-    //public function getRouteKeyName() {
-    //    return 'name';
-    //}
-    
     public function getTextAttribute() {
         return $this->name;
     }                

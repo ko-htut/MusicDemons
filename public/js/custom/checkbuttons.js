@@ -1,11 +1,12 @@
 // check-all button
 function applyCheckAllButtons(name) {
+      debugger;
       // toggle All button
       var all_button = $(".check-all-btn[data-name='" + name + "']");
       var all_inputs = $("input[name='" + name + "[]']");
       // all checked?
       var checked_inputs = $.grep(all_inputs,function(item,index){
-        return($(item).val() !== '');
+        return $(item).is(":checked");
       });
       // apply the style
       if(checked_inputs.length === all_inputs.length) {
@@ -23,10 +24,10 @@ $(document).ready(function(){
 			
       // toggle the input's value
       if($(input).is(':checked')) {
-        $(input).prop("checked", false);
+        $(input).removeAttr("checked");
         $(sender).fixClass('btn-secondary','btn-primary');
       } else {
-        $(input).prop("checked", true);
+        $(input).attr("checked","");
         $(sender).fixClass('btn-primary','btn-secondary');
       }
       applyCheckAllButtons(name);
@@ -37,10 +38,11 @@ $(document).ready(function(){
 			var new_value = $(sender).toggleClass('btn-primary btn-secondary').hasClass("btn-primary");
       
 			$("input[name='" + name + "[]']").each(function(){
-				$(this).val(new_value ? $(this).attr('data-value') : '');
         if(new_value) {
+          $(this).attr("checked","checked");
           $(this).prev().fixClass('btn-primary','btn-secondary')
   			} else {
+          $(this).removeAttr("checked");
           $(this).prev().fixClass('btn-secondary','btn-primary')
   			}
 			});

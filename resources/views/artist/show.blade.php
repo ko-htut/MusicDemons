@@ -13,30 +13,32 @@
         <div class="col-12">
             <h1 class="d-inline-block">{{ $artist->name }}</h1>
             <span class="float-none float-sm-right d-block d-sm-inline-block">
-                <span class="float-none float-sm-right d-block d-sm-inline-block">
-                    <a href="{{ route('artist.edit', $artist) }}" class="btn btn-primary d-block d-sm-inline-block">
-                  		<i class="fa fa-pencil"></i> Edit
-                  	</a><!--
-                    --><form action="{{ route('artist.destroy', $artist) }}" method="POST" class="d-block d-sm-inline-block">
-                      {{ csrf_field() }}
-                      {{ method_field('DELETE') }}
-                      <button type="submit" class="btn btn-secondary btn-block d-sm-inline-block">
-                        <i class="fa fa-trash-o"></i> Remove
-                      </button>
-                    </form><!--
-                    @if($add_another !== null)
-                      --><a href="{{ route('artist.create') }}" class="btn btn-secondary d-block d-sm-inline-block">
-                        <i class="fa fa-plus"></i> Add another
-                      </a><!--
-                    @endif
-                --></span>
+                @if(Auth::check())
+                    <span class="float-none float-sm-right d-block d-sm-inline-block">
+                        <a href="{{ route('artist.edit', $artist) }}" class="btn btn-primary d-block d-sm-inline-block">
+                      		<i class="fa fa-pencil"></i> Edit
+                      	</a><!--
+                        --><form action="{{ route('artist.destroy', $artist) }}" method="POST" class="d-block d-sm-inline-block">
+                          {{ csrf_field() }}
+                          {{ method_field('DELETE') }}
+                          <button type="submit" class="btn btn-secondary btn-block d-sm-inline-block">
+                            <i class="fa fa-trash-o"></i> Remove
+                          </button>
+                        </form><!--
+                        @if($add_another !== null)
+                          --><a href="{{ route('artist.create') }}" class="btn btn-secondary d-block d-sm-inline-block">
+                            <i class="fa fa-plus"></i> Add another
+                          </a><!--
+                        @endif
+                    --></span>
+                    <br class="d-none d-sm-inline">
+                @endif
                 @component('subject.likebuttons', [
                     'subject' => $artist->subject
                 ])@endcomponent
             </span>
         </div>
     </div>
-    <br>    
     <div class="card">
         <div class="card-header">
             <i class="fa fa-info"></i>
@@ -84,7 +86,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($artist->songs as $song)
+                    @foreach($artist->songs()->orderBy('title')->get() as $song)
                         <tr>
                             <td><a href="{{ route('song.show', compact('song')) }}">{{ $song->title }}</a></td>
                             <td class="hidden-xs-down">{{ $song->released !== null ? date('d/m/Y', strtotime($song->released)) : '' }}</td>
