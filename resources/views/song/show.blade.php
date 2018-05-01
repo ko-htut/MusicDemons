@@ -24,8 +24,13 @@
 							<button type="submit" class="btn btn-secondary btn-block d-sm-inline-block">
 								<i class="fa fa-trash-o"></i> Remove
 							</button>
-						</form>
-					</span>
+						</form><!--
+            @if($add_another !== null)
+          	  --><a href="{{ $song->artists->count() === 0 ? route('song.create') : route('song.createwithartist',$song->artists[0]) }}" class="btn btn-secondary d-block d-sm-inline-block">
+          		  <i class="fa fa-plus"></i> Add another
+          	  </a><!--
+            @endif
+					--></span>
 					<br class="d-none d-sm-inline">
 				@endif
 				@component('subject.likebuttons', [
@@ -152,10 +157,12 @@
 			player = new YT.Player('player', {
 				width: '640',
 				videoId: "{{ $song->subject->youtube_id }}",
+        playsInline: true,
 				events: {
 					'onStateChange': onPlayerStateChange
 				}
 			});
+      debugger;
 		}
 		function onPlayerStateChange(event) {
 			switch(event.data) {

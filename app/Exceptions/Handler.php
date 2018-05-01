@@ -50,17 +50,20 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
-        $appDebug = env("APP_DEBUG",false);
-        if($appDebug){
+        //$appDebug = env("APP_DEBUG",false);
+        //if($appDebug){
             // just show the Laravel Error Views
-            return parent::render($request, $exception);
-        } else {
+        //    return parent::render($request, $exception);
+        //} else {
             // we'll show our own Error Views
             
             // Only HTTP-exceptions do have a status code
-            $code = $this->isHttpException($exception)
-                  ? $exception->getStatusCode()
-                  : 500;
+            //$code = $this->isHttpException($exception)
+            //      ? $exception->getStatusCode()
+            //      : 500;
+        
+            $code = 404; //$exception->getStatusCode();
+            $h = $this->isHttpException($exception);
         
     				$breadcrumb = array(
     						"Home"         =>  route('home.index'),
@@ -68,11 +71,11 @@ class Handler extends ExceptionHandler
     				);
     
             if (view()->exists("errors.$code")) {
-                return response()->view("errors.$code", compact('breadcrumb'), $code);
+                return response()->view("errors.$code", compact('breadcrumb','h'), $code);
             } else {
                 return parent::render($request, $exception);
             }
-        }
+        //}
     }
     
     protected function unauthenticated($request, AuthenticationException $exception)

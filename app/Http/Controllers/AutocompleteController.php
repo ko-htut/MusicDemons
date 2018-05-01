@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Entities\Artist;
 use App\Entities\Person;
+use App\Entities\Song;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Autocomplete\PersonSearchRequest;
 use App\Http\Requests\Autocomplete\ArtistSearchRequest;
@@ -70,10 +71,18 @@ class AutocompleteController extends Controller
     
     public function opensearch($subject,$search)
     {
-        $query = Artist::select('name')->where('name','like',"%$search%")->get()->pluck('name');
+        $artists = Artist::select('name')->where('name','like',"%$search%")->get()->pluck('name')->toArray();
+        $people = Person::where(function($query) use ($search){
+                $query->orWhereRaw('concat(first_name," ",last_name) like ?', array("%$search%"));
+                $query->orWhereRaw('concat(last_name," ",first_name) like ?', array("%$search%"));
+                $query->orWhereRaw('nickname like ?',array("%$search%"));
+        })->get()->pluck('full_name')->toArray();
+        $songs = Song::select('title')->where('title','like',"%$search%")->get()->pluck('title')->toArray();
+        
+        $subjects = array_merge($artists,$people,$songs);
         $response = [
             $search,
-            $query
+            $subjects
         ];
         return response()->json($response);
     }

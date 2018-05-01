@@ -20,7 +20,7 @@
 }
 .breadcrumb > li > ol > li + li:before {
   display: inline-block;
-  margin-left: -2px;
+  margin-left: 1px;
   padding-right:0.5rem;
   color:#B0BEC5;
   content:",";

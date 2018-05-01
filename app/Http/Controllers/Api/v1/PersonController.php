@@ -8,6 +8,7 @@ use App\Entities\Person;
 use App\Entities\MediumType;
 use App\Helpers\Functions;
 use App\Helpers\SubjectHelper;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Services\PersonService;
@@ -91,7 +92,8 @@ class PersonController extends Controller
                     return $query2->whereRaw("concat(first_name,' ',last_name) like '%$search%'");
                 });
             });
-        
-        return Datatables::of($people)->make(true);
+            
+        //return $people->toSql();
+        return Datatables::of($people->get())->make(true);
     }
 }

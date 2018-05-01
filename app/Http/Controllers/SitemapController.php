@@ -21,19 +21,19 @@ class SitemapController extends Controller
     
     public function artist_chunk($start, $end) {
         $subjects = Artist::skip($start)->take($end - $start)->get();
-        $route = 'artist.show';
+        $route = 'artist.show_name';
         return Response::view('sitemap.chunk',compact('subjects', 'route'))->header('Content-Type', 'application/xml');
     }
     
     public function person_chunk($start, $end) {
         $subjects = Person::skip($start)->take($end - $start)->get();
-        $route = 'person.show';
+        $route = 'person.show_name';
         return Response::view('sitemap.chunk',compact('subjects', 'route'))->header('Content-Type', 'application/xml');
     }
     
     public function song_chunk($start, $end) {
         $subjects = Song::skip($start)->take($end - $start)->get();
-        $route = 'song.show';
+        $route = 'song.show_name';
         return Response::view('sitemap.chunk',compact('subjects', 'route'))->header('Content-Type', 'application/xml');
     }
 }

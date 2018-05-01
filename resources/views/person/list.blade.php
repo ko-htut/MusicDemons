@@ -37,9 +37,9 @@
       ajax: {
         url:  "{{ route('api-v1-person.datatables') }}",
         type: "POST",
-        /*data: function(data){
-            data.filter_search = "a";
-        }*/
+        data: function(data){
+            data.filter_search = data.search.value;
+        }
       },
       columns: [{
           data: "text",

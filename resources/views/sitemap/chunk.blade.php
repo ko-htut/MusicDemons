@@ -3,7 +3,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
 @foreach($subjects as $subject)
     <url>
-        <loc>{{ route($route, $subject) }}</loc>
+        <loc>{{ route($route, array($subject, str_slug($subject->text))) }}</loc>
         <lastmod>{{ date('c', strtotime($subject->updated_at)) }}</lastmod>
         <changefreq>monthly</changefreq>
     </url>

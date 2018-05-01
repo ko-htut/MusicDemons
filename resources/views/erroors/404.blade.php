@@ -13,6 +13,7 @@
                 We could not find the page you were looking for.
                 Meanwhile, you may <a href="{{ route('home.index') }}">return to the homepage</a> or try using the search form.
             </p>
+            <p>{{ $h ? "true" : "false" }}</p>
         </div>
     </div>
 @endsection

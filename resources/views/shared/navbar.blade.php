@@ -3,6 +3,9 @@
 		<li>
 			<a href="{{ route('home.index') }}"><i class="fa fa-home"></i>Home</a>
 		</li>
+    <li>
+      <a href="{{ route('search.index') }}"><i class="fa fa-search"></i>Search</a>
+    </li>
 		<li>
 			<span><i class="fa fa-user-circle"></i>Artists</span>
 			<ul>

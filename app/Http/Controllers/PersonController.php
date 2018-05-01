@@ -69,9 +69,7 @@ class PersonController extends Controller
     {
         $person = $this->personService->create($request->getPerson());
         $request->session()->flash('add_another','Add another person');
-        return redirect()->route('person.show',[
-            'person' => $person->id
-        ]);
+        return redirect()->route('person.show_name',array($person,str_slug($person->full_name)));
     }
 
     /**
@@ -80,8 +78,11 @@ class PersonController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Person $person)
-    {
+    public function show(Person $person) {
+        return redirect()->route('person.show_name',array($person, str_slug($person->text)), 301);
+    }
+    
+    public function show_name(Person $person, String $name) {
         $breadcrumb = array(
             'Home'                                           =>  route('home.index'),
             'People'                                         =>  route('person.index'),
@@ -97,8 +98,11 @@ class PersonController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Person $person)
-    {
+    public function edit(Person $person) {
+        return redirect()->route('person.edit_name',array($person, str_slug($person->full_name)), 301);
+    }
+    
+    public function edit_name(Person $person, String $name) {
         $breadcrumb = array(
             'Home'                                           =>  route('home.index'),
             'People'                                         =>  route('person.index'),

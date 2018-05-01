@@ -101,9 +101,12 @@ class SongController extends Controller
     public function store(SongCreateRequest $request)
     {
         $song = $this->songService->create($request->getSong());
-        return redirect()->route('song.show',[
-            'song' => $song->id
-        ]);
+        $request->session()->flash('add_another','Add another song');
+        return redirect()->route('song.show_name',array($song,str_slug($song->title)));
+    }
+    
+    public function show(Song $song) {
+        return redirect()->route('song.show_name',array($song, str_slug($song->title)), 301);
     }
 
     /**
@@ -112,8 +115,7 @@ class SongController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Song $song)
-    {
+    public function show_name(Song $song, String $name) {
         $breadcrumb = array(
             'Home'          =>  route('home.index'),
             'Artists'       =>  route('artist.index'),
@@ -136,7 +138,8 @@ class SongController extends Controller
                 return $line !== "";
             });
         }
-        return view('song/show',compact('song','breadcrumb','lines'));
+        $add_another = session('add_another');
+        return view('song/show',compact('song','breadcrumb','lines','add_another'));
     }
 
     /**

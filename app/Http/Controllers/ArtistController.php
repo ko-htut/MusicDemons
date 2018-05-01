@@ -70,9 +70,7 @@ class ArtistController extends Controller
     {
         $artist = $this->artistService->create($request->getArtist());
         $request->session()->flash('add_another','Add another artist');
-        return redirect()->route('artist.show',[
-            'artist' => $artist->id
-        ]);
+        return redirect()->route('artist.show_name',array($artist,$artist->name));
     }
 
     /**
@@ -81,8 +79,11 @@ class ArtistController extends Controller
      * @param  App\Entities\Artist  $artist
      * @return \Illuminate\Http\Response
      */
-    public function show(Artist $artist)
-    {
+    public function show(Artist $artist) {
+        return redirect()->route('artist.show_name',array($artist, str_slug($artist->name)), 301);
+    }
+    
+    public function show_name(Artist $artist, String $name) {
         $breadcrumb = array(
             'Home'         =>  route('home.index'),
             'Artists'      =>  route('artist.index'),
@@ -91,14 +92,18 @@ class ArtistController extends Controller
         $add_another = session('add_another');
         return view('artist/show',compact('artist','breadcrumb','add_another'));
     }
-
+    
+    public function edit(Artist $artist) {
+        return redirect()->route('artist.edit_name',array($artist, str_slug($artist->name)), 301);
+    }
+    
     /**
      * Show the form for editing the specified resource.
      *
      * @param  App\Entities\Artist $artist
      * @return \Illuminate\Http\Response
      */
-    public function edit(Artist $artist)
+    public function edit_name(Artist $artist, String $name)
     {
         $breadcrumb = array(
             'Home'         =>  route('home.index'),

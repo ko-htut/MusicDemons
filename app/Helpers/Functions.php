@@ -46,6 +46,10 @@ class Functions {
         }
         return $image;
     }
+    
+    public static function string_empty($string) {
+        return (!isset($string) || trim($string) === '');
+    }
 }
 
 ?>
