@@ -85,11 +85,11 @@ class SearchController extends Controller
         
         $artists = Artist::where('name','=',"$search_terms")->get();
         $songs = Song::where('title','=',"$search_terms")->get();
-        $people = collect(array_values(Person::all()
-                        ->filter(function($person) use ($search_terms) {
-                            return strtolower($person->full_name) === strtolower($search_terms);
-                        })->toArray()));
-        
+        $people = collect(Person::all()
+                      ->filter(function($person) use ($search_terms) {
+                          return strtolower($person->full_name) === strtolower($search_terms);
+                      }));
+              
         if($artists->count() + $people->count() + $songs->count() === 1) {
             if($artists->count() === 1) {
                 return redirect()->route('artist.show',$artists->first());
