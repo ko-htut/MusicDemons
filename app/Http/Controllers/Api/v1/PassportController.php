@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use App\Services\AuthService;
 use App\Http\Requests\Api\Auth\RegisterRequest;
+use App\Http\Requests\Api\Auth\LoginRequest;
 
 class PassportController extends Controller
 {
@@ -24,5 +25,7 @@ class PassportController extends Controller
         ], 200);
     }
     
-    
+    public function login(LoginRequest $request) {
+        return "login";
+    }
 }

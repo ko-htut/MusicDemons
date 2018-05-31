@@ -5,10 +5,10 @@
 }
 .breadcrumb ol {
   padding-left:0;
-  display:inline-block;
+  display:inline;
 }
 .breadcrumb li {
-  display: inline-block;
+  display: inline;
   color: #b0bec5;
 }
 .breadcrumb > li + li::before {

@@ -54,7 +54,7 @@ class SongController extends Controller
      */
     public function show(Song $song) {
         //$song = Song::with('latest_lyrics')->findOrFail($id);
-        return response()->json($song);
+        return response()->json($song, 200, [], JSON_PRETTY_PRINT);
         
         //return response()->json($song->with('lyrics')->get());
     }

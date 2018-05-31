@@ -1,7 +1,7 @@
 @extends('layouts.root')
 
 @section('title')
-	<title>{{ config('app.name', 'Laravel') }} - {{ $song->title }}</title>
+	<title>{{ config('app.name', 'Laravel') }} - {{ $song->title }} - Video and Lyrics</title>
 @endsection
 
 @section('description')
@@ -101,6 +101,16 @@
 			</div>
 		</div>
 	</div>
+  <br>
+  <div class="card">
+		<div class="card-header">
+			<i class="fa fa-exchange"></i>
+			API
+		</div>
+		<div class="card-block">
+      <a href="{{ route('api-v1-song.show',$song) }}" target="_blank">{{ route('api-v1-song.show',$song) }}</a>
+    </div>
+  </div>
 	<br>
 	<div class="card">
 		<div class="card-header">

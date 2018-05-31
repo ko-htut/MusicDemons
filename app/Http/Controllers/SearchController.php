@@ -82,7 +82,6 @@ class SearchController extends Controller
     
     public function redirect_opensearch_action($search_terms) {
         // find the subjects where the name equals the search terms
-        
         $artists = Artist::where('name','=',"$search_terms")->get();
         $songs = Song::where('title','=',"$search_terms")->get();
         $people = collect(Person::all()
